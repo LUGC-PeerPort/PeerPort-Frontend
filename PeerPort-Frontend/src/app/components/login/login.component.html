@@ -1,0 +1,18 @@
+<main class="container">
+    <h1>Login</h1>
+    <h5 [ngClass]="messageClass">{{message}}</h5>
+    <form>
+        <fieldset>
+            <label>Username:</label>
+            <input [(ngModel)]="username" required/>
+        </fieldset>
+        <fieldset>
+            <label>Password:</label>
+            <input type="password" [(ngModel)]="password" required/>
+        </fieldset>
+        <button (click)="login()">
+            <i></i>Login
+        </button>
+    </form>
+    <a routerLink="/register">Don't have an account? Register here</a>
+</main>
