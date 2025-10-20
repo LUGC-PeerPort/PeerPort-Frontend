@@ -3,11 +3,11 @@
         <h2>Courses</h2>
         <ul>
             <li *ngFor="let course of COURSES">
-                <a routerLink="/course">
+                <button routerLink="/course">
                     <h4 *ngIf="course.name">{{course.name}}</h4>
                     <p *ngIf="course.courseCode">{{course.courseCode}}</p>
                     <p *ngIf="course.description">{{course.description}}</p>
-                </a>
+                </button>
             </li>
         </ul>
     </div>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -35,5 +35,4 @@ export class AuthService {
   logout(){
     return this.http.get(`${this.apiUrl}/users/logout`, { withCredentials: true });
   }
-  
 }

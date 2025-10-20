@@ -14,6 +14,10 @@ export class Course{
     endDate: string | undefined;
 }
 
+export class User{
+    _id: string | undefined;
+}
+
 @Component({
   selector: 'app-home',
   imports: [NgFor, NgIf, FormsModule, RouterLink],
@@ -31,16 +35,26 @@ export class HomeComponent implements OnInit {
   startDate: string | undefined;
   endDate: string | undefined;
 
+  USERS: any;
+  userId: string | undefined;
+
   constructor(private service: CourseService, private router: Router) { }
 
-  getCourses(): void{
-    this.service.getCourses().subscribe(response => {
+  // getCourses(): void{
+  //   this.service.getCourses().subscribe(response => {
+  //     this.COURSES = response;
+  //   });
+  // }
+
+  getCoursesByUserId(): void{
+    this.service.getCoursesByUserId(this.userId!).subscribe(response => {
       this.COURSES = response;
     });
   }
 
   ngOnInit(): void {
-    this.getCourses();
+    //this.getCourses();
+    this.getCoursesByUserId();
   }
 
 }
