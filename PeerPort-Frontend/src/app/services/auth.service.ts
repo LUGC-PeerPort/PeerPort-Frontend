@@ -22,17 +22,14 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  register(user: any){
-    return this.http.post(`${this.apiUrl}/users`, user);
+  //gets user id
+  currentUser(){
+    return this.http.get(`${this.apiUrl}/auth/currentUser`);
   }
 
-  //Not currently implemented in backend - is currently hard coded
-  login(user: any){
-    return this.http.post(`${this.apiUrl}/users/login`, user, { withCredentials: true});
-  }
-  
-  //same here
+  //logs out user
   logout(){
-    return this.http.get(`${this.apiUrl}/users/logout`, { withCredentials: true });
+    return this.http.get(`${this.apiUrl}/auth/logout`);
   }
+
 }
