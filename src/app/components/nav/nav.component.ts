@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-nav',
@@ -11,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 
 
 export class NavComponent {
+  apiUrl = environment.courseApi;
 
   constructor(private authService: AuthService) {}
 
