@@ -1,0 +1,28 @@
+
+h1{
+    font: bold 24px Times, sans-serif;
+    color: #000000;
+    
+}
+button{
+    background-color: #29d3c5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover{
+    background-color: #1aa898;
+     transform: scale(1.1);
+      transition: transform 0.3s ease-in-out;
+      font-weight:bold;
+}
+.my-box {
+    background-color: lightblue;
+    border: 2px solid blue;
+    padding: 20px; /* Adds 20px padding on all sides */
+    width: 200px;
+    box-sizing: border-box; /* Ensures padding is included in the 200px width */
+    align-items: center;
+}

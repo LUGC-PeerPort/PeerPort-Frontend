@@ -7,5 +7,5 @@ import { AuthService } from './services/auth.service';
 import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), CourseService, AuthService, provideHttpClient()],
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), CourseService, AuthService, CourseService,provideHttpClient()],
 };

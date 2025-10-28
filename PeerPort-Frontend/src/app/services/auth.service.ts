@@ -7,9 +7,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-
+  
   apiUrl: string = environment.courseApi;
-
+  
   private usernameSource = new BehaviorSubject<string | null>(null);
   username = this.usernameSource.asObservable();
 
@@ -22,11 +22,18 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+   register(user: any) {
+    return this.http.post(`${this.apiUrl}/users/register`, user);
+  }
+
   //gets user id
   currentUser(){
     return this.http.get(`${this.apiUrl}/auth/currentUser`);
   }
 
+  login(user: any){
+    return this.http.post(`${this.apiUrl}/users/login`, user,{withCredentials:true});
+  }
   //logs out user
   logout(){
     return this.http.get(`${this.apiUrl}/auth/logout`);
