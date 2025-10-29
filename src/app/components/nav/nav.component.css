@@ -1,0 +1,72 @@
+/* Navbar Brand Styling */
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffc107;
+  
+}
+
+.navbar-brand:hover {
+  color: #d4d4d4;
+  text-decoration: underline;
+}
+
+/* Nav Links */
+.nav-link {
+  color: #ffc107;
+  font-size: 1rem;
+  margin-left: 10px;
+  border: 5px solid ;
+  padding:10px;
+  border-color:#0fe5ec;
+  border-radius: 25px;
+
+}
+
+
+header{
+    background-color: #444444;
+    border-bottom:20px;
+    padding:18px; 
+}
+.nav-link:hover {
+  
+  background-color: rgba(12, 196, 252, 0.1);
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  transition:0.3s;
+}
+
+/* Icons inside links */
+.nav-link i {
+  margin-right: 5px;
+}
+
+/* Toggler Button */
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,0.7)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Responsive spacing */
+@media (max-width: 991px) {
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .nav-link {
+    margin: 5px 0;
+  }
+}
+
+/* Username Display */
+.navbar-nav .nav-link span {
+  font-weight: 500;
+  color: #ffc107;
+  border-spacing:10px;/* or use margin-left if needed */
+
+}
