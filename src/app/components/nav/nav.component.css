@@ -4,6 +4,7 @@
   font-weight: bold;
   color: #ffc107;
   
+  
 }
 
 .navbar-brand:hover {
@@ -13,14 +14,18 @@
 
 /* Nav Links */
 .nav-link {
+display:inline-grid;
+  align-items: center;
+ 
   color: #ffc107;
   font-size: 1rem;
-  margin-left: 10px;
+  margin: 30px;
   border: 5px solid ;
   padding:10px;
   border-color:#0fe5ec;
   border-radius: 25px;
 
+ 
 }
 
 
@@ -28,6 +33,7 @@ header{
     background-color: #444444;
     border-bottom:20px;
     padding:18px; 
+     
 }
 .nav-link:hover {
   
