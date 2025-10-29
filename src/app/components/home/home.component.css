@@ -1,0 +1,12 @@
+p{
+    text-align: right;
+}
+button{
+    float: right;
+}
+.nav-link-two{
+  border:10px solid;
+  border-color:rgb(0, 255, 115);
+ background-color: blanchedalmond;
+    
+}
