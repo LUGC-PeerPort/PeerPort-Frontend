@@ -1,7 +1,58 @@
- /* p{
-    text-align: right;
-}  */
+.course-grid{
+    /* display: flex; */
+    justify-content: left;
+    /* gap: 20px;
+    padding: 100px; */
+    border: 10px solid;
+    border-color:rgb(131, 131, 131);
+    background-color:rgb(131, 131, 131) ;
+    border-right: 90px solid ;
+    border-color:rgb(131, 131, 131);
+    /* margin-right:30% ;
+    margin-top:30px; */
+    margin: 30px 290px 0px 0px;
+    padding-bottom:275px;
+    padding-right:200px;
+   text-decoration:none;
+}
+.class-list {
+  display: grid;
+  /* flex-wrap:wrap; */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-top: 10px;
+  
+}
+/* .class, .classx {
+  background-color: #e0e0ff;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+} */
+.class, .classx {
+  display: inline-block;       /* Makes the link behave like a box */
+  background-color: #ff941b;   /* Light purple background */
+  padding: 12px 20px;          /* Internal spacing */
+  margin: 5px;                 /* Space between boxes */
+  border-radius: 10px;         /* Rounded corners */
+  text-decoration: none;       /* Removes underline */
+  color: #333;                 /* Text color */
+  font-weight: bold;
+  text-align: center;
+}
 
+/* .class {
+    display:inline-grid;
+    text-decoration:none;
+    border:5px solid white;
+
+}
+.classx{
+    text-decoration: none;
+} */
 .second-navbar{
     display:flex;
     justify-content: center;
@@ -19,13 +70,33 @@
     
     justify-content:right;  
 }
-.sidebar-link{
+.sidebar-link1{
+    font-family: "Montserrat", sans-serif;
+    color:rgb(255, 255, 255);
+    font-weight:bold;
+    white-space: nowrap; 
     border:8px solid;
-border-color:rgb(19, 228, 243);
-padding-right: 60%;
-padding-bottom:100%;
-/* padding-left:120%; */
-margin-left:65%;
+border-color:rgb(19, 243, 187);
+border-radius:15px;
+padding-right: -50px;
+padding-bottom:50%;
+background-color: rgb(19, 243, 187);
+padding-left:30px;
+margin-right: -3%;
+
+}
+.sidebar-link2{
+    font-family: "Montserrat", sans-serif;
+    color:rgb(255, 255, 255);
+    font-weight:bold;
+    border:8px solid;
+border-color:rgb(247, 191, 8);
+border-radius:15px;
+padding-right: 40px;
+padding-bottom:150%;
+background-color: rgb(247, 191, 8);
+padding-left:50px;
+margin-right: -3%;
 }
 
 
@@ -48,4 +119,12 @@ border-color:rgb(177, 179, 177);
 color:black;
 background-color:rgb(19, 228, 243);
 transition:ease-in 0.3s;
+}
+
+.page-content{
+    display: flex;
+    justify-content:space-between;
+    align-items:flex-start;
+   
+    
 }
