@@ -1,0 +1,71 @@
+.toggle-checkbox {
+  display: none; /* Hide the actual checkbox */
+}
+
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  border:10px solid;
+  border-color: aqua;
+  transition: max-height 0.3s ease-out; /* Smooth transition */
+}
+
+.assignment-color {
+    background-color: #ffa704;
+   
+}
+.toggle-checkbox:checked ~ .collapsible-content {
+  max-height: 500px; /* Adjust to a value large enough to contain content */
+  /* Or, for a more dynamic height, you might need JavaScript */
+}
+
+.toggle-checkbox1 {
+  display: none; /* Hide the actual checkbox */
+}
+
+.collapsible-content1 {
+  max-height: 0;
+  overflow: hidden;
+  border:10px solid;
+  border-color: aqua;
+  transition: max-height 0.3s ease-out; /* Smooth transition */
+}
+
+.toggle-checkbox1:checked ~ .collapsible-content1 {
+  max-height: 500px; /* Adjust to a value large enough to contain content */
+  /* Or, for a more dynamic height, you might need JavaScript */
+}
+
+.toggle-checkbox2 {
+  display: none; /* Hide the actual checkbox */
+}
+
+.collapsible-content2 {
+  max-height: 0;
+  overflow: hidden;
+  border:10px solid;
+  border-color: aqua;
+  transition: max-height 0.3s ease-out; /* Smooth transition */
+}
+
+.toggle-checkbox2:checked ~ .collapsible-content2 {
+  max-height: 500px; /* Adjust to a value large enough to contain content */
+  /* Or, for a more dynamic height, you might need JavaScript */
+}
+
+.toggle-checkbox3 {
+  display: none; /* Hide the actual checkbox */
+}
+
+.collapsible-content3 {
+  max-height: 0;
+  overflow: hidden;
+  border:10px solid;
+  border-color: aqua;
+  transition: max-height 0.3s ease-out; /* Smooth transition */
+}
+
+.toggle-checkbox3:checked ~ .collapsible-content3 {
+  max-height: 500px; /* Adjust to a value large enough to contain content */
+  /* Or, for a more dynamic height, you might need JavaScript */
+}
