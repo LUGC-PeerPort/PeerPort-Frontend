@@ -16,6 +16,7 @@
 .nav-link {
 display:inline-grid;
   align-items: center;
+  justify-content: center;
  background-color:white;
   color: #75c8ff;
   font-size: 1rem;
