@@ -12,12 +12,17 @@
 
 .assignment-color {
     background-color: #ffa704;
-   
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
-.toggle-checkbox:checked ~ .collapsible-content {
+
+.toggle-checkbox:checked ~ .collapsible-content{
   max-height: 500px; /* Adjust to a value large enough to contain content */
-  /* Or, for a more dynamic height, you might need JavaScript */
 }
+.toggle-checkbox:checked ~ .arrow-toggle{
+  transform:rotate(90deg);
+  transition: 0.5s;
+}  
 
 .toggle-checkbox1 {
   display: none; /* Hide the actual checkbox */
