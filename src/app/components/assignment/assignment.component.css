@@ -1,19 +1,25 @@
 .toggle-checkbox {
-  display: none; /* Hide the actual checkbox */
+   display: none;/* Hide the actual checkbox */
+   
 }
 
 .collapsible-content {
-  max-height: 0;
+max-height: 0;
   overflow: hidden;
   border:10px solid;
+  margin-right: 50%;
+  border-right: 50%;
   border-color: aqua;
-  transition: max-height 0.3s ease-out; /* Smooth transition */
+  transition: max-height 0.3s ease-in-out; /* Smooth transition */
 }
 
 .assignment-color {
     background-color: #ffa704;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    margin-right: 50%;
+  border-right: 50%;
+  /* padding-right: ; */
 }
 
 .toggle-checkbox:checked ~ .collapsible-content{
@@ -29,11 +35,13 @@
 }
 
 .collapsible-content1 {
-  max-height: 0;
+max-height: 0;
   overflow: hidden;
   border:10px solid;
+  margin-right: 50%;
+   border-right: 50%;
   border-color: aqua;
-  transition: max-height 0.3s ease-out; /* Smooth transition */
+  transition: max-height 0.3s ease-in-out; /* Smooth transition */
 }
 
 .toggle-checkbox1:checked ~ .collapsible-content1 {
@@ -46,11 +54,13 @@
 }
 
 .collapsible-content2 {
-  max-height: 0;
+ max-height: 0;
   overflow: hidden;
   border:10px solid;
+  margin-right: 50%;
+   border-right: 50%;
   border-color: aqua;
-  transition: max-height 0.3s ease-out; /* Smooth transition */
+  transition: max-height 0.3s ease-in-out; /* Smooth transition */
 }
 
 .toggle-checkbox2:checked ~ .collapsible-content2 {
@@ -66,11 +76,53 @@
   max-height: 0;
   overflow: hidden;
   border:10px solid;
+   margin-right: 50%;
+   border-right: 50%;
   border-color: aqua;
-  transition: max-height 0.3s ease-out; /* Smooth transition */
+  transition: max-height 0.3s ease-in-out; /* Smooth transition */
 }
 
 .toggle-checkbox3:checked ~ .collapsible-content3 {
   max-height: 500px; /* Adjust to a value large enough to contain content */
   /* Or, for a more dynamic height, you might need JavaScript */
 }
+.sidebars{
+    display:grid;
+    
+    justify-content:right;  
+}
+.sidebar-link1{
+    font-family: "Montserrat", sans-serif;
+    color:rgb(255, 255, 255);
+    font-weight:bold;
+    white-space: nowrap; 
+    border:8px solid;
+border-color:rgb(19, 243, 187);
+border-radius:15px;
+padding-right: -50px;
+padding-bottom:50%;
+background-color: rgb(19, 243, 187);
+padding-left:30px;
+margin-right: -3%;
+
+}
+.sidebar-link2{
+    font-family: "Montserrat", sans-serif;
+    color:rgb(255, 255, 255);
+    font-weight:bold;
+    border:8px solid;
+border-color:rgb(247, 191, 8);
+border-radius:15px;
+padding-right: 40px;
+padding-bottom:150%;
+background-color: rgb(247, 191, 8);
+padding-left:50px;
+margin-right: -3%;
+}
+/* .page-content{
+    display: flex ;
+    justify-content:space-between ;
+    align-items:flex-start ;
+   
+    
+} */
