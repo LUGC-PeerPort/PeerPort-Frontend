@@ -11,10 +11,6 @@ import { environment } from '../../../environments/environment';
   styleUrl: './nav.component.css'
 })
 
-// export class User{
-//   userId: string | undefined;
-// }
-
 export class NavComponent implements OnInit {
   apiUrl: string | null = null;
 
@@ -25,6 +21,7 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiUrl = environment.courseApi;
+    
     // check auth service for global username so we can show / hide links
     this.authService.currentUser().subscribe((response) => {
       this.User = response;

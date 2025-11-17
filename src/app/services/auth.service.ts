@@ -9,14 +9,12 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
   
   apiUrl: string = environment.courseApi;
-  
-  private usernameSource = new BehaviorSubject<string | null>(null);
 
   constructor(private http: HttpClient) { }
 
   //gets user id
   currentUser(){
-    return this.http.get(`${this.apiUrl}/auth/currentUser`);
+    return this.http.get(`${this.apiUrl}auth/currentUser`);
   }
 
 }
