@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { CourseService } from '../../services/course.service';
+import { AuthService } from '../../services/auth.service';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -12,10 +13,6 @@ export class Course{
     description: string | undefined;
     startDate: string | undefined;
     endDate: string | undefined;
-}
-
-export class User{
-    _id: string | undefined;
 }
 
 @Component({
@@ -35,26 +32,22 @@ export class HomeComponent implements OnInit {
   startDate: string | undefined;
   endDate: string | undefined;
 
-  USERS: any;
-  userId: string | undefined;
+  constructor(private service: CourseService, private authService: AuthService, private router: Router) { }
 
-  constructor(private service: CourseService, private router: Router) { }
+  getCourses(): void{
+    this.service.getCourses().subscribe(response => {
+     this.COURSES = response;
+   });
+  }
 
-  // getCourses(): void{
-  //   this.service.getCourses().subscribe(response => {
+  // getCoursesByUserId(): void{
+  //   this.service.getCoursesByUserId(this.userId!).subscribe(response => {
   //     this.COURSES = response;
   //   });
   // }
 
-  getCoursesByUserId(): void{
-    this.service.getCoursesByUserId(this.userId!).subscribe(response => {
-      this.COURSES = response;
-    });
-  }
-
   ngOnInit(): void {
-    //this.getCourses();
-    this.getCoursesByUserId();
+    this.getCourses();
+    // this.getCoursesByUserId();
   }
-
 }

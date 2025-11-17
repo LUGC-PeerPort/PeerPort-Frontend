@@ -1,36 +1,16 @@
 <header>
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-    <div class="container-fluid">
-      <!-- <a class="navbar-brand" routerLink="/">PeerPort</a> -->
+<nav>
+    <div>
       <img src="PeerPortLogoColour.svg" alt="PeerPort Logo" style="width: 40px; height: 40px;">
-      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button> -->
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav ms-auto" *ngIf="!username">
-          <a class="nav-link" routerLink="/register"><i class="bi bi-person-fill-add"></i> Register </a>
-          <a class="nav-link" routerLink="/login"><i class="bi bi-person-fill-lock"></i> Login </a>
-          <a class="nav-link" routerLink="/home"><i class="bi bi-box-arrow-right"></i> home </a>
-          <a class="nav-link" routerLink="/course"><i class="bi bi-box-arrow-right"></i> courses </a>
-          <a class="nav-link" routerLink="/assignments"><i class="bi bi-box-arrow-right"></i> assignment </a>
-        </div>
-        <div class="navbar-nav ms-auto" *ngIf="username">
-          <span class="nav-link"><i class="bi bi-person"></i> {{username}}</span>
-          <a class="nav-link" routerLink="/logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
-        </div>
-        <div class="navbar-nav ms-auto" *ngIf="username">
-          <a class="nav-link" routerLink="/home"><i class="bi bi-box-arrow-right"></i> home</a>
-        </div>
-        <div class="navbar-nav ms-auto" *ngIf="username"> 
-          <a class="nav-link" routerLink="/course"><i class="bi bi-box-arrow-right"></i>courses</a>
-        </div>
-        <div class="navbar-nav ms-auto" *ngIf="username"> 
-          <a class="nav-link" routerLink="/assignments"><i class="bi bi-box-arrow-right"></i>assignment</a>
+      <div>
+        <div>
+          <a *ngIf="!userId" href="{{apiUrl}}login/google"> Login </a>
+          <a routerLink="/home"> Home </a>
+          <a routerLink="/assignments"> Assignments </a>
+          <a routerLink="/grades"> Grades </a>
+          <a *ngIf="userId"> Logout </a>
         </div>
       </div>
     </div>
   </nav>
-  </header>
-  <footer>
-    
-  </footer>
+</header>
