@@ -14,7 +14,7 @@ export class AuthService {
 
   //gets user id
   currentUser(){
-    return this.http.get(`${this.apiUrl}auth/currentUser`);
+    return this.http.get(`${this.apiUrl}auth/currentUser`, {withCredentials: true});
   }
 
 }
