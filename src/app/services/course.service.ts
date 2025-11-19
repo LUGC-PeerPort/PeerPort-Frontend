@@ -18,8 +18,8 @@ export class CourseService {
   }
 
   // get specific course by id
-  getCourseById(id: string) {
-    return this.http.get(`${this.courseUrl}courses/${id}`);
+  getCourseById(courseId: string) {
+    return this.http.get(`${this.courseUrl}courses/${courseId}`);
   }
 
   //create course
@@ -28,13 +28,13 @@ export class CourseService {
   }
 
   //update course
-  updateCourse(id: string, course: any) {
-    return this.http.put(`${this.courseUrl}courses/${id}`, course);
+  updateCourse(courseId: string, course: any) {
+    return this.http.put(`${this.courseUrl}courses/${courseId}`, course);
   }
 
   //delete course
-  deleteCourse(id: string) {
-    return this.http.delete(`${this.courseUrl}courses/${id}`);
+  deleteCourse(courseId: string) {
+    return this.http.delete(`${this.courseUrl}courses/${courseId}`);
   }
 
   // Assignment-related methods
@@ -66,12 +66,12 @@ export class CourseService {
   //Get course By ID
   //get all course user is in
   getAllCoursesByUserId(userId: string) {
-    return this.http.get(`${this.courseUrl}users/${userId}/courses`);
+    return this.http.get(`${this.courseUrl}users/${userId}/courses`, {withCredentials: true});
   }
 
   //get specific course user is in
   getCourseByUserId(userId: string, courseId: string) {
-    return this.http.get(`${this.courseUrl}users/${userId}/courses/${courseId}`);
+    return this.http.get(`${this.courseUrl}users/${userId}/courses/${courseId}`, {withCredentials: true});
   };
 
 }

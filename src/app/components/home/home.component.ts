@@ -5,16 +5,6 @@ import { AuthService } from '../../services/auth.service';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-export class Course{
-    _id: string | undefined;
-    name: string | undefined;
-    courseCode: string | undefined;
-    isOpen: boolean | undefined;
-    description: string | undefined;
-    startDate: string | undefined;
-    endDate: string | undefined;
-}
-
 @Component({
   selector: 'app-home',
   imports: [NgFor, NgIf, FormsModule, RouterLink],
@@ -24,13 +14,16 @@ export class Course{
 export class HomeComponent implements OnInit {
 
   COURSES: any;
-  _id: string | undefined;
+  courseId: string | undefined;
   name: string | undefined;
   courseCode: string | undefined;
   isOpen: boolean | undefined;
   description: string | undefined;
   startDate: string | undefined;
   endDate: string | undefined;
+
+  User: any;
+  userId: string | undefined;
 
   constructor(private service: CourseService, private authService: AuthService, private router: Router) { }
 
@@ -40,14 +33,21 @@ export class HomeComponent implements OnInit {
    });
   }
 
-  // getCoursesByUserId(): void{
-  //   this.service.getCoursesByUserId(this.userId!).subscribe(response => {
-  //     this.COURSES = response;
-  //   });
-  // }
+  getCurrentUser(): void{
+    this.authService.currentUser().subscribe(response => {
+      this.User = response;
+    })
+  }
+
+  getCoursesByUserId(): void{
+    this.service.getAllCoursesByUserId(this.userId!).subscribe(response => {
+      this.COURSES = response;
+    });
+  }
 
   ngOnInit(): void {
     this.getCourses();
+    this.getCurrentUser();
     // this.getCoursesByUserId();
   }
 }
