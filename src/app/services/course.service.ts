@@ -2,6 +2,29 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
+interface course {
+  name: string;
+  coourseCode: string;
+  isOpen: boolean;
+  description: string;
+  startDate: Date | string;
+  endDate: Date | string;
+  courseId: string;
+  enrolledOn: Date | string;
+};
+
+interface assignment {
+name: string;
+description: string;
+dueDate: Date | string;
+assignmentId: string;
+}
+
+interface error {
+  message: string;
+};
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -40,7 +63,7 @@ export class CourseService {
   // Assignment-related methods
   // get assignments in specific course
   getAllAssignmentsByCourseId(courseId: string) {
-    return this.http.get(`${this.courseUrl}courses/${courseId}/assignments`);
+    return this.http.get<error | assignment>(`${this.courseUrl}courses/${courseId}/assignments`);
   }
 
   //get specific assignment in specific course
@@ -66,7 +89,7 @@ export class CourseService {
   //Get course By ID
   //get all course user is in
   getAllCoursesByUserId(userId: string) {
-    return this.http.get(`${this.courseUrl}users/${userId}/courses`, {withCredentials: true});
+    return this.http.get<error | course>(`${this.courseUrl}users/${userId}/courses`, {withCredentials: true});
   }
 
   //get specific course user is in
