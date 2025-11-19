@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CourseService } from '../../services/course.service';
+
 @Component({
   selector: 'app-course',
   imports: [RouterLink],
@@ -8,7 +10,22 @@ import { RouterLink } from '@angular/router';
 })
 export class CourseComponent implements OnInit {
 
+  COURSES: any;
+  courseId: string | undefined;
+  name: string | undefined;
+  courseCode: string | undefined;
+  isOpen: boolean | undefined;
+  description: string | undefined;
+  startDate: string | undefined;
+  endDate: string | undefined;
+
+  constructor(private route: ActivatedRoute, private CourseService: CourseService){}
+
   ngOnInit(): void {
-    
+    this.route.params.subscribe(params => {
+      this.CourseService.getCourseById(params['id']).subscribe(response => {
+        this.COURSES = response;
+      })
+    });
   }
 }

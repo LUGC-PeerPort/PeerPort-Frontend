@@ -2,14 +2,14 @@
     <div>
         <ul>
             <li *ngFor="let course of COURSES">
-                <button routerLink="/course">
+                <button [routerLink]="['course/', course.courseId]">
                     <h4 *ngIf="course.name">{{course.name}}</h4>
                     <p *ngIf="course.courseCode">{{course.courseCode}}</p>
                     <p *ngIf="course.description">{{course.description}}</p>
-                    <!-- <p *ngIf="course.courseId">{{course.courseId}}</p> -->
+                    <p *ngIf="course.courseId">{{course.courseId}}</p>
                 </button>
             </li>
         </ul>
     </div>
-    <h2>{{User.userId}}</h2>
+    <h2>{{User?.userId}}</h2>
 </section>

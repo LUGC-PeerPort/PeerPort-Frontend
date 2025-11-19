@@ -14,7 +14,7 @@ import { environment } from '../../../environments/environment';
 export class NavComponent implements OnInit {
   apiUrl: string | null = null;
 
-  User: any;
+  User: {userId: string} | null = null;
   userId: string | undefined;
 
   constructor(private authService: AuthService) { }
@@ -24,7 +24,7 @@ export class NavComponent implements OnInit {
     
     // check auth service for global username so we can show / hide links
     this.authService.currentUser().subscribe((response) => {
-      this.User = response;
+      this.User = response as {userId: string};
     });
   };
 }

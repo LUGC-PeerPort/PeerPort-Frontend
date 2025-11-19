@@ -3,10 +3,14 @@ import { HomeComponent } from './components/home/home.component';
 import { CourseComponent } from './components/course/course.component';
 import { AssignmentComponent } from './components/assignment/assignment.component';
 import { GradeComponent } from './components/grade/grade.component';
+import { ContentComponent } from './components/content/content.component';
+import { ClassListComponent } from './components/class-list/class-list.component';
 
 export const routes: Routes = [
     {path: 'home', component: HomeComponent},
-    {path: 'course', component: CourseComponent},
-    {path: 'assignments', component: AssignmentComponent},
-    {path: 'grades', component: GradeComponent}
+    {path: 'home/course/:id', component: CourseComponent},
+    {path: 'home/course/:id/assignments', component: AssignmentComponent},
+    {path: 'grades', component: GradeComponent},
+    {path: 'content', component: ContentComponent},
+    {path: 'classList', component: ClassListComponent}
 ];

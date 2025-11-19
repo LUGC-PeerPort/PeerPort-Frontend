@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   startDate: string | undefined;
   endDate: string | undefined;
 
-  User: any;
+  User: {userId: string} | null = null;
   userId: string | undefined;
 
   constructor(private service: CourseService, private authService: AuthService, private router: Router) { }
@@ -33,21 +33,22 @@ export class HomeComponent implements OnInit {
    });
   }
 
-  getCurrentUser(): void{
-    this.authService.currentUser().subscribe(response => {
-      this.User = response;
-    })
-  }
-
-  getCoursesByUserId(): void{
-    this.service.getAllCoursesByUserId(this.userId!).subscribe(response => {
+  getCoursesByUserId(userId: string): void{
+    this.service.getAllCoursesByUserId(userId).subscribe(response => {
       this.COURSES = response;
     });
   }
 
   ngOnInit(): void {
-    this.getCourses();
-    this.getCurrentUser();
-    // this.getCoursesByUserId();
+    this.authService.currentUser().subscribe(response => {
+      this.User = response as { userId: string };
+
+      if (this.User && this.User.userId) {
+        this.getCoursesByUserId(this.User.userId);
+      } else {
+        console.log("No User");
+      }
+    });
   }
+
 }

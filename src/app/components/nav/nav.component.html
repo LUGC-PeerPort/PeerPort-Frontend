@@ -4,7 +4,7 @@
       <img src="PeerPortLogoColour.svg" alt="PeerPort Logo" style="width: 40px; height: 40px;">
       <div>
         <div>
-          <a *ngIf="!User.userId" href="{{apiUrl}}login/google"> Login </a>
+          <a *ngIf="!User?.userId" href="{{apiUrl}}login/google"> Login </a>
           <a routerLink="/home"> Home </a>
           <a routerLink="/course"> Course </a>
           <a routerLink="/assignments"> Assignments </a>
