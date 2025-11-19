@@ -1,0 +1,13 @@
+<section>
+    <div>
+        <ul>
+            <li *ngFor="let course of COURSES">
+                <button routerLink="/course">
+                    <h4 *ngIf="course.name">{{course.name}}</h4>
+                    <p *ngIf="course.courseCode">{{course.courseCode}}</p>
+                    <p *ngIf="course.description">{{course.description}}</p>
+                </button>
+            </li>
+        </ul>
+    </div>
+</section><p>calendar works!</p>
