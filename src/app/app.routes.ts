@@ -11,8 +11,8 @@ export const routes: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'home/course/:id', component: CourseComponent},
     {path: 'home/course/:id/assignments', component: AssignmentComponent},
-    {path: 'grades', component: GradeComponent},
+    {path: 'home/course/:id/grades', component: GradeComponent},
     {path: 'calendar', component: CalendarComponent},
-    {path: 'content', component: ContentComponent},
-    {path: 'classList', component: ClassListComponent}
+    {path: 'home/course/:id/content', component: ContentComponent},
+    {path: 'home/course/:id/classList', component: ClassListComponent}
 ];
