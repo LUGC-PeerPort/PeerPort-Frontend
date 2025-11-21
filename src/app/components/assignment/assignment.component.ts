@@ -39,12 +39,20 @@ export class AssignmentComponent implements OnInit{
   }
 
   //CREATE
-  createAssignment(courseId:string): void{
-    if(this.CourseId===null) return;
-    
-    this.newAssignment.courseId = this.CourseId?.courseId;
-    
-    this.CourseService.createAssignment(this.CourseId.courseId, this.newAssignment).subscribe(response =>{
+  createAssignment(name: string, description: string, dueDate: string): void{
+    if(!this.courseId){
+      console.log("Course Id is null");
+      return;
+    }
+
+    const assignment = {
+      name: name,
+      description: description,
+      dueDate: dueDate,
+      courseId: this.courseId
+    }
+
+    this.CourseService.createAssignment(assignment).subscribe(response =>{
       this.ASSIGNMENTS.push(response);
       console.log("Assignment created:", response);
     })
