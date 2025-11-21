@@ -15,7 +15,8 @@ export class AssignmentComponent implements OnInit{
 
   COURSES: any;
   ASSIGNMENTS: any;
-  courseId: string | undefined;
+  SUBMISSIONS: any;
+  courseId!: string; 
   name: string | undefined;
   courseCode: string | undefined;
   isOpen: boolean | undefined;
@@ -26,14 +27,7 @@ export class AssignmentComponent implements OnInit{
   assignmentId: string|undefined;
   
   
-  newAssignment = {
-    name:'',
-    description: '',
-    dueDate:'',
-    courseId:''
-  }
 
-  CourseId: {courseId: string} | null = null;
 
   constructor(private route: ActivatedRoute, private CourseService: CourseService){}
 
@@ -45,29 +39,63 @@ export class AssignmentComponent implements OnInit{
   }
 
   //CREATE
-  createAssignment(courseId:string): void{
-    
-    this.newAssignment.courseId = this.CourseId.courseId;
-    
-    this.CourseService.createAssignment(this.CourseId.courseId, this.newAssignment).subscribe(response =>{
+  createAssignment(name: string, description: string, dueDate: string): void{
+    if(!this.courseId){
+      console.log("Course Id is null");
+      return;
+    }
+
+    const assignment = {
+      name: name,
+      description: description,
+      dueDate: dueDate,
+      courseId: this.courseId
+    }
+
+    this.CourseService.createAssignment(assignment).subscribe(response =>{
       this.ASSIGNMENTS.push(response);
-      this.newAssignment = {name:'', description:'',dueDate:'',courseId:''}
+      console.log("Assignment created:", response);
     })
   }
 
 
-  ngOnInit(): void{
-    this.route.params.subscribe(params => {
-      const courseId = params['id'];
-      this.CourseId = { courseId };
+  //SUBMIT
+  submitAssignment(assignmentId: string, fileInput:HTMLInputElement ){
+    const files = fileInput.files;
 
-      this.getAllAssignments(this.CourseId.courseId);
+    if(!files|| files.length === 0){
+      alert("Please seleect a file for upload.");
+      return;
+    }
 
-      this.CourseService.getCourseById(params['id']).subscribe(response => {
-        this.COURSES = response;
-      })  
+      if(!assignmentId){
+      alert("Invalid AssignmentId");
+      return;
+    }
+    
+    
+    const file = files[0];
+  const formData = new FormData();
+  formData.append('file', file);
+  
+  this.CourseService.submitAssignment(assignmentId, formData)
+    .subscribe({
+      next: () => alert('Assignment submitted successfully!'),
+      error: (err) => alert('Error submitting assignment: ' + err)
     });
   }
+
+ngOnInit(): void {
+  this.route.params.subscribe(params => {
+  this.courseId = params['id'] as string;    
+
+    this.CourseService.getCourseById(this.courseId).subscribe(response => {
+      this.COURSES = response;
+    });
+
+    this.getAllAssignments(this.courseId);
+  });
+}
 
 
 
