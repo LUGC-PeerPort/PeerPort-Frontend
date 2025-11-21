@@ -26,12 +26,7 @@ export class AssignmentComponent implements OnInit{
   assignmentId: string|undefined;
   
   
-  newAssignment = {
-    name:'',
-    description: '',
-    dueDate:'',
-    courseId:''
-  }
+
 
   constructor(private route: ActivatedRoute, private CourseService: CourseService){}
 
@@ -43,17 +38,22 @@ export class AssignmentComponent implements OnInit{
   }
 
   //CREATE
-  createAssignment(courseId:string): void{
-    if(!courseId){
+  createAssignment(name: string, description: string, dueDate: string): void{
+    if(!this.courseId){
       console.log("Course Id is null");
       return;
     }
 
-    this.newAssignment.courseId = courseId;
-    
-    this.CourseService.createAssignment(this.newAssignment).subscribe(response =>{
+    const assignment = {
+      name: name,
+      description: description,
+      dueDate: dueDate,
+      courseId: this.courseId
+    }
+
+    this.CourseService.createAssignment(assignment).subscribe(response =>{
       this.ASSIGNMENTS.push(response);
-      this.newAssignment = {name:'', description:'',dueDate:'',courseId:''}
+      console.log("Assignment created:", response);
     })
   }
 

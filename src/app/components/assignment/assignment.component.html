@@ -1,18 +1,20 @@
 <Section class="whole-page">
   <div class="page-content">
   <!--Assignment Creation-->
-    <form (ngSubmit)="createAssignment(courseId)">
+    <form (ngSubmit)="createAssignment(nameInput.value, descInput.value, dateInput.value)">
       <fieldset>
         <legend>Create A New Assignment</legend>
 
-        <label for="text">Name</label>
-        <input type="text">
+        <label for="name">Name</label>
+        <input type="text" id="name" #nameInput required />
 
         <label for="description">Description</label>
-        <textarea name="description"></textarea>
+        <textarea id="description" #descInput required></textarea>
 
         <label for="date">Date</label>
-        <input type="datetime-local">
+        <input type="datetime-local" id="date" #dateInput required />
+
+    
         <button type="submit">Create Assignment</button>
       </fieldset>
     </form>

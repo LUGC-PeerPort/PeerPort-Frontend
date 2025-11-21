@@ -73,7 +73,7 @@ export class CourseService {
 
   //create assignment
   createAssignment(assignment: any) {
-    return this.http.post('/assignments', assignment);
+    return this.http.post(`${this.courseUrl}assignments`, assignment);
   }
 
   //update assignment
