@@ -86,6 +86,10 @@ export class CourseService {
     return this.http.delete(`${this.courseUrl}courses/${courseId}/assignments/${assignmentId}`);
   }
 
+  //Submit Assignment
+  submitAssignment(assignmentId:string, submission:any){
+    return this.http.post(`${this.courseUrl}assignments/${assignmentId}/submissions`, submission);
+  }
   //Get course By ID
   //get all course user is in
   getAllCoursesByUserId(userId: string) {

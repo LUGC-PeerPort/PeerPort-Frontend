@@ -31,6 +31,13 @@
           
           <div class="collapsible-content">
             <div>{{assignment.description}}</div>
+          
+
+            <form (ngSubmit)="submitAssignment(assignment.assignmentId, fileSubmission)">
+              <label [for]="'chooseFile-' + i">Choose a file for upload:</label>
+              <input type="file" [id]="'chooseFile-' + i" accept=".pdf,.doc,.txt" #fileSubmission>
+              <button type="submit">Submit</button>
+            </form>
           </div>
         </li>
       </ul>

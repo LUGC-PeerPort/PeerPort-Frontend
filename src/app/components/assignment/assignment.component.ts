@@ -15,6 +15,7 @@ export class AssignmentComponent implements OnInit{
 
   COURSES: any;
   ASSIGNMENTS: any;
+  SUBMISSIONS: any;
   courseId!: string; 
   name: string | undefined;
   courseCode: string | undefined;
@@ -57,6 +58,32 @@ export class AssignmentComponent implements OnInit{
     })
   }
 
+
+  //SUBMIT
+  submitAssignment(assignmentId: string, fileInput:HTMLInputElement ){
+    const files = fileInput.files;
+
+    if(!files|| files.length === 0){
+      alert("Please seleect a file for upload.");
+      return;
+    }
+
+      if(!assignmentId){
+      alert("Invalid AssignmentId");
+      return;
+    }
+    
+    
+    const file = files[0];
+  const formData = new FormData();
+  formData.append('file', file);
+  
+  this.CourseService.submitAssignment(assignmentId, formData)
+    .subscribe({
+      next: () => alert('Assignment submitted successfully!'),
+      error: (err) => alert('Error submitting assignment: ' + err)
+    });
+  }
 
 ngOnInit(): void {
   this.route.params.subscribe(params => {
