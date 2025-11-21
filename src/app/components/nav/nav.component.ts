@@ -19,7 +19,7 @@ export class NavComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {;
     this.apiUrl = environment.courseApi;
     
     // check auth service for global username so we can show / hide links
