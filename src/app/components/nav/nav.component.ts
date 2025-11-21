@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { NgIf } from '@angular/common';
+import { NgIf, Location } from '@angular/common';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -12,19 +12,27 @@ import { environment } from '../../../environments/environment';
 })
 
 export class NavComponent implements OnInit {
+  url: string | null = null;
+
   apiUrl: string | null = null;
 
   User: {userId: string} | null = null;
   userId: string | undefined;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private location: Location) {}
 
-  ngOnInit(): void {;
+  getCurrentPath(): string {
+    return this.url = this.location.path();
+  }
+
+  ngOnInit(): void {
     this.apiUrl = environment.courseApi;
     
     // check auth service for global username so we can show / hide links
     this.authService.currentUser().subscribe((response) => {
       this.User = response as {userId: string};
     });
+    
+    console.log(this.getCurrentPath())
   };
 }
