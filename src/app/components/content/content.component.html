@@ -1,1 +1,14 @@
-<h1>{{COURSES.name}}</h1>
+<section>
+    <p>Content Work!</p>
+    <div>
+        <ul *ngIf="WEEKS">
+            <li *ngFor="let content of WEEKS">
+                <button [routerLink]="['content/', content.contentId]">
+                    <h4 *ngIf="content.name">{{content.name}}</h4>
+                    <p *ngIf="content.description">{{content.description}}</p>
+                    <p *ngIf="content.contentId">{{content.contentId}}</p>
+                </button>
+            </li>
+        </ul>
+    </div>
+</section>

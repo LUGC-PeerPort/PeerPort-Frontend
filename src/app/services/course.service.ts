@@ -13,6 +13,18 @@ interface course {
   enrolledOn: Date | string;
 };
 
+export interface content {
+    contentId: string;
+    courseId?: string;
+    parentId?: string;
+    name: string;
+    description?: string;
+    viewable: boolean;
+    dateCreated: Date;
+    dateUpdated: Date;
+    subContent: content[];
+}
+
 interface assignment {
 name: string;
 description: string;
@@ -99,6 +111,11 @@ export class CourseService {
   //get specific course user is in
   getCourseByUserId(userId: string, courseId: string) {
     return this.http.get(`${this.courseUrl}users/${userId}/courses/${courseId}`, {withCredentials: true});
-  };
+  }
+
+  //content for course page
+  getAllContentByCourseId(courseId: string) {
+    return this.http.get<error | content[]>(`${this.courseUrl}courses/${courseId}/content`);
+  }
 
 }
