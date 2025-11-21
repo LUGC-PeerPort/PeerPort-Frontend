@@ -28,12 +28,89 @@ export class HomeComponent implements OnInit {
 
   constructor(private service: CourseService, private authService: AuthService, private router: Router, private dataService: DataService) { }
 
+  //Get
   getCoursesByUserId(userId: string): void{
     this.service.getAllCoursesByUserId(userId).subscribe(response => {
       this.COURSES = response;
     });
   }
 
+  //clears form and info so user doesn't mess up courses 
+  resetForm(): void{
+    this.courseId = undefined,
+    this.name = undefined,
+    this.courseCode = undefined,
+    this.isOpen = undefined,
+    this.description = undefined,
+    this.startDate = undefined,
+    this.endDate = undefined
+  }
+
+  //for when user clicks to update a course
+  selectedCourse(course: any): void{
+    this.courseId = course.courseId,
+    this.name = course.name,
+    this.courseCode = course.courseCode,
+    this.isOpen = course.isOpen,
+    this.description = course.description,
+    this.startDate = course.startDate,
+    this.endDate = course.endDate
+  }
+
+  //Update
+  updateCourse(): void{
+    let newCourse = {
+      name: this.name,
+      courseCode: this.courseCode,
+      isOpen: this.isOpen,
+      description: this.description,
+      startDate: this.startDate,
+      endDate: this.endDate
+    }
+
+    console.log(newCourse)
+
+    const id = this.courseId as string
+    console.log(id)
+
+    this.service.updateCourse(id, newCourse).subscribe(response => {
+      if (this.User && this.User.userId) {
+        this.getCoursesByUserId(this.User.userId);
+      }
+      this.resetForm();
+    })
+  }
+
+  //Delete
+  deleteCourse(courseId: string): void{
+    this.service.deleteCourse(courseId).subscribe(response => {
+      console.log("Course Deleted")
+    });
+  }
+
+  //Create
+  createCourse(): void{
+    let newCourse = {
+      name: this.name,
+      courseCode: this.courseCode,
+      isOpen: this.isOpen,
+      description: this.description,
+      startDate: this.startDate,
+      endDate: this.endDate,
+      userId: this.User?.userId
+    }
+
+    console.log(newCourse)
+
+    this.service.createCourse(newCourse).subscribe(response => {
+      if (this.User && this.User.userId) {
+        this.getCoursesByUserId(this.User.userId);
+      }
+      this.resetForm();
+    })
+  }
+
+  //save the course Id and send it to the Nav
   saveId(id: string){
     this.dataService.changeMessage(id);
     console.log(id);
