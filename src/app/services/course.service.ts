@@ -37,27 +37,27 @@ export class CourseService {
   // Course-related methods
   // get all courses
   getCourses() {
-    return this.http.get(`${this.courseUrl}courses`);
+    return this.http.get(`${this.courseUrl}courses`,{withCredentials: true});
   }
 
   // get specific course by id
   getCourseById(courseId: string) {
-    return this.http.get(`${this.courseUrl}courses/${courseId}`);
+    return this.http.get(`${this.courseUrl}courses/${courseId}`,{withCredentials: true});
   }
 
   //create course
   createCourse(course: any) {
-    return this.http.post(`${this.courseUrl}courses`, course);
+    return this.http.post(`${this.courseUrl}courses`, course,{withCredentials: true});
   }
 
   //update course
   updateCourse(courseId: string, course: any) {
-    return this.http.put(`${this.courseUrl}courses/${courseId}`, course);
+    return this.http.put(`${this.courseUrl}courses/${courseId}`, course,{withCredentials: true});
   }
 
   //delete course
   deleteCourse(courseId: string) {
-    return this.http.delete(`${this.courseUrl}courses/${courseId}`);
+    return this.http.delete(`${this.courseUrl}courses/${courseId}`,{withCredentials: true});
   }
 
   // Assignment-related methods
