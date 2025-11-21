@@ -82,8 +82,8 @@ export class CourseService {
   }
 
   //delete assignment
-  deleteAssignment(courseId: string, assignmentId: string) {
-    return this.http.delete(`${this.courseUrl}courses/${courseId}/assignments/${assignmentId}`);
+  deleteAssignment(assignmentId: string) {
+    return this.http.delete(`${this.courseUrl}assignments/${assignmentId}`);
   }
 
   //Submit Assignment

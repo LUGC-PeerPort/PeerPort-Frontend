@@ -21,6 +21,11 @@ export class GradeComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private CourseService: CourseService){}
 
+//GET
+
+
+
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.CourseService.getCourseById(params['id']).subscribe(response => {
