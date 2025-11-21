@@ -1,71 +1,56 @@
 <Section class="whole-page">
-<div class="left-page">
-  <p> click each assignment to open its description</p>
   <div class="page-content">
+  <!--Assignment Creation-->
+    <section class="create-assignment">
+      <h3>Create Assignment</h3>
+      <form (ngSubmit)="createAssignment">
+        <label for="name">Name:</label>
+        <input type="text" [(ngModel)]="newAssignment.name" name="name" required />
+
+        <label for="description">Description:</label>
+        <textarea [(ngModel)]="newAssignment.description" name="description" required></textarea>
+
+        <label>Due Date:</label>
+        <input type="date" [(ngModel)]="newAssignment.dueDate" name="dueDate" required />
+
+        <button type="submit">Create New Assignment</button>
+      </form>
+    </section>
+
+  <!--Populate with Assignments-->
+    <div>
+      <ul>
+        <li *ngFor="let assignment of ASSIGNMENTS; let i = index">
+          <input type="checkbox" [id]="'toggle-box-' + i" class="toggle-checkbox">
+          <div class="assignment-color">
+            <label [for]="'toggle-box-' + i" class="toggle-label">{{assignment.name}}</label>
+            <img src="arrow-down-solid-full.svg" class="arrow-toggle" width="10px" height="20px">
+          </div>
+          
+          <div class="collapsible-content">
+            <div>{{assignment.description}}</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
     <input type="checkbox" id="toggle-box" class="toggle-checkbox">
     <div class="assignment-color">
       <label for="toggle-box" class="toggle-label">Assignment 1</label>
       <img src="arrow-down-solid-full.svg" class="arrow-toggle" width="10px" height="20px">
     </div>
-    <!-- </div>  -->
     <div class="collapsible-content">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+     <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
         consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
         pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.</p>
-    </div>
-
-
-    <input type="checkbox" id="toggle-box1" class="toggle-checkbox1">
-    <div class="assignment-color">
-      <label for="toggle-box1" class="toggle-label1">Assignment 2</label>
-      <img src="arrow-down-solid-full.svg" class="arrow-toggle" width="10px" height="10px">
-    </div>
-
-    <div class="collapsible-content1">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.</p>
-    </div>
-
-
-    <input type="checkbox" id="toggle-box2" class="toggle-checkbox2">
-    <div class="assignment-color">
-      <label for="toggle-box2" class="toggle-label2">Assignment 3</label>
-      <img src="arrow-down-solid-full.svg" class="arrow-toggle" width="10px" height="20px">
-    </div>
-
-    <div class="collapsible-content2">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.</p>
-    </div>
-
-
-    <input type="checkbox" id="toggle-box3" class="toggle-checkbox3">
-    <div class="assignment-color">
-      <label for="toggle-box3" class="toggle-label3">Assignment 4</label>
-      <img src="arrow-down-solid-full.svg" class="arrow-toggle" width="10px" height="20px">
-    </div>
-
-    <div class="collapsible-content3">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum..</p>
+        laborum.
+      </p>
     </div>
   </div>
-  </div>
-
   <div class="sidebars">
     <p class="sidebar-link1"> Weekly calendar </p>
     <p class="sidebar-link2"> Notifications </p>
   </div>
-
 </Section>
