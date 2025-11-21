@@ -64,7 +64,6 @@ export class AssignmentComponent implements OnInit{
       name: name,
       description: description,
       dueDate: dueDate,
-      courseId: this.courseId
     }
 
     this.CourseService.updateAssignment(assignmentId, editedAssignment).subscribe(response=>{ 
@@ -82,7 +81,7 @@ export class AssignmentComponent implements OnInit{
   }
 
   closeEditPopup(){
-    this.isEditPopupOpen = true;
+    this.isEditPopupOpen = false;
   }
 
   //DELETE

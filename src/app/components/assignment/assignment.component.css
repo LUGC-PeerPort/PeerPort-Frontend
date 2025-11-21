@@ -89,6 +89,11 @@ max-height: 0;
   max-height: 500px; /* Adjust to a value large enough to contain content */
   /* Or, for a more dynamic height, you might need JavaScript */
 }
+
+
+
+
+/*Side bars*/
 .sidebars{
     display:grid;
     
@@ -122,3 +127,24 @@ background-color: rgb(247, 191, 8);
 padding-left:50px;
 margin-right: -3%;
 }
+
+/*Edit pop up*/
+
+.popup-background{
+  display: flex;
+  background: black;
+  justify-content: center;
+  align-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+.popup{
+  background: white;
+  padding: 2em;
+  width: 350px;
+}
+
