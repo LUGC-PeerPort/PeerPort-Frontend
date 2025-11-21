@@ -57,7 +57,14 @@ export class AssignmentComponent implements OnInit{
       console.log("Assignment created:", response);
     })
   }
+  //EDIT
 
+  //DELETE
+  deleteAssignment(assignmentId:string): void{
+    this.CourseService.deleteAssignment(assignmentId).subscribe(response=>{
+      console.log("Assignment deleted:",response);
+    })
+  }
 
   //SUBMIT
   submitAssignment(assignmentId: string, fileInput:HTMLInputElement ){

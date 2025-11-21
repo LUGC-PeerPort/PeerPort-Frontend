@@ -27,6 +27,9 @@
           <div class="assignment-color">
             <label [for]="'toggle-box-' + i" class="toggle-label">{{assignment.name}}</label>
             <img src="arrow-down-solid-full.svg" class="arrow-toggle" width="10px" height="20px">
+         
+            <button [id]="'delete-button' +i" (click)="deleteAssignment(assignment.assignmentId)">Delete</button>
+            <button [id]="'edit-button' +i">Edit</button>
           </div>
           
           <div class="collapsible-content">
