@@ -1,21 +1,21 @@
 <Section class="whole-page">
   <div class="page-content">
   <!--Assignment Creation-->
-    <section class="create-assignment">
-      <h3>Create Assignment</h3>
-      <form (ngSubmit)="createAssignment">
-        <label for="name">Name:</label>
-        <input type="text" [(ngModel)]="newAssignment.name" name="name" required />
+    <form (ngSubmit)="createAssignment(courseId)">
+      <fieldset>
+        <legend>Create A New Assignment</legend>
 
-        <label for="description">Description:</label>
-        <textarea [(ngModel)]="newAssignment.description" name="description" required></textarea>
+        <label for="text">Name</label>
+        <input type="text">
 
-        <label>Due Date:</label>
-        <input type="date" [(ngModel)]="newAssignment.dueDate" name="dueDate" required />
+        <label for="description">Description</label>
+        <textarea name="description"></textarea>
 
-        <button type="submit">Create New Assignment</button>
-      </form>
-    </section>
+        <label for="date">Date</label>
+        <input type="datetime-local">
+        <button type="submit">Create Assignment</button>
+      </fieldset>
+    </form>
 
   <!--Populate with Assignments-->
     <div>
@@ -34,20 +34,6 @@
       </ul>
     </div>
 
-    <input type="checkbox" id="toggle-box" class="toggle-checkbox">
-    <div class="assignment-color">
-      <label for="toggle-box" class="toggle-label">Assignment 1</label>
-      <img src="arrow-down-solid-full.svg" class="arrow-toggle" width="10px" height="20px">
-    </div>
-    <div class="collapsible-content">
-     <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
-      </p>
-    </div>
   </div>
   <div class="sidebars">
     <p class="sidebar-link1"> Weekly calendar </p>

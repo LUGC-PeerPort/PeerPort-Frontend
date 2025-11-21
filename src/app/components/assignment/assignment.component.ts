@@ -15,7 +15,7 @@ export class AssignmentComponent implements OnInit{
 
   COURSES: any;
   ASSIGNMENTS: any;
-  courseId: string | undefined;
+  courseId!: string; 
   name: string | undefined;
   courseCode: string | undefined;
   isOpen: boolean | undefined;
@@ -33,8 +33,6 @@ export class AssignmentComponent implements OnInit{
     courseId:''
   }
 
-  CourseId: {courseId: string} | null = null;
-
   constructor(private route: ActivatedRoute, private CourseService: CourseService){}
 
   //GET
@@ -46,28 +44,31 @@ export class AssignmentComponent implements OnInit{
 
   //CREATE
   createAssignment(courseId:string): void{
+    if(!courseId){
+      console.log("Course Id is null");
+      return;
+    }
+
+    this.newAssignment.courseId = courseId;
     
-    this.newAssignment.courseId = this.CourseId.courseId;
-    
-    this.CourseService.createAssignment(this.CourseId.courseId, this.newAssignment).subscribe(response =>{
+    this.CourseService.createAssignment(this.newAssignment).subscribe(response =>{
       this.ASSIGNMENTS.push(response);
       this.newAssignment = {name:'', description:'',dueDate:'',courseId:''}
     })
   }
 
 
-  ngOnInit(): void{
-    this.route.params.subscribe(params => {
-      const courseId = params['id'];
-      this.CourseId = { courseId };
+ngOnInit(): void {
+  this.route.params.subscribe(params => {
+  this.courseId = params['id'] as string;    
 
-      this.getAllAssignments(this.CourseId.courseId);
-
-      this.CourseService.getCourseById(params['id']).subscribe(response => {
-        this.COURSES = response;
-      })  
+    this.CourseService.getCourseById(this.courseId).subscribe(response => {
+      this.COURSES = response;
     });
-  }
+
+    this.getAllAssignments(this.courseId);
+  });
+}
 
 
 
