@@ -37,58 +37,58 @@ export class CourseService {
   // Course-related methods
   // get all courses
   getCourses() {
-    return this.http.get(`${this.courseUrl}courses`);
+    return this.http.get(`${this.courseUrl}courses`,{withCredentials: true});
   }
 
   // get specific course by id
   getCourseById(courseId: string) {
-    return this.http.get(`${this.courseUrl}courses/${courseId}`);
+    return this.http.get(`${this.courseUrl}courses/${courseId}`,{withCredentials: true});
   }
 
   //create course
   createCourse(course: any) {
-    return this.http.post(`${this.courseUrl}courses`, course);
+    return this.http.post(`${this.courseUrl}courses`, course,{withCredentials: true});
   }
 
   //update course
   updateCourse(courseId: string, course: any) {
-    return this.http.put(`${this.courseUrl}courses/${courseId}`, course);
+    return this.http.put(`${this.courseUrl}courses/${courseId}`, course,{withCredentials: true});
   }
 
   //delete course
   deleteCourse(courseId: string) {
-    return this.http.delete(`${this.courseUrl}courses/${courseId}`);
+    return this.http.delete(`${this.courseUrl}courses/${courseId}`,{withCredentials: true});
   }
 
   // Assignment-related methods
   // get assignments in specific course
   getAllAssignmentsByCourseId(courseId: string) {
-    return this.http.get<error | assignment>(`${this.courseUrl}courses/${courseId}/assignments`);
+    return this.http.get<error | assignment>(`${this.courseUrl}courses/${courseId}/assignments`,{withCredentials: true});
   }
 
   //get specific assignment in specific course
   getAssignmentById(courseId: string, assignmentId: string) {
-    return this.http.get(`${this.courseUrl}courses/${courseId}/assignments/${assignmentId}`);
+    return this.http.get(`${this.courseUrl}courses/${courseId}/assignments/${assignmentId}`,{withCredentials: true});
   }
 
   //create assignment
   createAssignment(assignment: any) {
-    return this.http.post(`${this.courseUrl}assignments`, assignment);
+    return this.http.post(`${this.courseUrl}assignments`, assignment, {withCredentials: true});
   }
 
   //update assignment
-  updateAssignment(courseId: string, assignmentId: string, assignment: any) {
-    return this.http.put(`${this.courseUrl}courses/${courseId}/assignments/${assignmentId}`, assignment);
+  updateAssignment(assignmentId: string, assignment: any) {
+    return this.http.put(`${this.courseUrl}assignments/${assignmentId}`, assignment,{withCredentials: true});
   }
 
   //delete assignment
   deleteAssignment(assignmentId: string) {
-    return this.http.delete(`${this.courseUrl}assignments/${assignmentId}`);
+    return this.http.delete(`${this.courseUrl}assignments/${assignmentId}`,{withCredentials: true});
   }
 
   //Submit Assignment
   submitAssignment(assignmentId:string, submission:any){
-    return this.http.post(`${this.courseUrl}assignments/${assignmentId}/submissions`, submission);
+    return this.http.post(`${this.courseUrl}assignments/${assignmentId}/submissions`, submission,{withCredentials: true});
   }
   //Get course By ID
   //get all course user is in
