@@ -1,7 +1,9 @@
 <section>
     <div>
         <h2>Courses</h2>
-        <button *ngIf="User?.userId" >New Course</button>
+        <div>
+            
+        </div>
         <ul>
             <li *ngFor="let course of COURSES">
                 <button [routerLink]="['course/', course.courseId]" (click)="saveId(course.courseId)">

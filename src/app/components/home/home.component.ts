@@ -28,12 +28,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private service: CourseService, private authService: AuthService, private router: Router, private dataService: DataService) { }
 
-  getCourses(): void{
-    this.service.getCourses().subscribe(response => {
-     this.COURSES = response;
-   });
-  }
-
   getCoursesByUserId(userId: string): void{
     this.service.getAllCoursesByUserId(userId).subscribe(response => {
       this.COURSES = response;

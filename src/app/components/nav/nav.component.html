@@ -1,7 +1,7 @@
 <header>
 <nav>
     <div>
-      <img src="PeerPortLogoColour.svg" alt="PeerPort Logo" style="width: 40px; height: 40px;">
+      <a routerLink="/home" (click)="resetId()"><img src="PeerPortLogoColour.svg" alt="PeerPort Logo" style="width: 40px; height: 40px;"></a>
       <div>
         <div>
           <a *ngIf="!User?.userId" href="{{apiUrl}}login/google"> Login </a>
