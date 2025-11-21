@@ -129,11 +129,24 @@ export class CourseService {
   }
 
   getAverageGradeForCourse(courseId:string){ 
-    return this.http.get(`${this.courseUrl}grades/average/${courseId}`,{withCredentials:true})
+    return this.http.get(`${this.courseUrl}grades/average/${courseId}`,{withCredentials:true});
   }
 
   getAverageGradeForUser(courseId:string,userId:string){
-    return this.http.get(`${this.courseUrl}grades/calculated/${userId}/${courseId}`, {withCredentials:true})
+    return this.http.get(`${this.courseUrl}grades/calculated/${userId}/${courseId}`, {withCredentials:true});
   }
 
+  //CREATE
+  createGradeForAssignment(courseId:string, userId:string, assignmentSubmissionId:string, grade:any){
+    return this.http.post(`${this.courseUrl}grades/${userId}/${courseId}/${assignmentSubmissionId}`, grade,{withCredentials:true});
+  }
+
+  //EDIT
+  editGrade(gradeId:string, grade:any){
+    return this.http.put(`${this.courseUrl}grades/by-id/${gradeId}`,grade,{withCredentials:true});
+  }
+  //DELETE
+  deleteGrade(gradeId:string){
+    return this.http.delete(`${this.courseUrl}/grade/by-id/${gradeId}`,{withCredentials:true});
+  }
 }
