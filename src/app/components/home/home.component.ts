@@ -4,6 +4,7 @@ import { CourseService } from '../../services/course.service';
 import { AuthService } from '../../services/auth.service';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit {
   User: {userId: string} | null = null;
   userId: string | undefined;
 
-  constructor(private service: CourseService, private authService: AuthService, private router: Router) { }
+  constructor(private service: CourseService, private authService: AuthService, private router: Router, private dataService: DataService) { }
 
   getCourses(): void{
     this.service.getCourses().subscribe(response => {
@@ -37,6 +38,11 @@ export class HomeComponent implements OnInit {
     this.service.getAllCoursesByUserId(userId).subscribe(response => {
       this.COURSES = response;
     });
+  }
+
+  saveId(id: string){
+    this.dataService.changeMessage(id);
+    console.log(id);
   }
 
   ngOnInit(): void {

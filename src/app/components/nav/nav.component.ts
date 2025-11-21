@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { NgIf, Location } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { environment } from '../../../environments/environment';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-nav',
@@ -12,17 +14,18 @@ import { environment } from '../../../environments/environment';
 })
 
 export class NavComponent implements OnInit {
-  url: string | null = null;
 
   apiUrl: string | null = null;
 
   User: {userId: string} | null = null;
   userId: string | undefined;
 
-  constructor(private authService: AuthService, private location: Location) {}
+  courseId: string | null = null;
 
-  getCurrentPath(): string {
-    return this.url = this.location.path();
+  constructor(private authService: AuthService, private dataService: DataService) {}
+
+  resetId(){
+    this.courseId = null;
   }
 
   ngOnInit(): void {
@@ -32,7 +35,10 @@ export class NavComponent implements OnInit {
     this.authService.currentUser().subscribe((response) => {
       this.User = response as {userId: string};
     });
-    
-    console.log(this.getCurrentPath())
+
+    this.dataService.currentMessage.subscribe(message => {
+      this.courseId = message;
+      console.log(this.courseId);
+    })
   };
 }

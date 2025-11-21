@@ -5,11 +5,12 @@
       <div>
         <div>
           <a *ngIf="!User?.userId" href="{{apiUrl}}login/google"> Login </a>
-          <a routerLink="/home"> Home </a>
-          <a routerLink="/course"> Course </a>
-          <a routerLink="/assignments"> Assignments </a>
-          <a routerLink="/grades"> Grades </a>
-          <a routerLink="/calendar">Calendar</a>
+          <a routerLink="/home" (click)="resetId()"> Home </a>
+          <a *ngIf="courseId" [routerLink]="['home/course/', courseId]"> Course </a>
+          <a *ngIf="courseId" [routerLink]="['home', 'course', courseId, 'assignments']"> Assignments </a>
+          <a *ngIf="courseId" [routerLink]="['home', 'course', courseId, 'grades']"> Grades </a>
+          <a *ngIf="courseId" [routerLink]="['home', 'course', courseId, 'classList']">Class List</a>
+          <a routerLink="calendar">Calendar</a>
         </div>
       </div>
     </div>

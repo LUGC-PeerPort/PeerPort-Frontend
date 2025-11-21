@@ -2,7 +2,7 @@
     <div>
         <ul>
             <li *ngFor="let course of COURSES">
-                <button [routerLink]="['course/', course.courseId]">
+                <button [routerLink]="['course/', course.courseId]" (click)="saveId(course.courseId)">
                     <h4 *ngIf="course.name">{{course.name}}</h4>
                     <p *ngIf="course.courseCode">{{course.courseCode}}</p>
                     <p *ngIf="course.description">{{course.description}}</p>
