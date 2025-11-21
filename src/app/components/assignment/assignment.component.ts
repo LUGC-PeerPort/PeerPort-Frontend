@@ -26,8 +26,8 @@ export class AssignmentComponent implements OnInit{
 
   assignmentId: string|undefined;
   
-  
-
+  isEditPopupOpen = false;
+  selectedAssignment: any = null;
 
   constructor(private route: ActivatedRoute, private CourseService: CourseService){}
 
@@ -58,6 +58,32 @@ export class AssignmentComponent implements OnInit{
     })
   }
   //EDIT
+  editAssignment(assignmentId:string, name:string, description:string, dueDate:string): void{
+
+     const editedAssignment = {
+      name: name,
+      description: description,
+      dueDate: dueDate,
+      courseId: this.courseId
+    }
+
+    this.CourseService.updateAssignment(assignmentId, editedAssignment).subscribe(response=>{ 
+      const index = this.ASSIGNMENTS.findIndex((a:any) => a.assignmentId === assignmentId);
+      if (index !== -1) {
+        this.ASSIGNMENTS[index] = { ...this.ASSIGNMENTS[index], ...response };
+      }
+      console.log("assignment edited")
+    })
+  }
+  
+  openEditPopup(assignment:any){
+    this.selectedAssignment = { ...assignment }; 
+    this.isEditPopupOpen = true;
+  }
+
+  closeEditPopup(){
+    this.isEditPopupOpen = true;
+  }
 
   //DELETE
   deleteAssignment(assignmentId:string): void{
