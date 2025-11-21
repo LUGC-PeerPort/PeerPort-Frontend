@@ -1,8 +1,11 @@
 <section>
     <div>
         <h2>Courses</h2>
+        <h3>{{User?.userId}}</h3>
         <div>
-            
+            <!-- <form (ngSubmit)="">
+
+            </form> -->
         </div>
         <ul>
             <li *ngFor="let course of COURSES">
@@ -10,9 +13,43 @@
                     <h4 *ngIf="course.name">{{course.name}}</h4>
                     <p *ngIf="course.courseCode">{{course.courseCode}}</p>
                     <p *ngIf="course.description">{{course.description}}</p>
-                    <p *ngIf="course.courseId">{{course.courseId}}</p>
                 </button>
+                <button (click)="selectedCourse(course)"> Update </button>
+                <p>{{course.courseId}}</p>
+                <button *ngIf="User?.userId" (click)="deleteCourse(course.courseId)">Delete Course</button>
             </li>
         </ul>
     </div>
+    <section id="courseForm">
+         <fieldset>
+            <label for="name">Name: </label>
+            <input [(ngModel)]="name">
+        </fieldset>
+        <fieldset>
+            <label for="courseCode">Course Code: </label>
+            <input [(ngModel)]="courseCode">
+        </fieldset>
+        <fieldset>
+            <label for="isOpen">Is the course open? </label>
+            <select [(ngModel)]="isOpen">
+                <option value=true> Yes </option>
+                <option value=false> No </option>
+            </select>
+        </fieldset>
+         <fieldset>
+            <label for="description">Description: </label>
+            <input [(ngModel)]="description">
+        </fieldset>
+        <fieldset>
+            <label for="startDate">Start Date: </label>
+            <input type="date" [(ngModel)]="startDate">
+        </fieldset>
+        <fieldset>
+            <label for="endDate">End Date: </label>
+            <input type="date" [(ngModel)]="endDate">
+        </fieldset>
+        <button *ngIf="courseId" (click)="updateCourse()"> Update </button>
+        <button *ngIf="courseId" (click)="resetForm()"> Clear Form </button>
+        <button *ngIf="!courseId" (click)="createCourse()"> Create </button>
+    </section>
 </section>
