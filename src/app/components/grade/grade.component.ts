@@ -10,6 +10,7 @@ import { CourseService } from '../../services/course.service';
 })
 export class GradeComponent implements OnInit {
 
+  GRADES: any;
   COURSES: any;
   courseId: string | undefined;
   name: string | undefined;
@@ -19,11 +20,45 @@ export class GradeComponent implements OnInit {
   startDate: string | undefined;
   endDate: string | undefined;
 
+
+  userGrades: any;
+  userAverageGrade: any;
+
+  courseAverageGrade:any;
+
   constructor(private route: ActivatedRoute, private CourseService: CourseService){}
 
 //GET
+  getAllGradesForCourse(courseId:string){
+    this.CourseService.getAllGradesForCourse(courseId).subscribe(response=>{
+      this.GRADES = response;
+    });
+  }
+
+  getAllGradesForUser(courseId:string, userId:string){
+    this.CourseService.getAllGradesForUserByCourse(courseId,userId).subscribe(response=>{
+      this.userGrades = response;
+    })
+  }
+
+  getAverageGradeOfCourse(courseId:string){
+    this.CourseService.getAverageGradeForCourse(courseId).subscribe(response=>{
+      this.courseAverageGrade = response;
+    })
+  }
+
+  getAverageGradeForUser(courseId:string, userId:string){
+    this.CourseService.getAverageGradeForUser(courseId,userId).subscribe(response=>{
+      this.userAverageGrade = response;
+    })
+  }
 
 
+  //CREATE
+  
+  //EDIT
+
+  //DELETE
 
 
   ngOnInit(): void {

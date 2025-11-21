@@ -107,8 +107,8 @@ export class AssignmentComponent implements OnInit{
     
     
     const file = files[0];
-  const formData = new FormData();
-  formData.append('file', file);
+    const formData = new FormData();
+    formData.append('files', file);
   
   this.CourseService.submitAssignment(assignmentId, formData)
     .subscribe({
