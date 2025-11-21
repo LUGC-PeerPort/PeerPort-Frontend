@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CourseService } from '../../services/course.service';
 
+
 @Component({
   selector: 'app-course',
   imports: [RouterLink],
