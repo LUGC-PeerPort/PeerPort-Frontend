@@ -22,9 +22,21 @@ export class GradeComponent implements OnInit {
   constructor(private route: ActivatedRoute, private CourseService: CourseService){}
 
 //GET
+  getAllGradesForCourse(courseId:string){
+    this.CourseService.getAllGradesForCourse(courseId)
+  }
 
+  getAllGradesForUser(){
 
+  }
 
+  getAverageGradeOfCourse(){
+
+  }
+
+  getAverageGradeForUser(){
+
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
