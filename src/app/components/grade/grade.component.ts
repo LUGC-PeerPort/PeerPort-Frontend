@@ -29,25 +29,25 @@ export class GradeComponent implements OnInit {
   constructor(private route: ActivatedRoute, private CourseService: CourseService){}
 
 //GET
-  getAllGradesForCourse(courseId:string){
+  getAllGradesForCourse(courseId:string):void{
     this.CourseService.getAllGradesForCourse(courseId).subscribe(response=>{
       this.GRADES = response;
     });
   }
 
-  getAllGradesForUser(courseId:string, userId:string){
+  getAllGradesForUser(courseId:string, userId:string):void{
     this.CourseService.getAllGradesForUserByCourse(courseId,userId).subscribe(response=>{
       this.userGrades = response;
     })
   }
 
-  getAverageGradeOfCourse(courseId:string){
+  getAverageGradeOfCourse(courseId:string):void{
     this.CourseService.getAverageGradeForCourse(courseId).subscribe(response=>{
       this.courseAverageGrade = response;
     })
   }
 
-  getAverageGradeForUser(courseId:string, userId:string){
+  getAverageGradeForUser(courseId:string, userId:string):void{
     this.CourseService.getAverageGradeForUser(courseId,userId).subscribe(response=>{
       this.userAverageGrade = response;
     })
@@ -55,11 +55,11 @@ export class GradeComponent implements OnInit {
 
 
   //CREATE
-  
+  createGrade():void{}
   //EDIT
-
+  editGrade():void{}
   //DELETE
-
+  deleteGrade():void{}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
