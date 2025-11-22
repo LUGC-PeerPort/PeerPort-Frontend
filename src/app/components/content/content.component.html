@@ -1,6 +1,20 @@
 <section>
     <p>Content Work!</p>
     <div>
+        <ul>    
+            <li>
+                <div class="week1">
+                    <a routerLink="/assignment">placeholder assignment link</a>
+                </div>
+                
+               
+            </li>
+            <li>
+                <p>Here is some more placeholder</p>
+            </li>
+        </ul>
+        <button></button>
+
         <ul *ngIf="WEEKS">
             <li *ngFor="let content of WEEKS">
                 <button [routerLink]="['content/', content.contentId]">
