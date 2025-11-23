@@ -1,1 +1,17 @@
-<p>class-list works!</p>
+<div class="class-list-container">
+  <h2>Class List</h2>
+
+  <!-- Add Student Button -->
+  <button (click)="addStudent()" class="add-button">+</button>
+
+  <!-- Student List -->
+  <ul class="student-list">
+    <li *ngFor="let student of students; let i = index" class="student-item">
+      <span>{{ student.name }}</span>
+
+      <!-- Optional: View or Edit Actions -->
+      <button (click)="viewStudent(student)" class="view-button">View</button>
+      <button (click)="removeStudent(i)" class="remove-button">Remove</button>
+    </li>
+  </ul>
+</div>
