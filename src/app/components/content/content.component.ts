@@ -51,8 +51,6 @@ export class ContentComponent implements OnInit {
       this.COURSES = response;
     });
 
-    this.getAllCourseContent(this.courseId);
-      this.dataService.changeMessage(params['id']);
   });
   }
 
