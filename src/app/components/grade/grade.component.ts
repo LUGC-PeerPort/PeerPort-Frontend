@@ -52,13 +52,15 @@ export class GradeComponent implements OnInit {
 
   getAverageGradeOfCourse(courseId:string):void{
     this.CourseService.getAverageGradeForCourse(courseId).subscribe(response=>{
-      this.courseAverageGrade = response;
+      console.log(response);
+      this.courseAverageGrade = response.grade;
     });
   }
 
   getAverageGradeForUser(courseId:string, userId:string):void{
     this.CourseService.getAverageGradeForUser(courseId,userId).subscribe(response=>{
-      this.userAverageGrade = response;
+     console.log(response);
+      this.userAverageGrade = response.grade;
     });
   }
 
@@ -103,20 +105,25 @@ export class GradeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.currentUser().subscribe(response=>{
-      this.User = response as { userId: string };
-    })
+     this.authService.currentUser().subscribe(userResponse => {
+    this.User = userResponse as { userId: string };
+    this.userId = this.User?.userId;
 
+    // Then get route params
     this.route.params.subscribe(params => {
-      this.CourseService.getCourseById(params['id']).subscribe(response => {
-        this.COURSES = response;
-      })
+      this.courseId = params['id'];
 
+      // Load course details
+      this.CourseService.getCourseById(this.courseId).subscribe(course => {
+        this.COURSES = course;
+      });
+
+      // NOW call grade methods because IDs are assigned
       this.getAverageGradeForUser(this.courseId, this.userId);
       this.getAverageGradeOfCourse(this.courseId);
       this.getAllGradesForCourse(this.courseId);
-      this.getAllGradesForUser(this.courseId,this.userId);
+      this.getAllGradesForUser(this.courseId, this.userId);
     });
-  }
-
+  });
+}
 }
