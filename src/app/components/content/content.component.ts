@@ -14,8 +14,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './content.component.css'
 })
 export class ContentComponent implements OnInit {
-
-  WEEKS: content[] | undefined;
+  COURSES: any;
+  courseId: any;
+  WEEKS: any;
   weekId: string | undefined;
   title: string | undefined;
   isOpen: boolean | undefined;
@@ -28,18 +29,29 @@ export class ContentComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private CourseService: CourseService){}
   
+  //GET
+  getAllCourseContent(courseId:string){
+    this.CourseService.getAllContentForCourse(courseId).subscribe(response=>{
+      this.WEEKS = response
+    })
+  }
+  //CREATE
+  
+  //EDIT
 
+  //DELETE
    
-
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-     
-      this.CourseService.getAllContentByCourseId(params['id']).subscribe(response => { 
-        this.WEEKS = response as content[];
-        
-      })
+    this.courseId = params['id'] as string;    
+
+    this.CourseService.getCourseById(this.courseId).subscribe(response => {
+      this.COURSES = response;
     });
+
+    this.getAllCourseContent(this.courseId);
+  });
   }
 
 }

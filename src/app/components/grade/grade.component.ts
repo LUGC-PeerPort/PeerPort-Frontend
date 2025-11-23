@@ -12,6 +12,7 @@ export class GradeComponent implements OnInit {
 
   GRADES: any;
   COURSES: any;
+  SUBMISSIONS: any;
   courseId: string | undefined;
   name: string | undefined;
   courseCode: string | undefined;
@@ -38,21 +39,20 @@ export class GradeComponent implements OnInit {
   getAllGradesForUser(courseId:string, userId:string):void{
     this.CourseService.getAllGradesForUserByCourse(courseId,userId).subscribe(response=>{
       this.userGrades = response;
-    })
+    });
   }
 
   getAverageGradeOfCourse(courseId:string):void{
     this.CourseService.getAverageGradeForCourse(courseId).subscribe(response=>{
       this.courseAverageGrade = response;
-    })
+    });
   }
 
   getAverageGradeForUser(courseId:string, userId:string):void{
     this.CourseService.getAverageGradeForUser(courseId,userId).subscribe(response=>{
       this.userAverageGrade = response;
-    })
+    });
   }
-
 
   //CREATE
   createGrade(courseId:string, userId:string, assignmentSubmissionId:string, grade:any):void{
@@ -60,10 +60,13 @@ export class GradeComponent implements OnInit {
     });
   }
   //EDIT
-  editGrade(gradeId:string):void{
+  editGrade(gradeId:string, minScore:number,maxScore:number, achievedScore:number, weight:number):void{
 
     const editedGrade = {
-     
+     minScore: minScore,
+     maxScore: maxScore,
+     achievedScore: achievedScore,
+     weight: weight
     }
 
     this.CourseService.editGrade(gradeId, editedGrade).subscribe(response=>{

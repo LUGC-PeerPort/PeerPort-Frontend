@@ -46,10 +46,21 @@ export class CourseService {
 
   constructor(private http: HttpClient) { }
 
-  // Course-related methods
+  // COURSES
   // get all courses
   getCourses() {
     return this.http.get(`${this.courseUrl}courses`,{withCredentials: true});
+  }
+
+    //Get course By ID
+  //get all course user is in
+  getAllCoursesByUserId(userId: string) {
+    return this.http.get<error | course>(`${this.courseUrl}users/${userId}/courses`, {withCredentials: true});
+  }
+
+  //get specific course user is in
+  getCourseByUserId(userId: string, courseId: string) {
+    return this.http.get(`${this.courseUrl}users/${userId}/courses/${courseId}`, {withCredentials: true});
   }
 
   // get specific course by id
@@ -71,8 +82,9 @@ export class CourseService {
   deleteCourse(courseId: string) {
     return this.http.delete(`${this.courseUrl}courses/${courseId}`,{withCredentials: true});
   }
+  //END COURSES
 
-  // Assignment-related methods
+  // ASSIGNMENTS
   // get assignments in specific course
   getAllAssignmentsByCourseId(courseId: string) {
     return this.http.get<error | assignment>(`${this.courseUrl}courses/${courseId}/assignments`,{withCredentials: true});
@@ -102,21 +114,7 @@ export class CourseService {
   submitAssignment(assignmentId:string, submission:any){
     return this.http.post(`${this.courseUrl}assignments/${assignmentId}/submissions`, submission,{withCredentials: true});
   }
-  //Get course By ID
-  //get all course user is in
-  getAllCoursesByUserId(userId: string) {
-    return this.http.get<error | course>(`${this.courseUrl}users/${userId}/courses`, {withCredentials: true});
-  }
-
-  //get specific course user is in
-  getCourseByUserId(userId: string, courseId: string) {
-    return this.http.get(`${this.courseUrl}users/${userId}/courses/${courseId}`, {withCredentials: true});
-  }
-
-  //content for course page
-  getAllContentByCourseId(courseId: string) {
-    return this.http.get<error | content[]>(`${this.courseUrl}courses/${courseId}/content`);
-  }
+  //END ASSIGNMENTS
 
   //GRADES
   //GET
@@ -149,6 +147,7 @@ export class CourseService {
   deleteGrade(gradeId:string){
     return this.http.delete(`${this.courseUrl}/grade/by-id/${gradeId}`,{withCredentials:true});
   }
+  //END GRADES
 
   //SUBMISSIONS
   //GET
@@ -162,7 +161,7 @@ export class CourseService {
 
   //CONTENT 
   //GET
-  getContentForCourse(courseId:string){
+  getAllContentForCourse(courseId:string){
     return this.http.get(`${this.courseUrl}courses/${courseId}/content`,{withCredentials:true});
   }
 
@@ -180,4 +179,5 @@ export class CourseService {
   deleteContent(contentId:string){
     return this.http.delete(`${this.courseUrl}content/${contentId}`, {withCredentials:true});
   }
+  //END CONTENT
 }
