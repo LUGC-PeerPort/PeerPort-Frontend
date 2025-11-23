@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from '../../services/course.service';
 import { DataService } from '../../services/data.service';
+import { NgFor,NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-grade',
-  imports: [],
+  imports: [NgFor,NgIf, FormsModule],
   templateUrl: './grade.component.html',
   styleUrl: './grade.component.css'
 })
