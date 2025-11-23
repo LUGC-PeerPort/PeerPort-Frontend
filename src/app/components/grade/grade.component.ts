@@ -55,11 +55,30 @@ export class GradeComponent implements OnInit {
 
 
   //CREATE
-  createGrade():void{}
+  createGrade(courseId:string, userId:string, assignmentSubmissionId:string, grade:any):void{
+    this.CourseService.createGradeForAssignment(courseId, userId, assignmentSubmissionId, grade).subscribe(response=>{
+    });
+  }
   //EDIT
-  editGrade():void{}
+  editGrade(gradeId:string):void{
+
+    const editedGrade = {
+     
+    }
+
+    this.CourseService.editGrade(gradeId, editedGrade).subscribe(response=>{
+      const index = this.GRADES.findIndex((g:any) => g.gradeId === gradeId);
+      if (index !== -1) {
+        this.GRADES[index] = { ...this.GRADES[index], ...response };
+      }
+    });
+  }
   //DELETE
-  deleteGrade():void{}
+  deleteGrade(gradeId:string):void{
+    this.CourseService.deleteGrade(gradeId).subscribe(response=>{
+      console.log("Grade deleted.");
+    })
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { AbstractType, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
@@ -148,5 +148,27 @@ export class CourseService {
   //DELETE
   deleteGrade(gradeId:string){
     return this.http.delete(`${this.courseUrl}/grade/by-id/${gradeId}`,{withCredentials:true});
+  }
+
+
+  //CONTENT 
+  //GET
+  getContentForCourse(courseId:string){
+    return this.http.get(`${this.courseUrl}courses/${courseId}/content`,{withCredentials:true});
+  }
+
+  //CREATE
+  createNewContentAttachedToSpecificCourse(courseId:string, content:any){
+    return this.http.post(`${this.courseUrl}content/${courseId}`, content, {withCredentials:true});
+  }
+
+  //EDIT
+  editCourseContentFromSpecificCourse(contentId:string, editedContent:any){
+    return this.http.put(`${this.courseUrl}content/${contentId}`, editedContent, {withCredentials:true});
+  }
+
+  //DELETE
+  deleteContent(contentId:string){
+    return this.http.delete(`${this.courseUrl}content/${contentId}`, {withCredentials:true});
   }
 }
