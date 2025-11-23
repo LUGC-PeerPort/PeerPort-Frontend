@@ -23,8 +23,9 @@ export class HomeComponent implements OnInit {
   startDate: string | undefined;
   endDate: string | undefined;
 
-  User: {userId: string} | null = null;
+  User: {userId: string, userRole: string} | null = null;
   userId: string | undefined;
+  userRole: string | undefined;
 
   constructor(private service: CourseService, private authService: AuthService, private router: Router, private dataService: DataService) { }
 
@@ -123,7 +124,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.currentUser().subscribe(response => {
-      this.User = response as { userId: string };
+      this.User = response as { userId: string, userRole: string };
 
       if (this.User && this.User.userId) {
         this.getCoursesByUserId(this.User.userId);

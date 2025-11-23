@@ -1,5 +1,5 @@
 <section>
-    <div>
+    <div id="courseBox">
         <h2>Courses</h2>
         <ul>
             <li *ngFor="let course of COURSES">
@@ -8,13 +8,12 @@
                     <p *ngIf="course.courseCode">{{course.courseCode}}</p>
                     <p *ngIf="course.description">{{course.description}}</p>
                 </button>
-                <button (click)="selectedCourse(course)"> Update </button>
-                <p>{{course.courseId}}</p>
-                <button *ngIf="User?.userId" (click)="deleteCourse(course.courseId)">Delete Course</button>
+                <button *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="selectedCourse(course)"> Update </button>
+                <button *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="deleteCourse(course.courseId)">Delete Course</button>
             </li>
         </ul>
     </div>
-    <section id="courseForm">
+    <section *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" id="courseForm">
          <fieldset>
             <label for="name">Name: </label>
             <input [(ngModel)]="name">
