@@ -150,6 +150,15 @@ export class CourseService {
     return this.http.delete(`${this.courseUrl}/grade/by-id/${gradeId}`,{withCredentials:true});
   }
 
+  //SUBMISSIONS
+  //GET
+  getAllSubmissionsForAssignment(assignmentId:string){
+    return this.http.get(`${this.courseUrl}assignment/${assignmentId}/submissions`,{withCredentials:true});
+  }
+
+  getSpecificSubmission(submissionId:string){
+    return this.http.get(`${this.courseUrl}submissions/${submissionId}`, {withCredentials:true});
+  }
 
   //CONTENT 
   //GET
