@@ -47,6 +47,20 @@ interface grade{
     "assignmentSubmissionId": string
 }
 
+interface submission{
+    "comment": string,
+    "timeSubmitted": string,
+    "userId": string,
+    "assignmentId": string,
+    "assignmentSubmissionId": string,
+    "files": [
+      {
+        "fileId": string,
+        "fileName": string,
+        "file": string
+      }
+    ]
+  }
 
 @Injectable({
   providedIn: 'root'
