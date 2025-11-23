@@ -36,6 +36,17 @@ interface error {
   message: string;
 };
 
+interface grade{
+    "minScore": number,
+    "maxScore": number,
+    "achievedScore": number,
+    "weight": number,
+    "gradeId": string,
+    "userId": string,
+    "courseId": string,
+    "assignmentSubmissionId": string
+}
+
 
 @Injectable({
   providedIn: 'root'

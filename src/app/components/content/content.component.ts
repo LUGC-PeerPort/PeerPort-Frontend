@@ -47,8 +47,8 @@ export class ContentComponent implements OnInit {
     this.route.params.subscribe(params => {
     this.courseId = params['id'] as string;    
 
-    this.CourseService.getCourseById(this.courseId).subscribe(response => {
-      this.COURSES = response;
+    this.CourseService.getAllContentForCourse(this.courseId).subscribe(response => {
+      this.WEEKS = response;
     });
 
   });
