@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from '../../services/course.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-grade',
@@ -26,7 +27,7 @@ export class GradeComponent implements OnInit {
 
   courseAverageGrade:any;
 
-  constructor(private route: ActivatedRoute, private CourseService: CourseService){}
+  constructor(private route: ActivatedRoute, private CourseService: CourseService, private dataService: DataService){}
 
 //GET
   getAllGradesForCourse(courseId:string):void{
@@ -85,6 +86,7 @@ export class GradeComponent implements OnInit {
       this.CourseService.getCourseById(params['id']).subscribe(response => {
         this.COURSES = response;
       })
+      this.dataService.changeMessage(params['id']);
     });
   }
 

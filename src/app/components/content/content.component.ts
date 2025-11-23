@@ -5,6 +5,7 @@ import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DataService } from '../../services/data.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class ContentComponent implements OnInit {
   User: {userId: string} | null = null;
   userId: string | undefined;
 
-  constructor(private route: ActivatedRoute, private CourseService: CourseService){}
+  constructor(private route: ActivatedRoute, private CourseService: CourseService, private dataService: DataService){}
   
 
    
@@ -39,6 +40,7 @@ export class ContentComponent implements OnInit {
         this.WEEKS = response as content[];
         
       })
+      this.dataService.changeMessage(params['id']);
     });
   }
 
