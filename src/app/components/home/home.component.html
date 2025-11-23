@@ -1,12 +1,6 @@
 <section>
     <div>
         <h2>Courses</h2>
-        <h3>{{User?.userId}}</h3>
-        <div>
-            <!-- <form (ngSubmit)="">
-
-            </form> -->
-        </div>
         <ul>
             <li *ngFor="let course of COURSES">
                 <button [routerLink]="['course/', course.courseId]" (click)="saveId(course.courseId)">
@@ -32,8 +26,8 @@
         <fieldset>
             <label for="isOpen">Is the course open? </label>
             <select [(ngModel)]="isOpen">
-                <option value=true> Yes </option>
-                <option value=false> No </option>
+                <option value="true"> Yes </option>
+                <option value="false"> No </option>
             </select>
         </fieldset>
          <fieldset>

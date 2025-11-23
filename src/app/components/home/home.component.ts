@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   courseId: string | undefined;
   name: string | undefined;
   courseCode: string | undefined;
-  isOpen: boolean | undefined;
+  isOpen: string = "";
   description: string | undefined;
   startDate: string | undefined;
   endDate: string | undefined;
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     this.courseId = undefined,
     this.name = undefined,
     this.courseCode = undefined,
-    this.isOpen = undefined,
+    this.isOpen = "",
     this.description = undefined,
     this.startDate = undefined,
     this.endDate = undefined
@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
     let newCourse = {
       name: this.name,
       courseCode: this.courseCode,
-      isOpen: this.isOpen,
+      isOpen: this.isOpen == "true",
       description: this.description,
       startDate: this.startDate,
       endDate: this.endDate
@@ -85,6 +85,12 @@ export class HomeComponent implements OnInit {
   deleteCourse(courseId: string): void{
     this.service.deleteCourse(courseId).subscribe(response => {
       console.log("Course Deleted")
+      
+      if (this.User && this.User.userId) {
+        this.getCoursesByUserId(this.User.userId);
+      } else {
+        console.log("No User");
+      }
     });
   }
 
@@ -93,11 +99,10 @@ export class HomeComponent implements OnInit {
     let newCourse = {
       name: this.name,
       courseCode: this.courseCode,
-      isOpen: this.isOpen,
+      isOpen: this.isOpen == "true",
       description: this.description,
       startDate: this.startDate,
-      endDate: this.endDate,
-      userId: this.User?.userId
+      endDate: this.endDate
     }
 
     console.log(newCourse)
