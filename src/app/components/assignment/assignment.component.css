@@ -171,3 +171,7 @@ margin-right: -3%;
   border-width: 10px;
   border-radius: 5%;
 }
+
+ul{
+  list-style-type: none;
+}

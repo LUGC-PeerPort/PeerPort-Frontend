@@ -92,6 +92,9 @@ export class GradeComponent implements OnInit {
         this.COURSES = response;
       })
       this.dataService.changeMessage(params['id']);
+
+
+      
     });
   }
 
