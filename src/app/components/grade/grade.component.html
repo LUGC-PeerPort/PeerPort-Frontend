@@ -27,7 +27,7 @@
     </ul>
 </section>
 
-<section class="popupCreate-background" *ngIf="isCreatePopupOpen">
+<section class="popupCreate-background" *ngIf="isCreatePopOpen">
     <div class="popupCreate-foreground">
         <form>
             <button (click)="openCloseCreatePopup()">Close</button>
@@ -35,8 +35,11 @@
     </div>
 </section>
 
-<section class="popupEdit" *ngIf="isEditPopupOpen">
-    <form>
-        <button (click)="openCloseEditPopup">Close</button>
-    </form>
+<section class="popupEdit-background" *ngIf="isEditPopOpen">
+    <div class="popupEdit-foreground">
+        <form>
+            
+        </form>
+        <button (click)="openCloseEditPopup()">Close</button>
+    </div>
 </section>

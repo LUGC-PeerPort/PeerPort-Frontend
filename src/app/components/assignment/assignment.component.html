@@ -1,23 +1,33 @@
 <Section class="whole-page">
   <div class="page-content">
   <!--Assignment Creation-->
-    <form (ngSubmit)="createAssignment(nameInput.value, descInput.value, dateInput.value)">
-      <fieldset>
-        <legend>Create A New Assignment</legend>
+    <section class="create-background" *ngIf="isCreatePopupOpen">
+      <div class="create-foreground">
+        <form (ngSubmit)="createAssignment(nameInput.value, descInput.value, dateInput.value)">
+          <fieldset>
+            <legend>Create A New Assignment</legend>
 
-        <label for="name">Name</label>
-        <input type="text" id="name" #nameInput required />
+            <label for="name">Name</label>
+            <input type="text" id="name" #nameInput required />
 
-        <label for="description">Description</label>
-        <textarea id="description" #descInput required></textarea>
+            <label for="description">Description</label>
+            <textarea id="description" #descInput required></textarea>
 
-        <label for="date">Date</label>
-        <input type="datetime-local" id="date" #dateInput required />
+            <label for="date">Date</label>
+            <input type="datetime-local" id="date" #dateInput required />
 
-    
-        <button type="submit">Create Assignment</button>
-      </fieldset>
-    </form>
+        
+            <button type="submit">Create Assignment</button>
+          </fieldset>
+        </form>
+        <button (click)="openCloseAssignmentCreate()">Close</button>
+      </div>
+    </section>
+
+    <div class="titlebar">
+      <h2>Assignments</h2>
+      <button id="open-create" (click)="openCloseAssignmentCreate()">Create Assignment</button>
+    </div>
 
   <!--Populate with Assignments-->
     <div>

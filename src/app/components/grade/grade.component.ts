@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from '../../services/course.service';
 import { AuthService } from '../../services/auth.service';
+import { NgIf, NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-grade',
-  imports: [],
+  imports: [NgFor,NgIf, FormsModule],
   templateUrl: './grade.component.html',
   styleUrl: './grade.component.css'
 })
@@ -92,10 +94,12 @@ export class GradeComponent implements OnInit {
   //POPUP
   openCloseEditPopup(){
     this.isEditPopOpen = !this.isEditPopOpen;
+    console.log(this.isEditPopOpen);
   }
 
   openCloseCreatePopup(){
     this.isCreatePopOpen = !this.isCreatePopOpen;
+    console.log(this.isCreatePopOpen);
   }
 
   ngOnInit(): void {

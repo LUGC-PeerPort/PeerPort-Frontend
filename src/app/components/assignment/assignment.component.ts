@@ -27,6 +27,7 @@ export class AssignmentComponent implements OnInit{
   assignmentId: string|undefined;
   
   isEditPopupOpen = false;
+  isCreatePopupOpen = false;
   selectedAssignment: any = null;
 
   constructor(private route: ActivatedRoute, private CourseService: CourseService){}
@@ -84,6 +85,9 @@ export class AssignmentComponent implements OnInit{
     this.isEditPopupOpen = false;
   }
 
+  openCloseAssignmentCreate(){
+    this.isCreatePopupOpen = !this.isCreatePopupOpen;
+  }
   //DELETE
   deleteAssignment(assignmentId:string): void{
     this.CourseService.deleteAssignment(assignmentId).subscribe(response=>{
