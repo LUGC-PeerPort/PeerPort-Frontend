@@ -30,6 +30,8 @@ export class AssignmentComponent implements OnInit{
   isEditPopupOpen = false;
   selectedAssignment: any = null;
 
+  isCreatePopupOpen = false;
+
   constructor(private route: ActivatedRoute, private CourseService: CourseService, private dataService: DataService){}
 
   //GET
@@ -83,6 +85,10 @@ export class AssignmentComponent implements OnInit{
 
   closeEditPopup(){
     this.isEditPopupOpen = false;
+  }
+
+  openCloseCreatePopup(){
+    this.isCreatePopupOpen = !this.isCreatePopupOpen;
   }
 
   //DELETE

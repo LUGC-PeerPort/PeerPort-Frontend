@@ -1,6 +1,8 @@
 <Section class="whole-page">
   <div class="page-content">
   <!--Assignment Creation-->
+  <section class="create-background" *ngIf="isCreatePopupOpen">
+    <div class="create-foreground">
     <form (ngSubmit)="createAssignment(nameInput.value, descInput.value, dateInput.value)">
       <fieldset>
         <legend>Create A New Assignment</legend>
@@ -18,7 +20,14 @@
         <button type="submit">Create Assignment</button>
       </fieldset>
     </form>
+    <button (click)="openCloseCreatePopup()">Close</button>
+    </div>
+</section>
 
+  <div>
+    <h2>Assignments</h2>
+    <button (click)="openCloseCreatePopup()">Create Assignment</button>
+  </div>
   <!--Populate with Assignments-->
     <div>
       <ul>
