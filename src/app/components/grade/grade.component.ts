@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from '../../services/course.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-grade',
@@ -13,7 +14,7 @@ export class GradeComponent implements OnInit {
   GRADES: any;
   COURSES: any;
   SUBMISSIONS: any;
-  courseId: string | undefined;
+  courseId!: string;
   name: string | undefined;
   courseCode: string | undefined;
   isOpen: boolean | undefined;
@@ -21,13 +22,18 @@ export class GradeComponent implements OnInit {
   startDate: string | undefined;
   endDate: string | undefined;
 
+  User: {userId: string} | null = null;
+  userId: any;
 
   userGrades: any;
   userAverageGrade: any;
 
   courseAverageGrade:any;
 
-  constructor(private route: ActivatedRoute, private CourseService: CourseService){}
+  isEditPopOpen = false;
+  isCreatePopOpen = false;
+
+  constructor(private route: ActivatedRoute, private authService:AuthService,private CourseService: CourseService){}
 
 //GET
   getAllGradesForCourse(courseId:string):void{
@@ -83,11 +89,29 @@ export class GradeComponent implements OnInit {
     })
   }
 
+  //POPUP
+  openCloseEditPopup(){
+    this.isEditPopOpen = !this.isEditPopOpen;
+  }
+
+  openCloseCreatePopup(){
+    this.isCreatePopOpen = !this.isCreatePopOpen;
+  }
+
   ngOnInit(): void {
+    this.authService.currentUser().subscribe(response=>{
+      this.User = response as { userId: string };
+    })
+
     this.route.params.subscribe(params => {
       this.CourseService.getCourseById(params['id']).subscribe(response => {
         this.COURSES = response;
       })
+
+      this.getAverageGradeForUser(this.courseId, this.userId);
+      this.getAverageGradeOfCourse(this.courseId);
+      this.getAllGradesForCourse(this.courseId);
+      this.getAllGradesForUser(this.courseId,this.userId);
     });
   }
 

@@ -2,29 +2,41 @@
 <h1>{{COURSES.name}}</h1>
 <section class="CourseGrades">
     <div class="CourseAverage">
-        <h3></h3>
+        <h3>{{courseAverageGrade}}</h3>
     </div>
+    <h3>Course Grades</h3>
     <ul>
-        <li>
-            <button id="delete-button">Delete</button>
-            <button id="edit-button">Edit</button>
+        <li *ngfor="let grade as GRADES; let i = index">
+
+            <button id="delete-button- + i" (click)="deleteGrade(grade.gradeId)">Delete</button>
+            <button id="edit-button- + i" (click)="openCloseEditPopup()">Edit</button>
         </li>
     </ul>
+
+    <button id="temp" (click)="openCloseEditPopup()">edit-button</button>
 </section>
 
 <section class="UserGrades">
     <div class="UserAverageGrade">
-        <h3></h3>
+        <h3>{{userAverageGrade}}</h3>
     </div>
     <ul class="gradesList">
-       
+       <li *ngfor="">
+
+       </li>
     </ul>
 </section>
 
-<section class="popupCreate">
-    <form></form>
+<section class="popupCreate-background" *ngIf="isCreatePopupOpen">
+    <div class="popupCreate-foreground">
+        <form>
+            <button (click)="openCloseCreatePopup()">Close</button>
+        </form>
+    </div>
 </section>
 
-<section class="popupEdit">
-
+<section class="popupEdit" *ngIf="isEditPopupOpen">
+    <form>
+        <button (click)="openCloseEditPopup">Close</button>
+    </form>
 </section>

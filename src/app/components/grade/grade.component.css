@@ -1,0 +1,41 @@
+.popupCreate-background{
+  display: flex;
+  background: transparent;
+  justify-content: center;
+  align-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 75%;
+  height: 75%;
+  z-index: 999;
+}
+.popupCreate-foreground{
+  background: rgb(19, 243, 187);
+  padding: 2em;
+  width: 350px;
+  border-color: #ffa704;
+  border-width: 10px;
+  border-radius: 5%;
+}
+
+.popupEdit-background{
+  display: flex;
+  background: transparent;
+  justify-content: center;
+  align-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 75%;
+  height: 75%;
+  z-index: 999;
+}
+.popupEdit-foreground{
+  background: rgb(19, 243, 187);
+  padding: 2em;
+  width: 350px;
+  border-color: #ffa704;
+  border-width: 10px;
+  border-radius: 5%;
+}
