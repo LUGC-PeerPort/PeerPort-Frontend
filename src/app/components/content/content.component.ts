@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class ContentComponent implements OnInit {
 
-  WEEKS: content[] = [];
+  WEEKS: (content & { expanded?: boolean })[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -26,8 +26,23 @@ export class ContentComponent implements OnInit {
       const courseId = params['id'];
       if (courseId) {
         this.courseService.getAllContentByCourseId(courseId).subscribe(response => {
-          this.WEEKS = response as content[];
+          // Initialize each week with collapsed state
+          this.WEEKS = (response as content[]).map(week => ({
+            ...week,
+            expanded: false
+          }));
         });
+      }
+    });
+  }
+
+  toggleWeek(week: content & { expanded?: boolean }): void {
+    // Collapse all other weeks and toggle the selected one
+    this.WEEKS.forEach(w => {
+      if (w === week) {
+        w.expanded = !w.expanded;
+      } else {
+        w.expanded = false;
       }
     });
   }
