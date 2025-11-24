@@ -133,6 +133,11 @@ background: rgb(19, 243, 187);
   border-radius: 5%;
 }
 
+.popup form{
+  display: flex;
+  flex-direction: column;
+}
+
 .create-background{
   display: flex;
   background-color: rgba(255,255,255,0.5);
@@ -153,6 +158,14 @@ background: rgb(19, 243, 187);
   border-color: #ffa704;
   border-width: 10px;
   border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.create-foreground form{
+  display: flex;
+  flex-direction: column;
 }
 
 ul{
