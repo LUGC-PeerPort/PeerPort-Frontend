@@ -127,12 +127,12 @@ export class CourseService {
 
   // Enroll student in course
   addStudentToCourse(courseId: string, userId: string) {
-    return this.http.post<error>(`${this.courseUrl}courses/enroll/${courseId}/${userId}`, {withCredentials: true});
+    return this.http.post<error>(`${this.courseUrl}courses/${courseId}/enroll/${userId}`, {withCredentials: true});
   }
 
   // Remove student from course
   removeStudentFromCourse(courseId: string, userId: string) {
-    return this.http.delete<error>(`${this.courseUrl}courses/enroll/${courseId}/${userId}`, {withCredentials: true});
+    return this.http.delete<error>(`${this.courseUrl}courses/${courseId}/enroll/${userId}`, {withCredentials: true});
   }
 
   //END COURSES
