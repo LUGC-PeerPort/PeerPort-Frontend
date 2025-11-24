@@ -181,7 +181,7 @@ export class CourseService {
   //SUBMISSIONS
   //GET
   getAllSubmissionsForAssignment(assignmentId:string){
-    return this.http.get(`${this.courseUrl}assignment/${assignmentId}/submissions`,{withCredentials:true});
+    return this.http.get(`${this.courseUrl}assignments/${assignmentId}/submissions`,{withCredentials:true});
   }
 
   getSpecificSubmission(submissionId:string){
