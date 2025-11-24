@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from '../../services/course.service';
 import { DataService } from '../../services/data.service';
+import { AuthService } from '../../services/auth.service';
 import { NgFor,NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -15,8 +16,9 @@ export class GradeComponent implements OnInit {
 
   GRADES: any;
   COURSES: any;
+  ASSIGNMENTS:any;
   SUBMISSIONS: any;
-  courseId: string | undefined;
+  courseId!: string;
   name: string | undefined;
   courseCode: string | undefined;
   isOpen: boolean | undefined;
@@ -24,13 +26,16 @@ export class GradeComponent implements OnInit {
   startDate: string | undefined;
   endDate: string | undefined;
 
+  User: {userId: string, userRole: string} | null = null;
+  userId!: string;
+  userRole: string | undefined;
 
   userGrades: any;
   userAverageGrade: any;
 
   courseAverageGrade:any;
 
-  constructor(private route: ActivatedRoute, private CourseService: CourseService, private dataService: DataService){}
+  constructor(private route: ActivatedRoute, private CourseService: CourseService, private dataService: DataService, private authService: AuthService){}
 
 //GET
   getAllGradesForCourse(courseId:string):void{
@@ -46,7 +51,7 @@ export class GradeComponent implements OnInit {
   }
 
   getAverageGradeOfCourse(courseId:string):void{
-    this.CourseService.getAverageGradeForCourse(courseId).subscribe(response=>{
+    this.CourseService.getAverageGradeForCourse(courseId).subscribe((response)=>{
       this.courseAverageGrade = response;
     });
   }
@@ -57,14 +62,28 @@ export class GradeComponent implements OnInit {
     });
   }
 
+  getAllAssignments(courseId:string){
+    this.CourseService.getAllAssignmentsByCourseId(courseId).subscribe(response =>{
+      this.ASSIGNMENTS = response;
+
+      this.ASSIGNMENTS.forEach((a: any) => this.getAllSubmissionsForAssignment(a.assignmentId));
+    })
+  }
+
+  getAllSubmissionsForAssignment(assignmentId:string){
+    this.CourseService.getAllSubmissionsForAssignment(assignmentId).subscribe(response =>{
+      this.SUBMISSIONS[assignmentId] = response;
+    })
+  }
+
   //CREATE
   createGrade(courseId:string, userId:string, assignmentSubmissionId:string, grade:any):void{
     this.CourseService.createGradeForAssignment(courseId, userId, assignmentSubmissionId, grade).subscribe(response=>{
     });
   }
+
   //EDIT
   editGrade(gradeId:string, minScore:number,maxScore:number, achievedScore:number, weight:number):void{
-
     const editedGrade = {
      minScore: minScore,
      maxScore: maxScore,
@@ -86,16 +105,34 @@ export class GradeComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.CourseService.getCourseById(params['id']).subscribe(response => {
-        this.COURSES = response;
-      })
-      this.dataService.changeMessage(params['id']);
+ ngOnInit(): void {
+  this.authService.currentUser().subscribe(userResponse => {
+    this.User = userResponse as { userId: string, userRole: string };
+    if (this.User) {
+      this.userId = this.User.userId;
+      this.userRole = this.User.userRole;
 
+      this.route.params.subscribe(params => {
+        this.courseId = params['id'];
+        this.dataService.changeMessage(this.courseId);
 
-      
-    });
+        this.CourseService.getCourseById(this.courseId).subscribe(courseResponse => {
+          this.COURSES = courseResponse;
+        });
+
+        this.getAllAssignments(this.courseId);
+
+        this.getAverageGradeOfCourse(this.courseId);
+
+        this.getAverageGradeForUser(this.courseId, this.userId);
+        this.getAllGradesForUser(this.courseId, this.userId);
+
+        this.getAllGradesForCourse(this.courseId);
+      });
+    }
+  });
+}
+
   }
 
-}
+
