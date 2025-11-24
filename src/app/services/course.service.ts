@@ -63,6 +63,16 @@ export interface grade {
     assignmentSubmissionId?: string;
 }
 
+export interface user {
+  userId: string;
+  name: string;
+  email: string;
+  profilePictureUrl?: string;
+  idNumber: string;
+  role: string;
+  droppedOn?: Date;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -108,6 +118,22 @@ export class CourseService {
   deleteCourse(courseId: string) {
     return this.http.delete(`${this.courseUrl}courses/${courseId}`,{withCredentials: true});
   }
+
+  // Get classlist
+  getAllStudentsByCourseId(courseId: string) {
+    return this.http.get<error | user[]>(`${this.courseUrl}courses/${courseId}/classlist`, {withCredentials: true});
+  }
+
+  // Enroll student in course
+  addStudentToCourse(courseId: string, userId: any) {
+    return this.http.post<error>(`${this.courseUrl}courses/enroll/${courseId}/${userId}`, {withCredentials: true});
+  }
+
+  // Remove student from course
+  removeStudentFromCourse(courseId: string, userId: string) {
+    return this.http.delete<error>(`${this.courseUrl}courses/enroll/${courseId}/${userId}`, {withCredentials: true});
+  }
+
   //END COURSES
 
   // ASSIGNMENTS
@@ -187,7 +213,7 @@ export class CourseService {
 
   //CONTENT 
   //GET
-  getAllContentForCourse(courseId:string){
+  getAllContentByCourseId(courseId:string){
     return this.http.get(`${this.courseUrl}courses/${courseId}/content`,{withCredentials:true});
   }
 
