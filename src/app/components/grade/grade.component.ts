@@ -275,7 +275,6 @@ export class GradeComponent implements OnInit {
           const byteArray = new Uint8Array(byteNumbers);
 
           const type = this.detectMimeFromBytes(byteArray);
-          const blob = new Blob([byteArray], { type: type });
 
           (fileItem as fileDetails).url = this.sanitizer.bypassSecurityTrustResourceUrl(`data:${type};base64,${fileItem.file}`);
           (fileItem as fileDetails).type = type;
