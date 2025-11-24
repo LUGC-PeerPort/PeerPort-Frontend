@@ -4,6 +4,7 @@ import { CourseService } from '../../services/course.service';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../../services/data.service';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -13,6 +14,10 @@ import { DataService } from '../../services/data.service';
   styleUrl: './assignment.component.css'
 })
 export class AssignmentComponent implements OnInit{
+
+  User: {userId: string, roleId: string} | null = null;
+  userId: string | undefined;
+  userRole: string | undefined;
 
   COURSES: any;
   ASSIGNMENTS: any;
@@ -32,7 +37,7 @@ export class AssignmentComponent implements OnInit{
 
   isCreatePopupOpen = false;
 
-  constructor(private route: ActivatedRoute, private CourseService: CourseService, private dataService: DataService){}
+  constructor(private route: ActivatedRoute, private CourseService: CourseService, private dataService: DataService, private authService: AuthService){}
 
   //GET
   getAllAssignments(courseId:string): void{
@@ -127,8 +132,12 @@ export class AssignmentComponent implements OnInit{
   }
 
 ngOnInit(): void {
+  this.authService.currentUser().subscribe(response => {
+      this.User = response;
+  });
+
   this.route.params.subscribe(params => {
-  this.courseId = params['id'] as string;    
+    this.courseId = params['id'] as string;    
 
     this.CourseService.getCourseById(this.courseId).subscribe(response => {
       this.COURSES = response;
