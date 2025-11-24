@@ -410,7 +410,7 @@ export class GradeComponent implements OnInit {
       }
     }
 
-	  return "application/octet-stream"; // fallback
+      return "application/octet-stream"; // fallback
   }
 }
 
