@@ -134,12 +134,12 @@ export class GradeComponent implements OnInit {
   // Variables
   user: { userId: string, userRole: string } | null = null;
   student: boolean = true;
-  assignments: assignmentWithSubmissions[] | [] = [];
-  grades: grade[] | [] = [];
+  assignments: assignmentWithSubmissions[] = [];
+  grades: grade[] = [];
   averageGrade: number = 0;
   courseId: string = "";
   courseName: string = "";
-  users: user[] | [] = [];
+  users: user[]= [];
 
   // Grade variables
   minScore: number = 0;

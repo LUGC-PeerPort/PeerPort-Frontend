@@ -35,7 +35,7 @@ export interface assignment {
   dueDate: Date | string;
   assignmentId: string;
   courseId: string;
-  files: file[] | [];
+  files: file[];
 }
 
 export interface submission {
@@ -44,7 +44,7 @@ export interface submission {
   userId: string;
   assignmentId: string;
   assignmentSubmissionId: string;
-  files: file[] | [];
+  files: file[];
 }
 
 
