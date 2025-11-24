@@ -1,0 +1,8 @@
+.content-panel {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    width: fit-content;
+    padding: 20px;
+}

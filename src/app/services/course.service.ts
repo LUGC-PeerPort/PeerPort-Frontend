@@ -22,6 +22,7 @@ export interface content {
     dateCreated: Date;
     dateUpdated: Date;
     subContent: content[];
+    files: file[];
 }
 
 export interface file {

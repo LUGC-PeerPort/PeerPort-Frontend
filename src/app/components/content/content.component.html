@@ -1,30 +1,67 @@
 <section class="content-section">
-  <p class="section-title">Content Work!</p>
 
   <div class="content-layout">
+    <!-- start rendering recursive content -->
+    <ul *ngFor="let content of contentList">
+      <ng-container *ngTemplateOutlet="renderContent; context: {$implicit: content}"></ng-container>
+    </ul>
 
-    <div class="weekly-panels">
-      <div *ngFor="let content of contentList" class="week-panel">
-        <button class="week-toggle" (click)="toggleContent(content)">
-          <h4>{{ content.name }}</h4>
-        </button>
-        <div *ngIf="content.expanded" class="week-content">
-          <a [routerLink]="['/assignment', content.contentId]" class="assignment-link">
-            View Assignment
-          </a>
-          <p>{{ content.description }}</p>
-        </div>
-      </div>
+    <div *ngIf="contentId" class="contentData">
+      <form (ngSubmit)="activity()">
+        <label for="name">Name:</label>
+        <input id="name" [(ngModel)]="name" name="name" required />
+
+        <label for="description">Description:</label>
+        <textarea id="description" [(ngModel)]="description" name="description"></textarea>
+
+        <label for="viewable">Viewable:</label>
+        <select id="viewable" [(ngModel)]="viewable" name="viewable">
+          <option value=true>True</option>
+          <option value=false>False</option>
+        </select>
+
+        <label for="fileInput">Upload File:</label>
+        <input type="file" id="fileInput" #fileInput multiple (change)="onFilesSelected(fileInput.files)" />
+
+        <ul *ngIf="selectedFiles.length">
+          <li *ngFor="let f of selectedFiles">{{ f.name }} — {{ Math.round(f.size / (1024 * 1024) * 100) / 100 }} MB</li>
+        </ul>
+
+        <button *ngIf="!create" type="button" (click)="editContent()">Save Changes</button>
+        <button *ngIf="create" type="button" (click)="createContent()">Save Changes</button>
+
+      </form>
     </div>
 
-
-    <!-- <aside class="sidebar">
-      <div class="weekly-calendar">
-        <h5>Weekly Calendar</h5>
-      </div>
-      <div class="announcement-box">
-        <h5>Announcement</h5>
-      </div>
-    </aside> -->
   </div>
 </section>
+
+
+<!-- Template for rendering content recursively (doesn't load on the page) -->
+<ng-template #renderContent let-node>
+  <li class="content-panel" *ngIf="node.viewable || !student" (click)="toggleContent(node); $event.stopPropagation()">
+    <h4>{{ node.name }}</h4>
+    <p *ngIf="!student">{{ node.viewable ? 'Viewable' : 'Not Viewable' }}</p>
+
+    <div class="content-meta">
+      <small *ngIf="node.dateCreated">Created: {{ node.dateCreated | date:'short' }}</small>
+      <small *ngIf="node.dateUpdated"> • Updated: {{ node.dateUpdated | date:'short' }}</small>
+    </div>
+
+    <div *ngIf="node.expanded" class="content-content" (click)="$event.stopPropagation()">
+      <p *ngIf="node.description">{{ node.description }}</p>
+      <p>Attachments:</p>
+      <div *ngIf="node.files.length > 0">
+        <iframe *ngFor="let file of node.files" [src]="file.url" loading="lazy" frameborder="0"></iframe>
+      </div>
+      <button *ngIf="!student" (click)="loadData(node); $event.stopPropagation()">View</button>
+
+      <!-- nested subContent -->
+      <ul class="subcontent-list" *ngIf="node.subContent?.length">
+        <ng-container *ngFor="let child of node.subContent">
+          <ng-container *ngTemplateOutlet="renderContent; context: {$implicit: child}"></ng-container>
+        </ng-container>
+      </ul>
+    </div>
+  </li>
+</ng-template>
