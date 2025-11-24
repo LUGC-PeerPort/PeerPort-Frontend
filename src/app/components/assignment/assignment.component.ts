@@ -103,7 +103,7 @@ export class AssignmentComponent implements OnInit{
     const files = fileInput.files;
 
     if(!files|| files.length === 0){
-      alert("Please seleect a file for upload.");
+      alert("Please select a file for upload.");
       return;
     }
 
