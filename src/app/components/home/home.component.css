@@ -28,10 +28,10 @@ li button{
     margin: 1px;
 }
 li button:hover{
-    color: white;
-    box-shadow: black 2px 2px 0px 0px !important;
-    border-color: black !important;
+    color: #081a4b;
+    box-shadow: #081a4b 2px 2px 0px 0px !important;
     cursor: pointer;
+    background-color: white !important;
 }
 .update-deleteButton{
     border-color: black !important;
@@ -39,9 +39,10 @@ li button:hover{
     padding: 5px;
 }
 .update-deleteButton:hover{
-    color: white;
-    box-shadow: black 2px 2px 0px 0px !important;
-    border-color: black !important;
+    color: #081a4b;
+    box-shadow: #081a4b 2px 2px 0px 0px !important;
+    background-color: white !important;
+    cursor: pointer;
 }
 
 #courseDisplay{
@@ -50,18 +51,23 @@ li button:hover{
 }
 .sidebars{ 
     display: grid;
+    margin-left: 20px;
 }
 .sidebar-link1{
     color: white;
     font-weight: bold;
     border-radius:15px;
     background-color: #63D9C4;
+    align-items: center;
+    padding: 15px;
 }
 .sidebar-link2{
     color: white;
     font-weight: bold;
     border-radius:15px;
     background-color: #E8B35E;
+    align-items: center;
+    padding: 15px;
 }
 
 #courseForm{
@@ -71,7 +77,7 @@ li button:hover{
     border-radius: 15px;
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
 }
 #courseForm fieldset{
     border-color: transparent;
