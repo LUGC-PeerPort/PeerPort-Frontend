@@ -8,10 +8,8 @@
                     <p *ngIf="course.courseCode">{{course.courseCode}}</p>
                     <p *ngIf="course.description">{{course.description}}</p>
                 </button>
-                <div>
-                    <button *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="selectedCourse(course)"> Update </button>
-                    <button *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="deleteCourse(course.courseId)">Delete Course</button>
-                </div>
+                <button *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="selectedCourse(course)"> Update </button>
+                <button *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="deleteCourse(course.courseId)">Delete Course</button>
             </li>
         </ul>
     </div>
