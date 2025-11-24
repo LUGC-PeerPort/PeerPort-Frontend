@@ -3,7 +3,7 @@
         <div id="courseBox">
             <div id="header">
                 <h2>Courses</h2>
-                <button (click)="openClosePopup()"> Create </button>
+                <button *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="openClosePopup()"> Create </button>
             </div>
             <ul>
                 <li *ngFor="let course of COURSES">

@@ -1,3 +1,6 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 <section class="content-section">
 
   <div class="content-layout">
@@ -41,24 +44,29 @@
     </ul>
 
     <button type="button" *ngIf="create" (click)="createContent()">Add</button>
-    <button type="button" *ngIf="!create" (click)="editContent()">Save</button>
+    <button type="button" *ngIf="!create" (click)="editContent()" class="savebtn">Save</button>
   </form>
 </ng-template>
 
 <!-- Template for rendering content recursively (doesn't load on the page here) -->
+>
+
 <ng-template #renderContent let-node>
   <li class="content-panel" *ngIf="node.viewable || !student" (click)="toggleContent(node); $event.stopPropagation()">
     <h4>{{ node.name }}</h4>
-    <p *ngIf="!student">{{ node.viewable ? 'Viewable' : 'Not Viewable' }}</p>
-
+    <div class="viewable">
+    <a *ngIf="!student">{{ node.viewable ? 'Viewable' : 'Not Viewable' }}</a>
+</div>
     <div class="content-meta">
       <small *ngIf="node.dateCreated">Created: {{ node.dateCreated | date:'short' }}</small>
       <small *ngIf="node.dateUpdated"> • Updated: {{ node.dateUpdated | date:'short' }}</small>
     </div>
 
       <div *ngIf="node.expanded" class="content-content" (click)="$event.stopPropagation()">
-      <p *ngIf="node.description">{{ node.description }}</p>
-      <p>Attachments:</p>
+      <div class="description"></div>
+        <p *ngIf="node.description">{{ node.description }}</p>
+     
+        <p>Attachments:</p>
       <div *ngIf="node.files.length > 0">
         <iframe *ngFor="let file of node.files" [src]="file.url" loading="lazy"></iframe>
       </div>

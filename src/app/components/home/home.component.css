@@ -66,6 +66,7 @@ li button{
     height: 25px;
     text-align: center;
     padding-top: 5px;
+    text-transform: capitalize;
 }
 #courseButton:hover{
     background-color: #a8a3a3 !important;
