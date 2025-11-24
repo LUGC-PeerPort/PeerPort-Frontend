@@ -232,4 +232,5 @@ export class CourseService {
     return this.http.delete(`${this.courseUrl}content/${contentId}`, {withCredentials:true});
   }
   //END CONTENT
+  
 }
