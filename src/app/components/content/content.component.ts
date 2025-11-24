@@ -197,7 +197,7 @@ export class ContentComponent implements OnInit {
   }
 
   // Parse the content data to include file URLs
-  parseData(content: content): contentWithFiles {
+  private parseData(content: content): contentWithFiles {
     const newContent = { ...content } as contentWithFiles;
 
     // Check if there are subContent and parse them recursively

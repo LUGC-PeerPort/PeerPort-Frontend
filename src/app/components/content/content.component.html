@@ -4,31 +4,7 @@
     <button *ngIf="!student" (click)="createPressed('')">{{ create && parentId===undefined ? "Close create" : "Create content" }}</button>
     <!-- Top-level create form (when creating a top-level content) -->
     <div *ngIf="create && parentId === undefined" class="contentData">
-      <form>
-        <label for="name">Name:</label>
-        <input id="name" [(ngModel)]="name" name="name" required />
-
-        <label for="description">Description:</label>
-        <textarea id="description" [(ngModel)]="description" name="description"></textarea>
-
-        <label for="viewable">Viewable:</label>
-        <select id="viewable" [(ngModel)]="viewable" name="viewable">
-          <option value=true>True</option>
-          <option value=false>False</option>
-        </select>
-
-        <label for="fileInput">Upload File:</label>
-        <input type="file" id="fileInput" #fileInput multiple (change)="onFilesSelected(fileInput.files)" />
-
-        <ul *ngIf="selectedFiles.length">
-          <li *ngFor="let f of selectedFiles; let i = index">
-            {{ f.name }} — {{ Math.round(f.size / (1024 * 1024) * 100) / 100 }} MB
-            <button type="button" (click)="removeSelectedFile(i)">Remove</button>
-          </li>
-        </ul>
-
-        <button type="button" (click)="createContent()">Add</button>
-      </form>
+      <ng-container *ngTemplateOutlet="contentCreateEditTemplate"></ng-container>
     </div>
 
     <!-- start rendering recursive content -->
@@ -36,40 +12,40 @@
       <ng-container *ngTemplateOutlet="renderContent; context: {$implicit: content}"></ng-container>
     </ul>
 
-    <!-- Edit form shown at top when editing a selected content -->
-    <div *ngIf="contentId && !create" class="contentData">
-      <form>
-        <label for="name">Name:</label>
-        <input id="name" [(ngModel)]="name" name="name" required />
-
-        <label for="description">Description:</label>
-        <textarea id="description" [(ngModel)]="description" name="description"></textarea>
-
-        <label for="viewable">Viewable:</label>
-        <select id="viewable" [(ngModel)]="viewable" name="viewable">
-          <option value=true>True</option>
-          <option value=false>False</option>
-        </select>
-
-        <label for="fileInput">Upload File:</label>
-        <input type="file" id="fileInput" #fileInput multiple (change)="onFilesSelected(fileInput.files)" />
-
-        <ul *ngIf="selectedFiles.length">
-          <li *ngFor="let f of selectedFiles; let i = index">
-            {{ f.name }} — {{ Math.round(f.size / (1024 * 1024) * 100) / 100 }} MB
-            <button type="button" (click)="removeSelectedFile(i)">Remove</button>
-          </li>
-        </ul>
-
-        <button type="button" (click)="editContent()">Save Changes</button>
-      </form>
-    </div>
-
   </div>
 </section>
 
+<!-- Used for the create and update template (doesn't load on the page here)-->
+<ng-template #contentCreateEditTemplate>
+  <form>
+    <label for="name">Name:</label>
+    <input id="name" [(ngModel)]="name" name="name" required />
 
-<!-- Template for rendering content recursively (doesn't load on the page) -->
+    <label for="description">Description:</label>
+    <textarea id="description" [(ngModel)]="description" name="description"></textarea>
+
+    <label for="viewable">Viewable:</label>
+    <select id="viewable" [(ngModel)]="viewable" name="viewable">
+      <option value=true>True</option>
+      <option value=false>False</option>
+    </select>
+
+    <label for="fileInput">Upload File:</label>
+    <input type="file" id="fileInput" #fileInput multiple (change)="onFilesSelected(fileInput.files)" />
+
+    <ul *ngIf="selectedFiles.length">
+      <li *ngFor="let f of selectedFiles; let i = index">
+        {{ f.name }} — {{ Math.round(f.size / (1024 * 1024) * 100) / 100 }} MB
+        <button type="button" (click)="removeSelectedFile(i)">Remove</button>
+      </li>
+    </ul>
+
+    <button type="button" *ngIf="create" (click)="createContent()">Add</button>
+    <button type="button" *ngIf="!create" (click)="editContent()">Save</button>
+  </form>
+</ng-template>
+
+<!-- Template for rendering content recursively (doesn't load on the page here) -->
 <ng-template #renderContent let-node>
   <li class="content-panel" *ngIf="node.viewable || !student" (click)="toggleContent(node); $event.stopPropagation()">
     <h4>{{ node.name }}</h4>
@@ -89,34 +65,10 @@
       <button *ngIf="!student" (click)="loadData(node); $event.stopPropagation()">View</button>
       <button *ngIf="!student" (click)="createPressed(node.contentId)">{{ create && parentId === node.contentId ? "Close create" : "Add content" }}</button>
 
-        <!-- Inline create form for this node (when creating a subcontent for this node) -->
-        <div *ngIf="create && parentId === node.contentId" class="contentData">
-          <form>
-            <label for="name">Name:</label>
-            <input id="name" [(ngModel)]="name" name="name" required />
-
-            <label for="description">Description:</label>
-            <textarea id="description" [(ngModel)]="description" name="description"></textarea>
-
-            <label for="viewable">Viewable:</label>
-            <select id="viewable" [(ngModel)]="viewable" name="viewable">
-              <option value=true>True</option>
-              <option value=false>False</option>
-            </select>
-
-            <label for="fileInput">Upload File:</label>
-            <input type="file" id="fileInput" #fileInput multiple (change)="onFilesSelected(fileInput.files)" />
-
-            <ul *ngIf="selectedFiles.length">
-              <li *ngFor="let f of selectedFiles; let i = index">
-                {{ f.name }} — {{ Math.round(f.size / (1024 * 1024) * 100) / 100 }} MB
-                <button type="button" (click)="removeSelectedFile(i)">Remove</button>
-              </li>
-            </ul>
-
-            <button type="button" (click)="createContent()">Add</button>
-          </form>
-        </div>
+      <!-- Inline create form for this node -->
+      <div *ngIf="(create && parentId === node.contentId) || contentId === node.contentId" class="contentData">
+        <ng-container *ngTemplateOutlet="contentCreateEditTemplate"></ng-container>
+      </div>
 
       <!-- nested subContent -->
       <ul class="subcontent-list" *ngIf="node.subContent?.length">
