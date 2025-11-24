@@ -4,10 +4,10 @@
             <h2>Courses</h2>
             <ul>
                 <li *ngFor="let course of COURSES">
-                    <button [routerLink]="['course/', course.courseId]" (click)="saveId(course.courseId)">
-                        <h4 *ngIf="course.name">{{course.name}}</h4>
-                        <p *ngIf="course.courseCode">{{course.courseCode}}</p>
-                        <p *ngIf="course.description">{{course.description}}</p>
+                    <button id="courseButton" [routerLink]="['course/', course.courseId]" (click)="saveId(course.courseId)">
+                        <h3 *ngIf="course.name">{{course.name}}</h3>
+                        <!-- <p *ngIf="course.courseCode">{{course.courseCode}}</p>
+                        <p *ngIf="course.description">{{course.description}}</p> -->
                     </button>
                     <button class="update-deleteButton" *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="selectedCourse(course)"> Update </button>
                     <button class="update-deleteButton" *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="deleteCourse(course.courseId)">Delete Course</button>
@@ -15,22 +15,22 @@
             </ul>
         </div>
         <div class="sidebars">
-                <p class="sidebar-link1"> Weekly calendar (Comming Soon) </p>
-                <p class="sidebar-link2"> Notifications (Comming Soon) </p>
+            <p class="sidebar-link1"> Weekly calendar (Comming Soon) </p>
+            <p class="sidebar-link2"> Notifications (Comming Soon) </p>
         </div>
     </section>
     <section *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" id="courseForm">
          <fieldset>
-            <label for="name">Name: </label>
-            <input [(ngModel)]="name">
+            <label for="name">Name*: </label>
+            <input required [(ngModel)]="name">
         </fieldset>
         <fieldset>
             <label for="courseCode">Course Code: </label>
-            <input [(ngModel)]="courseCode">
+            <input required [(ngModel)]="courseCode">
         </fieldset>
         <fieldset>
             <label for="isOpen">Is the course open? </label>
-            <select [(ngModel)]="isOpen">
+            <select required [(ngModel)]="isOpen">
                 <option value="true"> Yes </option>
                 <option value="false"> No </option>
             </select>
@@ -41,7 +41,7 @@
         </fieldset>
         <fieldset>
             <label for="startDate">Start Date: </label>
-            <input type="date" [(ngModel)]="startDate">
+            <input required type="date" [(ngModel)]="startDate">
         </fieldset>
         <fieldset>
             <label for="endDate">End Date: </label>

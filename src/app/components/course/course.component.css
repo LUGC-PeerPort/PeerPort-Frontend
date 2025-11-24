@@ -2,13 +2,16 @@ section{
   display: flex;
 }
 #courseNav{
-  background-color: #D9D9D9;
   border-radius: 15px;
   padding: 15px;
   width: 75%;
   justify-items: center;
   margin: 15px;
   margin-right: 0;
+  background-color: #a8a3a3;
+  background-image: url(../../../../public/courseBackground.png);
+  background-size: cover;
+  background-blend-mode: soft-light;
 }
 #courseNav h1{
   font-style: bold;
