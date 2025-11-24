@@ -8,45 +8,49 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .collapsible-content {
-max-height: 0;
+  max-height: 0;
   overflow: hidden;
+  visibility: hidden;
   border:10px solid;
-  margin-right: 50%;
-  border-right: 50%;
+  margin-right: 3em;
+
   border-color: aqua;
   transition: max-height 0.3s ease-in-out; /* Smooth transition */
 }
 
 .assignment-color {
   background-color: #E8B35E;
+  border:solid, 1px, black;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  margin-right: 50%;
-  border-right: 50%;
-
+  margin-right: 3em;
+  height: 3em;
   /* padding-right: ; */
 }
 
 .assignment-list-background{
   position: absolute;
+  margin-top: 1em;
+  border-radius: 15px;
   background-color: #63D9C4;
   width: 75%;
   height: 100%;
 }
 
+.title h1{
+  align-items: center;
+  justify-content: center;
+
+}
+
 .toggle-checkbox:checked ~ .collapsible-content{
-  max-height: 500px; /* Adjust to a value large enough to contain content */
+  max-height: 500px; 
+  visibility: visible;
 }
 .toggle-checkbox:checked ~ .arrow-toggle{
   transform:rotate(90deg);
   transition: 0.5s;
 }  
-
-
-
-
-
-
 
 
 /*Side bars*/
@@ -56,30 +60,28 @@ max-height: 0;
   justify-content:right;  
 }
 .sidebar-link1{
-    font-family: "Verdana", sans-serif;
-    color:rgb(255, 255, 255);
-    font-weight:bold;
-    white-space: nowrap; 
-    border:8px solid;
-border-color:rgb(19, 243, 187);
-border-radius:15px;
-padding-right: -50px;
-padding-bottom:50%;
-background-color: rgb(19, 243, 187);
-padding-left:30px;
-margin-right: -3%;
+  font-family: "Verdana", sans-serif;
+  color:rgb(255, 255, 255);
+  font-weight:bold;
+  white-space: nowrap; 
+ 
+  border-radius:15px;
+  padding-right: -50px;
+  padding-bottom:50%;
+  background-color: #63D9C4;
+  padding-left:30px;
+  margin-right: -3%;
 
 }
 .sidebar-link2{
   font-family: "Verdana", sans-serif;
   color:rgb(255, 255, 255);
   font-weight:bold;
-  border:8px solid;
-  border-color:rgb(247, 191, 8);
+  
   border-radius:15px;
   padding-right: 40px;
   padding-bottom:150%;
-  background-color: rgb(247, 191, 8);
+  background-color:#E8B35E;
   padding-left:50px;
   margin-right: -3%;
 }

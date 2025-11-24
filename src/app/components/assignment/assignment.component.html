@@ -24,12 +24,13 @@
     </div>
 </section>
 
-  <div>
-    <h2>Assignments</h2>
-    <button (click)="openCloseCreatePopup()">Create Assignment</button>
-  </div>
+  
   <!--Populate with Assignments-->
     <div class="assignment-list-background">
+      <div class="title">
+        <h2>Assignments</h2>
+        <button (click)="openCloseCreatePopup()">Create Assignment</button>
+      </div>
       <ul>
         <li *ngFor="let assignment of ASSIGNMENTS; let i = index">
           <input type="checkbox" [id]="'toggle-box-' + i" class="toggle-checkbox">
