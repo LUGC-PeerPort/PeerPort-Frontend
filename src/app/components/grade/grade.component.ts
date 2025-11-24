@@ -132,14 +132,14 @@ interface assignmentWithSubmissions extends assignment {
 export class GradeComponent implements OnInit {
 
   // Variables
-  user: { userId: string, userRole: string } | null = null;
+  user: { userId: string, roleId: string } | null = null;
   student: boolean = true;
   assignments: assignmentWithSubmissions[] = [];
   grades: grade[] = [];
   averageGrade: number = 0;
   courseId: string = "";
   courseName: string = "";
-  users: user[]= [];
+  users: user[] = [];
 
   // Grade variables
   minScore: number = 0;
@@ -177,10 +177,10 @@ export class GradeComponent implements OnInit {
 
       // Get the user info
       this.authService.currentUser().subscribe(userResponse => {
-        this.user = userResponse as { userId: string, userRole: string };
+        this.user = userResponse;
 
         // If the user is not a student
-        if (this.user.userRole !== "ff123156-7773-47f5-b5df-0ef54f864f8d") {
+        if (this.user.roleId !== "ff123156-7773-47f5-b5df-0ef54f864f8d") {
           this.student = false;
 
           // Get all grades for the course

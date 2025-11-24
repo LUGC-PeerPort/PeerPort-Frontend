@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import type { user, error } from './course.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,11 @@ export class AuthService {
 
   //gets user id
   currentUser(){
-    return this.http.get(`${this.apiUrl}auth/currentUser`, {withCredentials: true});
+    return this.http.get<{ userId: string, roleId: string }>(`${this.apiUrl}auth/currentUser`, {withCredentials: true});
   }
 
+  // Gets all users
+  getAllUsers() {
+    return this.http.get<user[] | error>(`${this.apiUrl}users`, {withCredentials: true});
+  }
 }
