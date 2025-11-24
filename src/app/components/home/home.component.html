@@ -1,7 +1,10 @@
 <section id="mainSection">
     <section id="courseDisplay">
         <div id="courseBox">
-            <h2>Courses</h2>
+            <div id="header">
+                <h2>Courses</h2>
+                <button (click)="openClosePopup()"> Create </button>
+            </div>
             <ul>
                 <li *ngFor="let course of COURSES">
                     <button id="courseButton" [routerLink]="['course/', course.courseId]" (click)="saveId(course.courseId)">
@@ -19,8 +22,8 @@
             <p class="sidebar-link2"> Notifications (Comming Soon) </p>
         </div>
     </section>
-    <section id="courseForm" class="popup-background">
-        <div class="popup-foreground"> 
+    <section class="popup-background" *ngIf="isPopupOpen">
+        <div id="courseForm" class="popup-foreground"> 
         <fieldset>
             <label for="name">Name: </label>
             <input required [(ngModel)]="name">
@@ -51,6 +54,7 @@
         <button *ngIf="courseId" (click)="updateCourse()"> Update </button>
         <button *ngIf="courseId" (click)="resetForm()"> Clear Form </button>
         <button *ngIf="!courseId" (click)="createCourse()"> Create </button>
+        <button (click)="openClosePopup()"> Close </button>
     </div>
     </section>
 </section>

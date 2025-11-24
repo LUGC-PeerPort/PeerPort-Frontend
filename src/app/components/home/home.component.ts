@@ -63,6 +63,8 @@ export class HomeComponent implements OnInit {
     this.description = course.description,
     this.startDate = course.startDate,
     this.endDate = course.endDate
+
+    this.openClosePopup();
   }
 
   //Update
