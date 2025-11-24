@@ -324,7 +324,7 @@ export class ContentComponent implements OnInit {
     // Append each selected file as a separate 'files' entry so the backend receives a list
     if (files && files.length > 0) {
       for (let i = 0; i < files.length; i++) {
-      formData.append('files', files[i]);
+        formData.append('files', files[i]);
       }
     }
 
