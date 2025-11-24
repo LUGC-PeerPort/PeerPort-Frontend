@@ -106,6 +106,26 @@ export class GradeComponent implements OnInit {
     });
   }
 
+  // Update all the grades
+  updateGrades(): void {
+    if (!this.student) {
+      // Get all grades for the course
+        this.getAllGradesForCourse();
+
+        // Get all assignments for the course
+        this.getAllAssignments();
+
+        // Get all the users in the course
+        this.getAllUsersInCourse();
+    } else {
+      // Get all grades for the course
+        this.getAllGradesForCourse();
+
+        // Get all assignments for the course
+        this.getAllAssignments();
+    }
+  }
+
   // Get all the grades for a course
   getAllGradesForCourse(): void {
     this.courses.getAllGradesForCourse(this.courseId).subscribe(response => {
@@ -206,7 +226,7 @@ export class GradeComponent implements OnInit {
     });
   }
 
-  // 
+  // Get the calculated grade for a user in the course
   getCalculatedGradeForUserInCourse(userId: string): void {
     this.courses.getAverageGradeForUser(this.courseId, userId).subscribe(response => {
       this.studentGrade = response.grade;
@@ -237,8 +257,7 @@ export class GradeComponent implements OnInit {
 
     // Create the grade using the CourseService
     this.courses.createGradeForAssignment(this.courseId, userId, this.submissionId, grade).subscribe(response => {
-      // Handle the response
-      console.log("Grade created:", response);
+      this.updateGrades();
     });
   }
 
@@ -254,8 +273,7 @@ export class GradeComponent implements OnInit {
 
     // Update the grade using the CourseService
     this.courses.editGrade(this.gradeId, updatedGrade).subscribe(response => {
-      // Handle the response
-      console.log("Grade updated:", response);
+      this.updateGrades();
     });
   }
 
@@ -270,8 +288,7 @@ export class GradeComponent implements OnInit {
 
     // Delete the grade using the CourseService
     this.courses.deleteGrade(gradeId).subscribe(response => {
-      // Handle the response
-      console.log("Grade deleted:", response);
+      this.updateGrades();
     });
   }
 
