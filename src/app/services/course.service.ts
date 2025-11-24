@@ -2,7 +2,7 @@ import { AbstractType, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
-interface course {
+export interface course {
   name: string;
   courseCode: string;
   isOpen: boolean;
@@ -22,6 +22,7 @@ export interface content {
     dateCreated: Date;
     dateUpdated: Date;
     subContent: content[];
+    files: file[];
 }
 
 export interface file {
@@ -163,73 +164,78 @@ export class CourseService {
   }
 
   //Submit Assignment
-  submitAssignment(assignmentId:string, submission:any){
+  submitAssignment(assignmentId: string, submission: any){
     return this.http.post(`${this.courseUrl}assignments/${assignmentId}/submissions`, submission,{withCredentials: true});
   }
   //END ASSIGNMENTS
 
   //GRADES
   //GET
-  getAllGradesForCourse(courseId:string){
+  getAllGradesForCourse(courseId: string){
     return this.http.get<grade[] | error>(`${this.courseUrl}grades/by-course/${courseId}`,{withCredentials: true});
   }
 
-  getAllGradesForUserByCourse(courseId:string, userId:string){
+  getAllGradesForUserByCourse(courseId: string, userId: string){
     return this.http.get<grade[] | error>(`${this.courseUrl}grades/${userId}/${courseId}`,{withCredentials: true});
   }
 
-  getAverageGradeForCourse(courseId:string){ 
+  getAverageGradeForCourse(courseId: string){ 
     return this.http.get<{grade: number}>(`${this.courseUrl}grades/average/${courseId}`,{withCredentials:true});
   }
 
-  getAverageGradeForUser(courseId:string,userId:string){
+  getAverageGradeForUser(courseId: string, userId: string){
     return this.http.get<{grade: number}>(`${this.courseUrl}grades/calculated/${userId}/${courseId}`, {withCredentials:true});
   }
 
   //CREATE
-  createGradeForAssignment(courseId:string, userId:string, assignmentSubmissionId:string, grade:any){
+  createGradeForAssignment(courseId: string, userId: string, assignmentSubmissionId: string, grade: any){
     return this.http.post<grade>(`${this.courseUrl}grades/${userId}/${courseId}/${assignmentSubmissionId}`, grade,{withCredentials:true});
   }
 
   //EDIT
-  editGrade(gradeId:string, grade:any){
+  editGrade(gradeId: string, grade: any){
     return this.http.put(`${this.courseUrl}grades/by-id/${gradeId}`,grade,{withCredentials:true});
   }
   //DELETE
-  deleteGrade(gradeId:string){
+  deleteGrade(gradeId: string){
     return this.http.delete(`${this.courseUrl}grades/by-id/${gradeId}`,{withCredentials:true});
   }
   //END GRADES
 
   //SUBMISSIONS
   //GET
-  getAllSubmissionsForAssignment(assignmentId:string){
+  getAllSubmissionsForAssignment(assignmentId: string){
     return this.http.get<submission[] | error>(`${this.courseUrl}assignments/${assignmentId}/submissions`,{withCredentials:true});
   }
 
-  getSpecificSubmission(submissionId:string){
+  getSpecificSubmission(submissionId: string){
     return this.http.get(`${this.courseUrl}submissions/${submissionId}`, {withCredentials:true});
   }
 
   //CONTENT 
   //GET
-  getAllContentByCourseId(courseId:string){
-    return this.http.get(`${this.courseUrl}courses/${courseId}/content`,{withCredentials:true});
+  getAllContentByCourseId(courseId: string){
+    return this.http.get<content[] | error>(`${this.courseUrl}courses/${courseId}/content`,{withCredentials:true});
   }
 
   //CREATE
-  createNewContentAttachedToSpecificCourse(courseId:string, content:any){
+  createNewContentAttachedToSpecificCourse(courseId: string, content: any){
     return this.http.post(`${this.courseUrl}content/${courseId}`, content, {withCredentials:true});
   }
 
+  createSubContentForSpecificContent(parentContentId: string, content: any){
+    return this.http.post(`${this.courseUrl}content/sub/${parentContentId}`, content, {withCredentials:true});
+  }
+
   //EDIT
-  editCourseContentFromSpecificCourse(contentId:string, editedContent:any){
+  editCourseContentFromSpecificCourse(contentId: string, editedContent: any){
     return this.http.put(`${this.courseUrl}content/${contentId}`, editedContent, {withCredentials:true});
   }
 
   //DELETE
-  deleteContent(contentId:string){
+  deleteContent(contentId: string){
     return this.http.delete(`${this.courseUrl}content/${contentId}`, {withCredentials:true});
   }
   //END CONTENT
+  
 }

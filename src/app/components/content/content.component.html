@@ -1,32 +1,81 @@
 <section class="content-section">
-  <p class="section-title">Content Work!</p>
 
   <div class="content-layout">
-    
-    <div class="weekly-panels">
-      <div *ngFor="let week of WEEKS" class="week-panel">
-        <button class="week-toggle" (click)="toggleWeek(week)">
-          <h4>{{ week.name }}</h4>
-        </button>
-        <div *ngIf="week.expanded" class="week-content">
-          <a [routerLink]="['/assignment', week.contentId]" class="assignment-link">
-            View Assignment
-          </a>
-          <p>{{ week.description }}</p>
-        </div>
-      </div>
+    <button *ngIf="!student" (click)="createPressed('')">{{ create && parentId===undefined ? "Close create" : "Create content" }}</button>
+    <!-- Top-level create form (when creating a top-level content) -->
+    <div *ngIf="create && parentId === undefined" class="contentData">
+      <ng-container *ngTemplateOutlet="contentCreateEditTemplate"></ng-container>
     </div>
 
-   
-    <aside class="sidebar">
-      <div class="weekly-calendar">
-        <h5>Weekly Calendar</h5>
-       
-      </div>
-      <div class="announcement-box">
-        <h5>Announcement</h5>
-       
-      </div>
-    </aside>
+    <!-- start rendering recursive content -->
+    <ul *ngFor="let content of contentList">
+      <ng-container *ngTemplateOutlet="renderContent; context: {$implicit: content}"></ng-container>
+    </ul>
+
   </div>
 </section>
+
+<!-- Used for the create and update template (doesn't load on the page here)-->
+<ng-template #contentCreateEditTemplate>
+  <form>
+    <label for="name">Name:</label>
+    <input id="name" [(ngModel)]="name" name="name" required />
+
+    <label for="description">Description:</label>
+    <textarea id="description" [(ngModel)]="description" name="description"></textarea>
+
+    <label for="viewable">Viewable:</label>
+    <select id="viewable" [(ngModel)]="viewable" name="viewable">
+      <option value="true">True</option>
+      <option value="false">False</option>
+    </select>
+
+    <label for="fileInput">Upload File:</label>
+    <input type="file" id="fileInput" #fileInput multiple (change)="onFilesSelected(fileInput.files)" />
+
+    <ul *ngIf="selectedFiles.length">
+      <li *ngFor="let f of selectedFiles; let i = index">
+        {{ f.name }} — {{ Math.round(f.size / (1024 * 1024) * 100) / 100 }} MB
+        <button type="button" (click)="removeSelectedFile(i)">Remove</button>
+      </li>
+    </ul>
+
+    <button type="button" *ngIf="create" (click)="createContent()">Add</button>
+    <button type="button" *ngIf="!create" (click)="editContent()">Save</button>
+  </form>
+</ng-template>
+
+<!-- Template for rendering content recursively (doesn't load on the page here) -->
+<ng-template #renderContent let-node>
+  <li class="content-panel" *ngIf="node.viewable || !student" (click)="toggleContent(node); $event.stopPropagation()">
+    <h4>{{ node.name }}</h4>
+    <p *ngIf="!student">{{ node.viewable ? 'Viewable' : 'Not Viewable' }}</p>
+
+    <div class="content-meta">
+      <small *ngIf="node.dateCreated">Created: {{ node.dateCreated | date:'short' }}</small>
+      <small *ngIf="node.dateUpdated"> • Updated: {{ node.dateUpdated | date:'short' }}</small>
+    </div>
+
+      <div *ngIf="node.expanded" class="content-content" (click)="$event.stopPropagation()">
+      <p *ngIf="node.description">{{ node.description }}</p>
+      <p>Attachments:</p>
+      <div *ngIf="node.files.length > 0">
+        <iframe *ngFor="let file of node.files" [src]="file.url" loading="lazy" frameborder="0"></iframe>
+      </div>
+      <button *ngIf="!student" (click)="loadData(node); $event.stopPropagation()">View</button>
+      <button *ngIf="!student" (click)="createPressed(node.contentId)">{{ create && parentId === node.contentId ? "Close create" : "Add content" }}</button>
+
+      <!-- Inline create form for this node -->
+      <div *ngIf="(create && parentId === node.contentId) || contentId === node.contentId" class="contentData">
+        <ng-container *ngTemplateOutlet="contentCreateEditTemplate"></ng-container>
+      </div>
+
+      <!-- nested subContent -->
+      <ul class="subcontent-list" *ngIf="node.subContent?.length">
+        <ng-container *ngFor="let child of node.subContent">
+          <ng-container *ngTemplateOutlet="renderContent; context: {$implicit: child}"></ng-container>
+        </ng-container>
+      </ul>
+    </div>
+  </li>
+</ng-template>
