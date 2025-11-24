@@ -4,13 +4,12 @@ import { environment } from '../../environments/environment';
 
 interface course {
   name: string;
-  coourseCode: string;
+  courseCode: string;
   isOpen: boolean;
-  description: string;
-  startDate: Date | string;
-  endDate: Date | string;
+  description: string | undefined;
+  startDate: Date;
+  endDate: Date | undefined;
   courseId: string;
-  enrolledOn: Date | string;
 };
 
 export interface content {
@@ -25,46 +24,44 @@ export interface content {
     subContent: content[];
 }
 
-interface assignment {
-name: string;
-description: string;
-dueDate: Date | string;
-assignmentId: string;
+export interface file {
+  fileId: string;
+  fileName: string;
+  file: string;
+}
+export interface assignment {
+  name: string;
+  description: string;
+  dueDate: Date | string;
+  assignmentId: string;
+  courseId: string;
+  files: file[] | [];
 }
 
-interface error {
+export interface submission {
+  comment: string;
+  timeSubmitted: Date;
+  userId: string;
+  assignmentId: string;
+  assignmentSubmissionId: string;
+  files: file[] | [];
+}
+
+
+export interface error {
   message: string;
 };
 
-interface grade{
-    "minScore": number,
-    "maxScore": number,
-    "achievedScore": number,
-    "weight": number,
-    "gradeId": string,
-    "userId": string,
-    "courseId": string,
-    "assignmentSubmissionId": string
+export interface grade {
+    minScore: number;
+    maxScore: number;
+    achievedScore: number;
+    weight: number;
+    gradeId: string;
+    userId: string;
+    courseId?: string;
+    assignmentSubmissionId?: string;
 }
-
-interface averageGrade{
-  "grade":number
-}
-
-interface submission{
-    "comment": string,
-    "timeSubmitted": string,
-    "userId": string,
-    "assignmentId": string,
-    "assignmentSubmissionId": string,
-    "files": [
-      {
-        "fileId": string,
-        "fileName": string,
-        "file": string
-      }
-    ]
-  }
 
 @Injectable({
   providedIn: 'root'
@@ -94,7 +91,7 @@ export class CourseService {
 
   // get specific course by id
   getCourseById(courseId: string) {
-    return this.http.get(`${this.courseUrl}courses/${courseId}`,{withCredentials: true});
+    return this.http.get<course>(`${this.courseUrl}courses/${courseId}`,{withCredentials: true});
   }
 
   //create course
@@ -116,7 +113,7 @@ export class CourseService {
   // ASSIGNMENTS
   // get assignments in specific course
   getAllAssignmentsByCourseId(courseId: string) {
-    return this.http.get<error | assignment>(`${this.courseUrl}courses/${courseId}/assignments`,{withCredentials: true});
+    return this.http.get<assignment[] | error>(`${this.courseUrl}courses/${courseId}/assignments`,{withCredentials: true});
   }
 
   //get specific assignment in specific course
@@ -148,24 +145,24 @@ export class CourseService {
   //GRADES
   //GET
   getAllGradesForCourse(courseId:string){
-    return this.http.get(`${this.courseUrl}grades/by-course/${courseId}`,{withCredentials: true});
+    return this.http.get<grade[] | error>(`${this.courseUrl}grades/by-course/${courseId}`,{withCredentials: true});
   }
 
   getAllGradesForUserByCourse(courseId:string, userId:string){
-    return this.http.get(`${this.courseUrl}grades/${userId}/${courseId}`,{withCredentials: true});
+    return this.http.get<grade[] | error>(`${this.courseUrl}grades/${userId}/${courseId}`,{withCredentials: true});
   }
 
   getAverageGradeForCourse(courseId:string){ 
-    return this.http.get(`${this.courseUrl}grades/average/${courseId}`,{withCredentials:true});
+    return this.http.get<{grade: number}>(`${this.courseUrl}grades/average/${courseId}`,{withCredentials:true});
   }
 
   getAverageGradeForUser(courseId:string,userId:string){
-    return this.http.get(`${this.courseUrl}grades/calculated/${userId}/${courseId}`, {withCredentials:true});
+    return this.http.get<{grade: number}>(`${this.courseUrl}grades/calculated/${userId}/${courseId}`, {withCredentials:true});
   }
 
   //CREATE
   createGradeForAssignment(courseId:string, userId:string, assignmentSubmissionId:string, grade:any){
-    return this.http.post(`${this.courseUrl}grades/${userId}/${courseId}/${assignmentSubmissionId}`, grade,{withCredentials:true});
+    return this.http.post<grade>(`${this.courseUrl}grades/${userId}/${courseId}/${assignmentSubmissionId}`, grade,{withCredentials:true});
   }
 
   //EDIT
@@ -174,14 +171,14 @@ export class CourseService {
   }
   //DELETE
   deleteGrade(gradeId:string){
-    return this.http.delete(`${this.courseUrl}/grade/by-id/${gradeId}`,{withCredentials:true});
+    return this.http.delete(`${this.courseUrl}grades/by-id/${gradeId}`,{withCredentials:true});
   }
   //END GRADES
 
   //SUBMISSIONS
   //GET
   getAllSubmissionsForAssignment(assignmentId:string){
-    return this.http.get(`${this.courseUrl}assignments/${assignmentId}/submissions`,{withCredentials:true});
+    return this.http.get<submission[] | error>(`${this.courseUrl}assignments/${assignmentId}/submissions`,{withCredentials:true});
   }
 
   getSpecificSubmission(submissionId:string){
