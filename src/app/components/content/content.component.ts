@@ -355,7 +355,6 @@ export class ContentComponent implements OnInit {
       for (let file of data) {
         this.selectedFiles.push(file);
       }
-      console.log(this.selectedFiles);
     }
   }
 
