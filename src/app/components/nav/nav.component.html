@@ -1,17 +1,15 @@
 <header>
-<nav>
-    <div>
-      <a routerLink="/home" (click)="resetId()"><img src="PeerPortLogoColour.svg" alt="PeerPort Logo" style="width: 40px; height: 40px;"></a>
+  <nav>
+    <div id="big-box">
       <div>
-        <div>
-          <a *ngIf="!User?.userId" href="{{apiUrl}}login/google"> Login </a>
-          <a routerLink="/home" (click)="resetId()"> Home </a>
-          <a *ngIf="courseId" [routerLink]="['home/course/', courseId]"> Course </a>
-          <a *ngIf="courseId" [routerLink]="['home', 'course', courseId, 'assignments']"> Assignments </a>
-          <a *ngIf="courseId" [routerLink]="['home', 'course', courseId, 'grades']"> Grades </a>
-          <a *ngIf="courseId" [routerLink]="['home', 'course', courseId, 'classList']">Class List</a>
-          <a routerLink="calendar">Calendar</a>
-        </div>
+        <a id="logo" routerLink="/home" (click)="resetId()"><img src="PeerPortLogoColour.svg" alt="PeerPort Logo"></a>
+        <a class="link" *ngIf="!User?.userId" href="{{apiUrl}}login/google"> Login </a>
+        <a class="link" routerLink="/home" (click)="resetId()"> Home </a>
+        <a class="link" *ngIf="courseId" [routerLink]="['home/course/', courseId]"> Course </a>
+        <a class="link" *ngIf="courseId" [routerLink]="['home', 'course', courseId, 'assignments']"> Assignments </a>
+        <a class="link" *ngIf="courseId" [routerLink]="['home', 'course', courseId, 'grades']"> Grades </a>
+        <a class="link" *ngIf="courseId" [routerLink]="['home', 'course', courseId, 'classList']">Class List</a>
+        <a class="link" routerLink="calendar">Calendar</a>
       </div>
     </div>
   </nav>

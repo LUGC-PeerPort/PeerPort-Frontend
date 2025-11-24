@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CourseService } from '../../services/course.service';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DataService } from '../../services/data.service';
 
 
 @Component({
@@ -29,7 +30,9 @@ export class AssignmentComponent implements OnInit{
   isEditPopupOpen = false;
   selectedAssignment: any = null;
 
-  constructor(private route: ActivatedRoute, private CourseService: CourseService){}
+  isCreatePopupOpen = false;
+
+  constructor(private route: ActivatedRoute, private CourseService: CourseService, private dataService: DataService){}
 
   //GET
   getAllAssignments(courseId:string): void{
@@ -84,6 +87,10 @@ export class AssignmentComponent implements OnInit{
     this.isEditPopupOpen = false;
   }
 
+  openCloseCreatePopup(){
+    this.isCreatePopupOpen = !this.isCreatePopupOpen;
+  }
+
   //DELETE
   deleteAssignment(assignmentId:string): void{
     this.CourseService.deleteAssignment(assignmentId).subscribe(response=>{
@@ -126,6 +133,7 @@ ngOnInit(): void {
     });
 
     this.getAllAssignments(this.courseId);
+    this.dataService.changeMessage(params['id']);
   });
 }
 

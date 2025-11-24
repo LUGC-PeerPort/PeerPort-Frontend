@@ -1,26 +1,25 @@
-<section>
-    <div>
-        <h2>Courses</h2>
-        <h3>{{User?.userId}}</h3>
-        <div>
-            <!-- <form (ngSubmit)="">
-
-            </form> -->
+<section id="mainSection">
+    <section id="courseDisplay">
+        <div id="courseBox">
+            <h2>Courses</h2>
+            <ul>
+                <li *ngFor="let course of COURSES">
+                    <button [routerLink]="['course/', course.courseId]" (click)="saveId(course.courseId)">
+                        <h4 *ngIf="course.name">{{course.name}}</h4>
+                        <p *ngIf="course.courseCode">{{course.courseCode}}</p>
+                        <p *ngIf="course.description">{{course.description}}</p>
+                    </button>
+                    <button class="update-deleteButton" *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="selectedCourse(course)"> Update </button>
+                    <button class="update-deleteButton" *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="deleteCourse(course.courseId)">Delete Course</button>
+                </li>
+            </ul>
         </div>
-        <ul>
-            <li *ngFor="let course of COURSES">
-                <button [routerLink]="['course/', course.courseId]" (click)="saveId(course.courseId)">
-                    <h4 *ngIf="course.name">{{course.name}}</h4>
-                    <p *ngIf="course.courseCode">{{course.courseCode}}</p>
-                    <p *ngIf="course.description">{{course.description}}</p>
-                </button>
-                <button (click)="selectedCourse(course)"> Update </button>
-                <p>{{course.courseId}}</p>
-                <button *ngIf="User?.userId" (click)="deleteCourse(course.courseId)">Delete Course</button>
-            </li>
-        </ul>
-    </div>
-    <section id="courseForm">
+        <div class="sidebars">
+                <p class="sidebar-link1"> Weekly calendar (Comming Soon) </p>
+                <p class="sidebar-link2"> Notifications (Comming Soon) </p>
+        </div>
+    </section>
+    <section *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" id="courseForm">
          <fieldset>
             <label for="name">Name: </label>
             <input [(ngModel)]="name">
@@ -32,8 +31,8 @@
         <fieldset>
             <label for="isOpen">Is the course open? </label>
             <select [(ngModel)]="isOpen">
-                <option value=true> Yes </option>
-                <option value=false> No </option>
+                <option value="true"> Yes </option>
+                <option value="false"> No </option>
             </select>
         </fieldset>
          <fieldset>

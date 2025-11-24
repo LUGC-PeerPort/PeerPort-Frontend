@@ -11,4 +11,11 @@ export class DataService {
   changeMessage(message: string){
     this.messageSource.next(message);
   }
+
+  private assignmentIdSource = new BehaviorSubject<string>('');
+  currentAssignment = this.assignmentIdSource.asObservable();
+
+  changeAssignmentId(message: string){
+    this.assignmentIdSource.next(message);
+  }
 }

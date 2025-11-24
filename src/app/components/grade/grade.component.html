@@ -1,30 +1,87 @@
 
-<h1>{{COURSES.name}}</h1>
+<h1>{{courseName}}</h1>
+
 <section class="CourseGrades">
-    <div class="CourseAverage">
-        <h3></h3>
+  <h3>Course Average: {{averageGrade}}</h3>
+
+  <ul class="assignmentList" *ngIf="assignments.length">
+    <li *ngFor="let assignment of assignments; let i = index">
+      <input type="checkbox" [id]="'toggle-box-' + i" class="toggle-checkbox">
+      <div class="assignment-color">
+        <label [for]="'toggle-box-' + i" class="toggle-label">{{assignment.name}}</label>
+        <img src="arrow-down-solid-full.svg" class="arrow-toggle" width="10px" height="20px">
+      </div>
+
+      <div class="collapsible-content">
+        <ul class="submissionsForAssignment">
+          <li *ngFor="let submission of assignment.submissions; let j = index">
+            <p>Submission Id: {{submission.assignmentSubmissionId}}</p>
+            <p>Grade: {{calculateGrade(submission.grade) + "%" || 'Not graded'}}</p>
+            <p>Submitted on: {{submission.timeSubmitted}}</p>
+            <button [id]="'grade-button-' + j" *ngIf="getGradeId(submission.assignmentSubmissionId) === null" (click)="togglePopUp(submission.assignmentSubmissionId); activity = createGrade">Grade</button>
+            <button [id]="'edit-grade-button' + j" *ngIf="getGradeId(submission.assignmentSubmissionId) !== null" (click)="togglePopUp(submission.assignmentSubmissionId); activity = updateGrade">Edit Grade</button>
+            <button [id]="'delete-grade-button' + j" *ngIf="getGradeId(submission.assignmentSubmissionId) !== null" (click)="deleteGrade(submission.assignmentSubmissionId)">Delete</button>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</section>
+
+
+<section class="gradePopup-background" *ngIf="isPopUpOpen">
+    <div class="gradePopup-foreground">
+        <form (ngSubmit)="activity()"> 
+            <label for="minScore">Minimum Score</label>
+            <input id="minScore" type="number" [(ngModel)]="minScore" name="minScore">
+            
+            <label for="maxScore">Maximum Score</label>
+            <input id="maxScore" type="number" [(ngModel)]="maxScore" name="maxScore">
+
+            <label for="achievedScore">Achieved Score</label>
+            <input id="achievedScore" type="number" [(ngModel)]="achievedScore" name="achievedScore">
+
+            <label for="weight">Weight</label>
+            <input id="weight" type="number" [(ngModel)]="weight" name="weight">
+            <button type="submit">Submit</button>
+        </form>
+        <button (click)="togglePopUp(submissionId)">Close</button>
     </div>
-    <ul>
-        <li>
-            <button id="delete-button">Delete</button>
-            <button id="edit-button">Edit</button>
-        </li>
-    </ul>
+</section>
+
+<!-- <section class="editGrade-background" *ngIf="isEditPopupOpen">
+    <div class="editGrade-foreground">
+        <form (ngSubmit)="editGrade()"> 
+            <label for="editMinScore">Minimum Score</label>
+            <input id="editMinScore" type="number" [(ngModel)]="editMinScore" name="editMinScore">
+            
+            <label for="editMaxScore">Maximum Score</label>
+            <input id="editMaxScore" type="number" [(ngModel)]="editMaxScore" name="editMaxScore">
+
+            <label for="editAchievedScore">Achieved Score</label>
+            <input id="editAchievedScore" type="number" [(ngModel)]="editAchievedScore" name="editAchievedScore">
+
+            <label for="editWeight">Weight</label>
+            <input id="editWeight" type="number" [(ngModel)]="editWeight" name="editWeight">
+            <button type="submit">Submit</button>
+        </form>
+        <button (click)="closeEditPopup()">Close</button>
+    </div>
 </section>
 
 <section class="UserGrades">
-    <div class="UserAverageGrade">
-        <h3></h3>
-    </div>
-    <ul class="gradesList">
-       
-    </ul>
-</section>
+  <h3>My Average: {{userAverageGrade}}</h3>
 
-<section class="popupCreate">
-    <form></form>
-</section>
-
-<section class="popupEdit">
-
-</section>
+  <ul class="assignmentList">
+    <li *ngFor="let assignment of ASSIGNMENTS">
+      <strong>{{assignment.name}}</strong>
+      <ul class="submissionsForAssignment">
+        <li *ngFor="let submission of SUBMISSIONS[assignment.assignmentId]">
+          <span *ngIf="submission.userId === 'currentUserId'">
+            Grade: {{submission.grade || 'Not graded'}}
+          </span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section> -->

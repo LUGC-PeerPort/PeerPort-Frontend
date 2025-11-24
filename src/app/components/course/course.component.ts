@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CourseService } from '../../services/course.service';
+import { DataService } from '../../services/data.service';
 
 
 @Component({
@@ -20,13 +21,14 @@ export class CourseComponent implements OnInit {
   startDate: string | undefined;
   endDate: string | undefined;
 
-  constructor(private route: ActivatedRoute, private CourseService: CourseService){}
+  constructor(private route: ActivatedRoute, private CourseService: CourseService, private dataService: DataService){}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.CourseService.getCourseById(params['id']).subscribe(response => {
         this.COURSES = response;
       })
+      this.dataService.changeMessage(params['id']);
     });
   }
 }
