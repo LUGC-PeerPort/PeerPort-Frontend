@@ -35,11 +35,6 @@ export class ClassListComponent implements OnInit {
       this.dataService.changeMessage(this.courseId);
       // Get all the students for the course
       this.loadStudents();
-
-      // Get all users for adding to course
-      if (!this.student) {
-        this.loadUsers();
-      }
     });
   }
 
@@ -62,6 +57,11 @@ export class ClassListComponent implements OnInit {
         return;
       }
       this.students = students;
+
+      // After loading students, load users if not a student
+      if (!this.student) {
+        this.loadUsers();
+      }
     });
   }
 
