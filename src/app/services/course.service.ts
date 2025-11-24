@@ -2,7 +2,7 @@ import { AbstractType, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
-interface course {
+export interface course {
   name: string;
   courseCode: string;
   isOpen: boolean;
@@ -214,7 +214,7 @@ export class CourseService {
   //CONTENT 
   //GET
   getAllContentByCourseId(courseId:string){
-    return this.http.get(`${this.courseUrl}courses/${courseId}/content`,{withCredentials:true});
+    return this.http.get<content[] | error>(`${this.courseUrl}courses/${courseId}/content`,{withCredentials:true});
   }
 
   //CREATE

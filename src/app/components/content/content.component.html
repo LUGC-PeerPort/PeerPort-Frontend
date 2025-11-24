@@ -2,31 +2,29 @@
   <p class="section-title">Content Work!</p>
 
   <div class="content-layout">
-    
+
     <div class="weekly-panels">
-      <div *ngFor="let week of WEEKS" class="week-panel">
-        <button class="week-toggle" (click)="toggleWeek(week)">
-          <h4>{{ week.name }}</h4>
+      <div *ngFor="let content of contentList" class="week-panel">
+        <button class="week-toggle" (click)="toggleContent(content)">
+          <h4>{{ content.name }}</h4>
         </button>
-        <div *ngIf="week.expanded" class="week-content">
-          <a [routerLink]="['/assignment', week.contentId]" class="assignment-link">
+        <div *ngIf="content.expanded" class="week-content">
+          <a [routerLink]="['/assignment', content.contentId]" class="assignment-link">
             View Assignment
           </a>
-          <p>{{ week.description }}</p>
+          <p>{{ content.description }}</p>
         </div>
       </div>
     </div>
 
-   
-    <aside class="sidebar">
+
+    <!-- <aside class="sidebar">
       <div class="weekly-calendar">
         <h5>Weekly Calendar</h5>
-       
       </div>
       <div class="announcement-box">
         <h5>Announcement</h5>
-       
       </div>
-    </aside>
+    </aside> -->
   </div>
 </section>
