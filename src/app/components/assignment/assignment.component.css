@@ -75,9 +75,11 @@
 
 button{
     color: white;
-    background-color: #081a4b;
+    background-color: #9D81EC;
     box-shadow: #081a4b 2px 2px 0px 0px !important;
     cursor: pointer;
+    border-radius: 15px;
+    margin: 0.5em;
 }
 
 button:hover{
