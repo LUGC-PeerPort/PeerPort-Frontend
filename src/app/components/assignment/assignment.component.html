@@ -36,15 +36,16 @@
           <input type="checkbox" [id]="'toggle-box-' + i" class="toggle-checkbox">
           <div class="assignment-color">
             <label [for]="'toggle-box-' + i" class="toggle-label">{{assignment.name}}</label>
-            <img src="arrow-down-solid-full.svg" class="arrow-toggle" width="10px" height="20px">
-         
-            <button [id]="'delete-button' +i" (click)="deleteAssignment(assignment.assignmentId)">Delete</button>
-            <button [id]="'edit-button' +i" (click)="openEditPopup(assignment)">Edit</button>
+            
+            <div class="buttons">
+              <button [id]="'delete-button' +i" (click)="deleteAssignment(assignment.assignmentId)">Delete</button>
+              <button [id]="'edit-button' +i" (click)="openEditPopup(assignment)">Edit</button>
+            </div>
           </div>
           
           <div class="collapsible-content">
             <div>{{assignment.description}}</div>
-          
+            <span class="dueDate">Due Date: {{assignment.dueDate}}</span>
 
             <form (ngSubmit)="submitAssignment(assignment.assignmentId, fileSubmission)">
               <label [for]="'chooseFile-' + i">Choose a file for upload:</label>

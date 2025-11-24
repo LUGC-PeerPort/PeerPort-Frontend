@@ -20,12 +20,27 @@
 
 .assignment-color {
   background-color: #E8B35E;
-  border:solid, 1px, black;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   margin-right: 3em;
   height: 3em;
   /* padding-right: ; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.assignment-color label, .toggle-checkbox {
+  margin-left:2em;
+  font-weight: bold;
+  font-size: large;
+}
+
+.assignment-color label:hover{
+  color: white;
+}
+
+.assignment-color label:active{
+  color: teal;
 }
 
 .assignment-list-background{
@@ -37,10 +52,21 @@
   height: 100%;
 }
 
-.title h1{
-  align-items: center;
-  justify-content: center;
+.title{
+  display: grid;
+  justify-content: center; 
+  
+}
 
+.title h2{
+  background-color: white;
+  padding: 10px;
+  padding-left: 8em;
+  padding-right: 8em;
+  border-radius: 15px;  
+}
+.title button{
+  justify-self: center;
 }
 
 .toggle-checkbox:checked ~ .collapsible-content{
@@ -90,20 +116,21 @@
 
 .popup-background{
   display: flex;
-  background: transparent;
-  justify-content: center;
-  align-content: center;
+  background-color: rgba(255,255,255,0.5);
+ justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
-  width: 75%;
-  height: 75%;
+  width: 100%;
+  height: 100%;
   z-index: 999;
 }
 .popup{
-  background: rgb(19, 243, 187);
+background: rgb(19, 243, 187);
   padding: 2em;
   width: 350px;
+  margin-top: 8em;
+  height: 50%;
   border-color: #ffa704;
   border-width: 10px;
   border-radius: 5%;
@@ -111,20 +138,21 @@
 
 .create-background{
   display: flex;
-  background: transparent;
-  justify-content: center;
-  align-content: center;
+  background-color: rgba(255,255,255,0.5);
+ justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
-  width: 75%;
-  height: 75%;
+  width: 100%;
+  height: 100%;
   z-index: 999;
 }
 .create-foreground{
   background: rgb(19, 243, 187);
   padding: 2em;
   width: 350px;
+  margin-top: 8em;
+  height: 50%;
   border-color: #ffa704;
   border-width: 10px;
   border-radius: 5%;
