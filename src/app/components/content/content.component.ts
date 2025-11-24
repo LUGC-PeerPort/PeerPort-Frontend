@@ -137,7 +137,7 @@ export class ContentComponent implements OnInit {
     target.dateUpdated = source.dateUpdated ?? target.dateUpdated;
 
     // Merge files: update existing files by id/name, add new ones
-    target.files = this.mergeFiles(target.files || [], source.files || []);
+    target.files = source.files //this.mergeFiles(target.files || [], source.files || []);
 
     // Merge subContent recursively
     if (!target.subContent) target.subContent = [];
