@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from '../../services/course.service';
 import { DataService } from '../../services/data.service';
+import { AuthService } from '../../services/auth.service';
 import { NgFor,NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -15,8 +16,9 @@ export class GradeComponent implements OnInit {
 
   GRADES: any;
   COURSES: any;
-  SUBMISSIONS: any;
-  courseId: string | undefined;
+  ASSIGNMENTS:any;
+  SUBMISSIONS: any = {};
+  courseId!: string;
   name: string | undefined;
   courseCode: string | undefined;
   isOpen: boolean | undefined;
@@ -24,13 +26,27 @@ export class GradeComponent implements OnInit {
   startDate: string | undefined;
   endDate: string | undefined;
 
+  User: {userId: string, userRole: string} | null = null;
+  userId!: string;
+  userRole: string | undefined;
 
   userGrades: any;
   userAverageGrade: any;
 
   courseAverageGrade:any;
 
-  constructor(private route: ActivatedRoute, private CourseService: CourseService, private dataService: DataService){}
+  isGradePopupOpen = false;
+
+  constructor(private route: ActivatedRoute, private CourseService: CourseService, private dataService: DataService, private authService: AuthService){}
+  currentSubmissionId!: string; //change
+  openCloseGradePopup(submissionId?: string){
+    if(submissionId){//change 3 lines
+      this.currentSubmissionId = submissionId;
+    }
+    this.isGradePopupOpen = !this.isGradePopupOpen;
+  }
+  
+
 
 //GET
   getAllGradesForCourse(courseId:string):void{
@@ -46,25 +62,48 @@ export class GradeComponent implements OnInit {
   }
 
   getAverageGradeOfCourse(courseId:string):void{
-    this.CourseService.getAverageGradeForCourse(courseId).subscribe(response=>{
-      this.courseAverageGrade = response;
+    this.CourseService.getAverageGradeForCourse(courseId).subscribe((response:any)=>{
+      console.log(response);
+      this.courseAverageGrade = response.grade;
     });
   }
 
   getAverageGradeForUser(courseId:string, userId:string):void{
-    this.CourseService.getAverageGradeForUser(courseId,userId).subscribe(response=>{
-      this.userAverageGrade = response;
+    this.CourseService.getAverageGradeForUser(courseId,userId).subscribe((response:any)=>{
+      this.userAverageGrade = response.grade;
     });
+  }
+
+  getAllAssignments(courseId:string){
+    this.CourseService.getAllAssignmentsByCourseId(courseId).subscribe(response =>{
+      this.ASSIGNMENTS = response;
+
+      this.ASSIGNMENTS?.forEach((a: any) => this.getAllSubmissionsForAssignment(a.assignmentId));
+    })
+  }
+
+  getAllSubmissionsForAssignment(assignmentId:string){
+    this.CourseService.getAllSubmissionsForAssignment(assignmentId).subscribe(response =>{
+      this.SUBMISSIONS[assignmentId] = response;
+    })
   }
 
   //CREATE
-  createGrade(courseId:string, userId:string, assignmentSubmissionId:string, grade:any):void{
+  createGrade(courseId:string, userId:string, assignmentSubmissionId:string, minScore:number,maxScore:number,achievedScore:number,weight:number):void{
+      const grade ={
+        minScore: minScore,
+        maxScore:maxScore,
+        achievedScore:achievedScore,
+        weight: weight
+      }
+
     this.CourseService.createGradeForAssignment(courseId, userId, assignmentSubmissionId, grade).subscribe(response=>{
+      this.GRADES.push(response);
     });
   }
+
   //EDIT
   editGrade(gradeId:string, minScore:number,maxScore:number, achievedScore:number, weight:number):void{
-
     const editedGrade = {
      minScore: minScore,
      maxScore: maxScore,
@@ -79,6 +118,20 @@ export class GradeComponent implements OnInit {
       }
     });
   }
+  //edit popup - added this - change
+  isEditPopupOpen = false;
+  //selectedGradeId: string | null = null; //change
+  currentGradeId!: string; //change
+
+  openEditPopup(gradeId: string) {
+    //this.selectedGradeId = gradeId; //change
+    this.currentGradeId = gradeId; //change
+    this.isEditPopupOpen = true;
+  }
+  closeEditPopup() {
+    this.isEditPopupOpen = false;
+    //this.selectedGradeId = null;
+  }
   //DELETE
   deleteGrade(gradeId:string):void{
     this.CourseService.deleteGrade(gradeId).subscribe(response=>{
@@ -86,16 +139,34 @@ export class GradeComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.CourseService.getCourseById(params['id']).subscribe(response => {
-        this.COURSES = response;
-      })
-      this.dataService.changeMessage(params['id']);
+ ngOnInit(): void {
+  this.authService.currentUser().subscribe(userResponse => {
+    this.User = userResponse as { userId: string, userRole: string };
+    if (this.User) {
+      this.userId = this.User.userId;
+      this.userRole = this.User.userRole;
 
+      this.route.params.subscribe(params => {
+        this.courseId = params['id'];
+        this.dataService.changeMessage(this.courseId);
 
-      
-    });
+        this.CourseService.getCourseById(this.courseId).subscribe(courseResponse => {
+          this.COURSES = courseResponse;
+        });
+
+        this.getAllAssignments(this.courseId);
+
+        this.getAverageGradeOfCourse(this.courseId);
+
+        this.getAverageGradeForUser(this.courseId, this.userId);
+        this.getAllGradesForUser(this.courseId, this.userId);
+
+        this.getAllGradesForCourse(this.courseId);
+      });
+    }
+  });
+}
+
   }
 
-}
+

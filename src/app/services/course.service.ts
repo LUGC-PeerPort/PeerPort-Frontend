@@ -47,6 +47,10 @@ interface grade{
     "assignmentSubmissionId": string
 }
 
+interface averageGrade{
+  "grade":number
+}
+
 interface submission{
     "comment": string,
     "timeSubmitted": string,
