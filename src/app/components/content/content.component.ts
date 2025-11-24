@@ -361,5 +361,6 @@ export class ContentComponent implements OnInit {
   // Remove selected file
   removeSelectedFile(index: number): void {
     this.selectedFiles.splice(index, 1);
+    this.getAllContent();
   }
 }
