@@ -1,29 +1,28 @@
 <div class="class-list-container">
   <h2>Class List</h2>
 
-  <!-- Add Student Button -->
+
   <button class="add-button" (click)="addStudent()">+</button>
 
-  <!-- Student List -->
+
   <ul class="student-list">
     <li *ngFor="let student of students; let i = index" class="student-item">
 
-      <!-- Student Name -->
+ 
       <span class="student-name">
         {{ student.name || 'Unnamed Student' }}
       </span>
 
-      <!-- Optional Student ID or Email -->
+    
       <span class="student-email">
         {{ student.email }}
       </span>
 
-      <!-- View Button -->
       <button class="view-button" (click)="viewStudent(student)">
         View
       </button>
 
-      <!-- Remove Button -->
+    
       <button class="remove-button" (click)="removeStudent(i)">
         Remove
       </button>
