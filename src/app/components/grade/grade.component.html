@@ -3,6 +3,7 @@
 
   <section class="CourseGrades">
     <h3>Course Average: {{averageGrade}}</h3>
+    <h3 *ngIf="student">Your Grade: {{studentGrade}}</h3>
 
     <ul class="assignmentList" *ngIf="assignments.length">
       <li *ngFor="let assignment of assignments; let i = index">
@@ -15,7 +16,7 @@
         <div class="collapsible-content">
           <ul class="submissionsForAssignment">
             <li *ngFor="let submission of assignment.submissions; let j = index">
-              <h4>Student: {{getUserName(submission.userId)}}</h4>
+              <h4 *ngIf="!student">Student: {{getUserName(submission.userId)}}</h4>
               <p>Grade: {{calculateGrade(submission.grade) != null ? calculateGrade(submission.grade) + "%" : 'Not graded'}}</p>
               <p>Submitted on: {{submission.timeSubmitted}}</p>
               <p *ngIf="submission.comment">Comment: {{submission.comment}}</p>
