@@ -1,1 +1,31 @@
-<p>class-list works!</p>
+<div class="class-list-container">
+  <h2>Class List</h2>
+
+
+  <button class="add-button" (click)="addStudent()">+</button>
+
+  <ul class="student-list">
+    <li *ngFor="let student of students; let i = index" class="student-item">
+
+
+      <span class="student-name">
+        {{ student.name || 'Unnamed Student' }}
+      </span>
+
+
+      <span class="student-email">
+        {{ student.email }}
+      </span>
+
+  
+      <button class="view-button" (click)="viewStudent(student)">
+        View
+      </button>
+
+     
+      <button class="remove-button" (click)="removeStudent(i)">
+        Remove
+      </button>
+    </li>
+  </ul>
+</div>
