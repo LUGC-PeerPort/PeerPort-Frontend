@@ -1,0 +1,56 @@
+/* Collapsible content for assignments */
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  border: 2px solid aqua; /* simpler border */
+  border-radius: 5px;
+  margin: 5px 0;
+  transition: max-height 0.3s ease-in-out;
+  padding: 0 10px; /* optional padding inside collapsible */
+}
+
+/* Assignment header style */
+.assignment-color {
+  background-color: #ffa704;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Hide checkbox */
+.toggle-checkbox {
+  display: none;
+}
+
+/* Expand collapsible when checkbox is checked */
+.toggle-checkbox:checked ~ .collapsible-content {
+  max-height: 500px; /* adjust to fit content */
+  padding: 10px; /* add padding when expanded */
+}
+
+/* Arrow rotation when expanded */
+.toggle-checkbox:checked ~ .assignment-color .arrow-toggle {
+  transform: rotate(90deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Arrow default style */
+.arrow-toggle {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Optional: submissions list style */
+.submissionsForAssignment {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.submissionsForAssignment li {
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}

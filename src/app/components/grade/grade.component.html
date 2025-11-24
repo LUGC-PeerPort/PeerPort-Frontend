@@ -4,7 +4,7 @@
 <section class="CourseGrades">
   <h3>Course Average: {{courseAverageGrade}}</h3>
 
-  <ul class="assignmentList">
+  <ul class="assignmentList" *ngIf="ASSIGNMENTS?.length">
     <li *ngFor="let assignment of ASSIGNMENTS; let i = index">
       <input type="checkbox" [id]="'toggle-box-' + i" class="toggle-checkbox">
       <div class="assignment-color">

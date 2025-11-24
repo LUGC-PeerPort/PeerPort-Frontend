@@ -17,7 +17,7 @@ export class GradeComponent implements OnInit {
   GRADES: any;
   COURSES: any;
   ASSIGNMENTS:any;
-  SUBMISSIONS: any;
+  SUBMISSIONS: any = {};
   courseId!: string;
   name: string | undefined;
   courseCode: string | undefined;
@@ -52,7 +52,7 @@ export class GradeComponent implements OnInit {
 
   getAverageGradeOfCourse(courseId:string):void{
     this.CourseService.getAverageGradeForCourse(courseId).subscribe((response)=>{
-      this.courseAverageGrade = response;
+      this.courseAverageGrade = response.grade;
     });
   }
 
@@ -66,7 +66,7 @@ export class GradeComponent implements OnInit {
     this.CourseService.getAllAssignmentsByCourseId(courseId).subscribe(response =>{
       this.ASSIGNMENTS = response;
 
-      this.ASSIGNMENTS.forEach((a: any) => this.getAllSubmissionsForAssignment(a.assignmentId));
+      this.ASSIGNMENTS?.forEach((a: any) => this.getAllSubmissionsForAssignment(a.assignmentId));
     })
   }
 
