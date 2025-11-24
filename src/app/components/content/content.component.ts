@@ -39,12 +39,11 @@ export class ContentComponent implements OnInit {
   description: string = "";
   viewable: string = "true";
   contentId: string = "";
-  activity: Function = () => {};
   selectedFiles: File[] = [];
   Math = Math;
   create: boolean = false;
+  parentId: string | undefined;
 
-  
 
   constructor(
     private sanitizer: DomSanitizer, 
@@ -127,7 +126,6 @@ export class ContentComponent implements OnInit {
     return newContent;
   }
 
-
   // Toggle a certain content
   toggleContent(content: content & { expanded?: boolean }): void {
     // Collapse all other contents and toggle the selected one
@@ -139,14 +137,24 @@ export class ContentComponent implements OnInit {
     this.description = content.description || "";
     this.viewable = content.viewable ? "true" : "false";
     this.contentId = content.contentId;
+    this.create = false;
 
-    this.activity = this.editContent;
+    // Add the files to the selected files
+    this.selectedFiles = content.files.map(f => {
+      const byteChars = atob(f.file);
+      const byteNumbers = new Array(byteChars.length);
+      for (let i = 0; i < byteChars.length; i++) {
+        byteNumbers[i] = byteChars.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: detectMimeFromBytes(byteArray) });
+      return new File([blob], f.fileName);
+    });
   }
 
   // Create content
   createContent(): void {
     const files = this.selectedFiles;
-
     const formData = new FormData();
 
     // Append each selected file as a separate 'files' entry so the backend receives a list
@@ -161,12 +169,50 @@ export class ContentComponent implements OnInit {
     formData.append('description', this.description);
     formData.append('viewable', this.viewable);
 
-    // Update the content
-    this.courseService.createNewContentAttachedToSpecificCourse(this.contentId, formData).subscribe(() => {
+    const finalize = () => {
       // Refresh the content list after update
       this.getAllContent();
-    });
+      // reset create mode and form fields so user can open another parent's create immediately
+      this.create = false;
+      this.parentId = undefined;
+      this.name = "";
+      this.description = "";
+      this.viewable = "true";
+      this.selectedFiles = [];
+    };
+
+    if (this.parentId && this.create) {
+      this.courseService.createSubContentForSpecificContent(this.parentId, formData).subscribe(() => {
+        finalize();
+      });
+    } else {
+      // Create the content attached to course (top-level or fallback)
+      this.courseService.createNewContentAttachedToSpecificCourse(this.contentId, formData).subscribe(() => {
+        finalize();
+      });
+    }
   }
+
+  // Whenever create button is pressed
+  createPressed(parentId: string): void {
+    // If user clicked the same parent while create is open, toggle it closed.
+    const normalizedParent = parentId == "" ? undefined : parentId;
+    if (this.create && this.parentId === normalizedParent) {
+      this.create = false;
+      this.parentId = undefined;
+      return;
+    }
+
+    // Open create form for the selected parent immediately
+    this.create = true;
+    this.parentId = normalizedParent;
+    this.contentId = "";
+    this.name = "";
+    this.description = "";
+    this.viewable = "true";
+    this.selectedFiles = [];
+  }
+
   // Edit content
   editContent(): void {
     const files = this.selectedFiles;
@@ -209,5 +255,10 @@ export class ContentComponent implements OnInit {
       }
       console.log(this.selectedFiles);
     }
+  }
+
+  // Remove selected file
+  removeSelectedFile(index: number): void {
+    this.selectedFiles.splice(index, 1);
   }
 }
