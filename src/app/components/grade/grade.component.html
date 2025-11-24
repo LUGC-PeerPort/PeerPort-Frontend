@@ -20,9 +20,9 @@
             <p>Submitted on: {{submission.timeSubmitted}}</p>
             <p *ngIf="submission.comment">Comment: {{submission.comment}}</p>
             <iframe *ngFor="let file of submission.files" [src]="file.url" ></iframe>
-            <button [id]="'grade-button-' + j" *ngIf="getGradeId(submission.assignmentSubmissionId) === null" (click)="togglePopUp(submission.assignmentSubmissionId); activity = createGrade">Grade</button>
-            <button [id]="'edit-grade-button' + j" *ngIf="getGradeId(submission.assignmentSubmissionId) !== null" (click)="togglePopUp(submission.assignmentSubmissionId); activity = updateGrade">Edit Grade</button>
-            <button [id]="'delete-grade-button' + j" *ngIf="getGradeId(submission.assignmentSubmissionId) !== null" (click)="deleteGrade(submission.assignmentSubmissionId)">Delete</button>
+            <button [id]="'grade-button-' + j" *ngIf="getGradeId(submission.assignmentSubmissionId) === null && !student" (click)="togglePopUp(submission.assignmentSubmissionId); activity = createGrade">Grade</button>
+            <button [id]="'edit-grade-button' + j" *ngIf="getGradeId(submission.assignmentSubmissionId) !== null && !student" (click)="togglePopUp(submission.assignmentSubmissionId); activity = updateGrade">Edit Grade</button>
+            <button [id]="'delete-grade-button' + j" *ngIf="getGradeId(submission.assignmentSubmissionId) !== null && !student" (click)="deleteGrade(submission.assignmentSubmissionId)">Delete</button>
           </li>
         </ul>
       </div>

@@ -1,37 +1,53 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService, user } from '../../services/course.service';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../../services/data.service';
+import { AuthService } from '../../services/auth.service';
 
-interface NewStudentPayload {
-  name: string;
-  email: string;
-  profilePictureUrl: string;
-  idNumber: string;
-  role: string;
-}
 
 @Component({
   selector: 'app-class-list',
   standalone: true,
-  imports: [NgFor, FormsModule],
+  imports: [NgFor, FormsModule, NgIf],
   templateUrl: './class-list.component.html',
   styleUrl: './class-list.component.css'
 })
 export class ClassListComponent implements OnInit {
   students: user[] = [];
   courseId: string = '';
+  selectedUserId: string = '';
+  users: user[] = [];
+  student: boolean = true;
 
   constructor(
-    private courseService: CourseService, private route: ActivatedRoute, private dataService: DataService) {}
+    private courseService: CourseService, private route: ActivatedRoute, private auth: AuthService, private dataService: DataService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
+      this.auth.currentUser().subscribe(currentUser => {
+        if (currentUser.roleId !== "ff123156-7773-47f5-b5df-0ef54f864f8d") {
+          this.student = false;
+        }
+      });
       this.courseId = params['id'];
-      this.loadStudents();
       this.dataService.changeMessage(this.courseId);
+      // Get all the students for the course
+      this.loadStudents();
+
+      // Get all users for adding to course
+      this.loadUsers();
+    });
+  }
+
+  loadUsers(): void {
+    this.auth.getAllUsers().subscribe((users) => {
+      if (!Array.isArray(users)) {
+        console.error('Invalid response format for users:', users);
+        return;
+      }
+      this.users = users;
     });
   }
 
@@ -45,17 +61,8 @@ export class ClassListComponent implements OnInit {
     });
   }
 
-  addStudent(): void {
-    const newStudent: NewStudentPayload = {
-      name: 'New user',
-      email: 'user@example.com',
-      profilePictureUrl: 'https://example.com/',
-      idNumber: 'ID1234',
-      role: 'user'
-    };
-
-
-    this.courseService.addStudentToCourse(this.courseId, newStudent).subscribe(() => {
+  addStudent(userId: string): void {
+    this.courseService.addStudentToCourse(this.courseId, userId).subscribe(() => {
       this.loadStudents();
     });
   }

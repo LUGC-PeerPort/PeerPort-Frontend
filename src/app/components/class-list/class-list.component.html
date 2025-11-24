@@ -1,8 +1,15 @@
 <div class="class-list-container">
   <h2>Class List</h2>
 
-
-  <button class="add-button" (click)="addStudent()">+</button>
+  <div class="teacher-controls" *ngIf="!student">
+    <select [(ngModel)]="selectedUserId" class="user-select" aria-label="Select user to add">
+      <option value="" disabled>Select a user...</option>
+      <option *ngFor="let user of users" [value]="user.userId">
+        {{ user.name || 'Unnamed User' }} ({{ user.email }})
+      </option>
+    </select>
+    <button class="add-button" [disabled]="!selectedUserId" (click)="addStudent(selectedUserId)">+</button>
+  </div>
 
   <ul class="student-list">
     <li *ngFor="let student of students; let i = index" class="student-item">
@@ -22,7 +29,6 @@
         View
       </button>
 
-     
       <button class="remove-button" (click)="removeStudent(i)">
         Remove
       </button>

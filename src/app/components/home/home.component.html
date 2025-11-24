@@ -9,8 +9,8 @@
                         <p *ngIf="course.courseCode">{{course.courseCode}}</p>
                         <p *ngIf="course.description">{{course.description}}</p>
                     </button>
-                    <button class="update-deleteButton" *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="selectedCourse(course)"> Update </button>
-                    <button class="update-deleteButton" *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="deleteCourse(course.courseId)">Delete Course</button>
+                    <button class="update-deleteButton" *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="selectedCourse(course)"> Update </button>
+                    <button class="update-deleteButton" *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="deleteCourse(course.courseId)">Delete Course</button>
                 </li>
             </ul>
         </div>
@@ -19,7 +19,7 @@
                 <p class="sidebar-link2"> Notifications (Comming Soon) </p>
         </div>
     </section>
-    <section *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" id="courseForm">
+    <section *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" id="courseForm">
          <fieldset>
             <label for="name">Name: </label>
             <input [(ngModel)]="name">
