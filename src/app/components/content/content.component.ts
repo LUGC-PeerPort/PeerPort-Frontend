@@ -235,6 +235,12 @@ export class ContentComponent implements OnInit {
   }
 
   loadData(content: content): void {
+    if (!this.create && this.contentId === content.contentId) {
+      this.contentId = "";
+      // If user clicked the same content while create is open, do nothing.
+      return;
+    }
+
     this.name = content.name;
     this.description = content.description || "";
     this.viewable = content.viewable ? "true" : "false";
