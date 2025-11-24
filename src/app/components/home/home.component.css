@@ -109,7 +109,15 @@ li button:hover{
 #courseForm fieldset{
     border-color: transparent;
     margin: 5px;
+    padding-left: 0;
+    padding-right: 0;
 }
 #courseForm button{
     border-radius: 5px;
+    border-color: black;
+    background-color: #9D81EC;
+}
+#courseForm button:hover{
+    cursor: pointer;
+    border-color: transparent !important;
 }
