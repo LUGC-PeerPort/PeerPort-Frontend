@@ -1,17 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CourseService } from '../../services/course.service';
+import { CourseService, user } from '../../services/course.service';
 import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-interface Student {
-  userId: string;
-  name: string;
-  email: string;
-  profilePictureUrl: string;
-  idNumber: string;
-  role: string;
-}
+import { DataService } from '../../services/data.service';
 
 interface NewStudentPayload {
   name: string;
@@ -29,67 +21,54 @@ interface NewStudentPayload {
   styleUrl: './class-list.component.css'
 })
 export class ClassListComponent implements OnInit {
-  students: Student[] = [];
+  students: user[] = [];
   courseId: string = '';
 
   constructor(
-    private courseService: CourseService,
-    private route: ActivatedRoute
-  ) {}
+    private courseService: CourseService, private route: ActivatedRoute, private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.courseId = this.route.snapshot.paramMap.get('courseId') || '';
-    this.loadStudents();
+    this.route.params.subscribe(params => {
+      this.courseId = params['id'];
+      this.loadStudents();
+      this.dataService.changeMessage(this.courseId);
+    });
   }
 
   loadStudents(): void {
-    this.courseService.getAllStudentsByCourseId(this.courseId)
-      .subscribe(
-        (students: Student[]) => {
-          this.students = students;
-        },
-        (err: unknown) => {
-          console.error('Failed to load students:', err);
-        }
-      );
+    this.courseService.getAllStudentsByCourseId(this.courseId).subscribe((students) => {
+      if (!Array.isArray(students)) {
+        console.error('Invalid response format for students:', students);
+        return;
+      }
+      this.students = students;
+    });
   }
 
   addStudent(): void {
-     const newStudent: NewStudentPayload = {
-      name: 'New Student',
+    const newStudent: NewStudentPayload = {
+      name: 'New user',
       email: 'user@example.com',
       profilePictureUrl: 'https://example.com/',
       idNumber: 'ID1234',
-      role: 'student'
+      role: 'user'
     };
 
 
-    this.courseService.addStudentToCourse(this.courseId, newStudent)
-      .subscribe(
-        (addedStudent: Student) => {
-          this.students.push(addedStudent);
-        },
-        (err: unknown) => {
-          console.error('Failed to add student:', err);
-        }
-      );
+    this.courseService.addStudentToCourse(this.courseId, newStudent).subscribe(() => {
+      this.loadStudents();
+    });
   }
 
-  viewStudent(student: Student): void {
-    console.log('Viewing student:', student);
+  viewStudent(user: user): void {
+    console.log('Viewing user:', user);
   }
 
   removeStudent(index: number): void {
-    const student = this.students[index];
+    const user = this.students[index];
 
-    this.courseService.removeStudentFromCourse(this.courseId, student.userId)
-      .subscribe(
-        () => {
-          this.students.splice(index, 1);
-        },
-        (err: unknown) => {
-          console.error('Failed to remove student:', err);
-        }
-      );
+    this.courseService.removeStudentFromCourse(this.courseId, user.userId).subscribe(() => {
+      this.students.splice(index, 1);
+    });
   }
 }
