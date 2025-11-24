@@ -1,30 +1,5 @@
 <Section class="whole-page">
   <div class="page-content">
-  <!--Assignment Creation-->
-  <section class="create-background" *ngIf="isCreatePopupOpen">
-    <div class="create-foreground">
-    <form (ngSubmit)="createAssignment(nameInput.value, descInput.value, dateInput.value)">
-      <fieldset>
-        <legend>Create A New Assignment</legend>
-
-        <label for="name">Name</label>
-        <input type="text" id="name" #nameInput required />
-
-        <label for="description">Description</label>
-        <textarea id="description" #descInput required></textarea>
-
-        <label for="date">Date</label>
-        <input type="datetime-local" id="date" #dateInput required />
-
-    
-        <button type="submit">Create Assignment</button>
-      </fieldset>
-    </form>
-    <button (click)="openCloseCreatePopup()">Close</button>
-    </div>
-</section>
-
-  
   <!--Populate with Assignments-->
     <div class="assignment-list-background">
       <div class="title">
@@ -56,13 +31,36 @@
         </li>
       </ul>
     </div>
-
   </div>
   <div class="sidebars">
     <p class="sidebar-link1"> Weekly calendar --Coming Soon--</p>
     <p class="sidebar-link2"> Notifications --Coming Soon--</p>
   </div>
 </Section>
+
+<!--Assignment Creation-->
+  <section class="create-background" *ngIf="isCreatePopupOpen">
+    <div class="create-foreground">
+    <form (ngSubmit)="createAssignment(nameInput.value, descInput.value, dateInput.value)">
+      <fieldset>
+        <legend>Create A New Assignment</legend>
+
+        <label for="name">Name</label>
+        <input type="text" id="name" #nameInput required />
+
+        <label for="description">Description</label>
+        <textarea id="description" #descInput required></textarea>
+
+        <label for="date">Date</label>
+        <input type="datetime-local" id="date" #dateInput required />
+
+    
+        <button type="submit">Create Assignment</button>
+      </fieldset>
+    </form>
+    <button (click)="openCloseCreatePopup()">Close</button>
+    </div>
+</section>
 
 <!--Appear When Editing-->
 <section class="popup-background" *ngIf="isEditPopupOpen">
