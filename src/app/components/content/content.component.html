@@ -69,7 +69,7 @@
       <div *ngIf="node.files.length > 0">
         <iframe *ngFor="let file of node.files" [src]="file.url" loading="lazy"></iframe>
       </div>
-      <button *ngIf="!student" (click)="loadData(node); $event.stopPropagation()">Edit</button>
+      <button *ngIf="!student" (click)="loadData(node); $event.stopPropagation()">{{ !create && contentId == node.contentId ? "Close" : "Edit" }}</button>
       <button *ngIf="!student" (click)="createPressed(node.contentId)">{{ create && parentId === node.contentId ? "Close create" : "Add sub-content" }}</button>
 
       <!-- Inline create form for this node -->
