@@ -1,6 +1,44 @@
 <Section class="whole-page">
   <div class="page-content">
-  <!--Assignment Creation-->
+  <!--Populate with Assignments-->
+    <div class="assignment-list-background">
+      <div class="title">
+        <h2>Assignments</h2>
+        <button *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="openCloseCreatePopup()">Create Assignment</button>
+      </div>
+      <ul>
+        <li *ngFor="let assignment of ASSIGNMENTS; let i = index">
+          <input type="checkbox" [id]="'toggle-box-' + i" class="toggle-checkbox">
+          <div class="assignment-color">
+            <label [for]="'toggle-box-' + i" class="toggle-label">{{assignment.name}}</label>
+            
+            <div class="buttons">
+              <button *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" [id]="'delete-button' +i" (click)="deleteAssignment(assignment.assignmentId)">Delete</button>
+              <button *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" [id]="'edit-button' +i" (click)="openEditPopup(assignment)">Edit</button>
+            </div>
+          </div>
+          
+          <div class="collapsible-content">
+            <div>{{assignment.description}}</div>
+            <span class="dueDate">Due Date: {{assignment.dueDate}}</span>
+
+            <form (ngSubmit)="submitAssignment(assignment.assignmentId, fileSubmission)">
+              <label [for]="'chooseFile-' + i">Choose a file for upload:</label>
+              <input type="file" [id]="'chooseFile-' + i" accept=".pdf,.doc,.txt" #fileSubmission>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="sidebars">
+    <p class="sidebar-link1"> Weekly calendar --Coming Soon--</p>
+    <p class="sidebar-link2"> Notifications --Coming Soon--</p>
+  </div>
+</Section>
+
+<!--Assignment Creation-->
   <section class="create-background" *ngIf="isCreatePopupOpen">
     <div class="create-foreground">
     <form (ngSubmit)="createAssignment(nameInput.value, descInput.value, dateInput.value)">
@@ -23,45 +61,6 @@
     <button (click)="openCloseCreatePopup()">Close</button>
     </div>
 </section>
-
-  
-  <!--Populate with Assignments-->
-    <div class="assignment-list-background">
-      <div class="title">
-        <h2>Assignments</h2>
-        <button *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="openCloseCreatePopup()">Create Assignment</button>
-      </div>
-      <ul>
-        <li *ngFor="let assignment of ASSIGNMENTS; let i = index">
-          <input type="checkbox" [id]="'toggle-box-' + i" class="toggle-checkbox">
-          <div class="assignment-color">
-            <label [for]="'toggle-box-' + i" class="toggle-label">{{assignment.name}}</label>
-            <img src="arrow-down-solid-full.svg" class="arrow-toggle" width="10px" height="20px">
-         
-            <button *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" [id]="'delete-button' +i" (click)="deleteAssignment(assignment.assignmentId)">Delete</button>
-            <button *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" [id]="'edit-button' +i" (click)="openEditPopup(assignment)">Edit</button>
-          </div>
-          
-          <div class="collapsible-content">
-            <div>{{assignment.description}}</div>
-          
-
-            <form (ngSubmit)="submitAssignment(assignment.assignmentId, fileSubmission)">
-              <label [for]="'chooseFile-' + i">Choose a file for upload:</label>
-              <input type="file" [id]="'chooseFile-' + i" accept=".pdf,.doc,.txt" #fileSubmission>
-              <button type="submit">Submit</button>
-            </form>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-  </div>
-  <div class="sidebars">
-    <p class="sidebar-link1"> Weekly calendar --Coming Soon--</p>
-    <p class="sidebar-link2"> Notifications --Coming Soon--</p>
-  </div>
-</Section>
 
 <!--Appear When Editing-->
 <section class="popup-background" *ngIf="isEditPopupOpen">
