@@ -289,7 +289,7 @@ export class ContentComponent implements OnInit {
       });
     } else {
       // Create the content attached to course (top-level or fallback)
-      this.courseService.createNewContentAttachedToSpecificCourse(this.contentId, formData).subscribe(() => {
+      this.courseService.createNewContentAttachedToSpecificCourse(this.courseId, formData).subscribe(() => {
         finalize();
       });
     }
