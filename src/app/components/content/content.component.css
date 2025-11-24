@@ -6,3 +6,46 @@
     width: fit-content;
     padding: 20px;
 }
+.viewable a:hover{
+color:aqua;
+}
+.viewable a:active{
+    color:red;
+}
+.content-layout button{
+    margin:10px;
+}
+.content-layout button:hover{
+    background-color:rgb(26, 230, 230);
+    color:white;
+    transform: scale(1.1); 
+    transition:0.3s ease-in-out;
+}
+
+.description p{
+     font-family: "Montserrat", sans-serif;
+}
+.content-layout {
+    font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+}
+.content-layout label{
+    margin-right:10px;
+    margin-left:10px;
+    /* padding-right:20px;
+    border-right:20px; */
+}
+.savebtn{
+    margin:0px;
+}
+ul{
+    border-right:100%;
+    
+}
+.content-section{
+    background-color: rgb(177, 176, 176);
+    margin-top:1%;
+    padding-bottom:2%;
+    border-radius: 25px;
+    border:10px;
+}
