@@ -1,7 +1,6 @@
 <section class="whole-page">
-  <h1>{{courseName}}</h1>
-
   <section class="CourseGrades">
+    <h1>{{courseName}}</h1>
     <h3>Course Average: {{averageGrade}}</h3>
     <h3 *ngIf="student">Your Grade: {{studentGrade}}</h3>
 
@@ -51,8 +50,4 @@
           <button (click)="togglePopUp(submissionId)">Close</button>
       </div>
   </section>
-<div class="sidebars">
-    <p class="sidebar-link1"> Weekly calendar --Coming Soon--</p>
-    <p class="sidebar-link2"> Notifications --Coming Soon--</p>
-  </div>
 </section>

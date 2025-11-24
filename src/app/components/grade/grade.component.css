@@ -1,6 +1,7 @@
 
 .whole-page{
-  background-color: #63D9C4;
+  display: flex;
+  flex-direction: row;
 }
 
 /* Collapsible content for assignments */
@@ -73,7 +74,10 @@ ul{
 
 .CourseGrades{
     background-color: #63D9C4;
-    
+    width: 100%;
+    margin: 1em;
+    padding: 15px;
+    border-radius: 15px;
 }
 
 .gradePopup-background{
@@ -120,34 +124,9 @@ button:hover{
   color: white;
   cursor: pointer;
 }
-
+.toggle-label{
+  padding: 15px;
+}
 .assignment-color label:active{
   color: teal;
-}
-
-/*Side bars*/
-.sidebars{
-  display: grid;
-  margin-left: 1em;
-  position: absolute;
-  right: 0;
-  justify-content: right;
-  height: 100%;
-  margin-right: 10px;
-}
-.sidebar-link1{
-  color: white;
-  font-weight: bold;
-  border-radius:15px;
-  background-color: #63D9C4;
-  align-items: center;
-  padding: 15px;
-}
-.sidebar-link2{
-  color: white;
-  font-weight: bold;
-  border-radius:15px;
-  background-color: #E8B35E;
-  align-items: center;
-  padding: 15px;
 }
