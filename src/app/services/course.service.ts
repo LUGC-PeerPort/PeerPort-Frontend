@@ -125,7 +125,7 @@ export class CourseService {
   }
 
   // Enroll student in course
-  addStudentToCourse(courseId: string, userId: any) {
+  addStudentToCourse(courseId: string, userId: string) {
     return this.http.post<error>(`${this.courseUrl}courses/enroll/${courseId}/${userId}`, {withCredentials: true});
   }
 
