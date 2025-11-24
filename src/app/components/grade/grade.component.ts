@@ -159,7 +159,8 @@ export class GradeComponent implements OnInit {
       }
 
       // For each submission, find the corresponding grade
-      (assignment as assignmentWithSubmissions).submissions = response.map((submission: submission): submissionWithGrade => {
+      const newAssignment = assignment as assignmentWithSubmissions;
+      newAssignment.submissions = response.map((submission: submission): submissionWithGrade => {
         const grade = this.grades.find((g: grade) => g.assignmentSubmissionId === submission.assignmentSubmissionId);
         (submission as submissionWithGrade).grade = grade ?? null;
 
