@@ -1,18 +1,24 @@
-<section>
-    <div id="courseBox">
-        <h2>Courses</h2>
-        <ul>
-            <li *ngFor="let course of COURSES">
-                <button [routerLink]="['course/', course.courseId]" (click)="saveId(course.courseId)">
-                    <h4 *ngIf="course.name">{{course.name}}</h4>
-                    <p *ngIf="course.courseCode">{{course.courseCode}}</p>
-                    <p *ngIf="course.description">{{course.description}}</p>
-                </button>
-                <button *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="selectedCourse(course)"> Update </button>
-                <button *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="deleteCourse(course.courseId)">Delete Course</button>
-            </li>
-        </ul>
-    </div>
+<section id="mainSection">
+    <section id="courseDisplay">
+        <div id="courseBox">
+            <h2>Courses</h2>
+            <ul>
+                <li *ngFor="let course of COURSES">
+                    <button [routerLink]="['course/', course.courseId]" (click)="saveId(course.courseId)">
+                        <h4 *ngIf="course.name">{{course.name}}</h4>
+                        <p *ngIf="course.courseCode">{{course.courseCode}}</p>
+                        <p *ngIf="course.description">{{course.description}}</p>
+                    </button>
+                    <button class="update-deleteButton" *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="selectedCourse(course)"> Update </button>
+                    <button class="update-deleteButton" *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="deleteCourse(course.courseId)">Delete Course</button>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebars">
+                <p class="sidebar-link1"> Weekly calendar (Comming Soon) </p>
+                <p class="sidebar-link2"> Notifications (Comming Soon) </p>
+        </div>
+    </section>
     <section *ngIf="User?.userRole != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" id="courseForm">
          <fieldset>
             <label for="name">Name: </label>
