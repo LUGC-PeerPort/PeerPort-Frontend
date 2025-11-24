@@ -14,8 +14,11 @@
   border:10px solid;
   margin-right: 3em;
 
-  border-color: aqua;
+  border-color: white;
+  background-color: white;
   transition: max-height 0.3s ease-in-out; /* Smooth transition */
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .assignment-color {
@@ -81,35 +84,29 @@
 
 /*Side bars*/
 .sidebars{
-  position:absolute; 
-  right: 0; 
-  justify-content:right;  
+  display: grid;
+  margin-left: 1em;
+  position: absolute;
+  right: 0;
+  justify-content: right;
+  height: 100%;
+  margin-right: 10px;
 }
 .sidebar-link1{
-  font-family: "Verdana", sans-serif;
-  color:rgb(255, 255, 255);
-  font-weight:bold;
-  white-space: nowrap; 
- 
+  color: white;
+  font-weight: bold;
   border-radius:15px;
-  padding-right: -50px;
-  padding-bottom:50%;
   background-color: #63D9C4;
-  padding-left:30px;
-  margin-right: -3%;
-
+  align-items: center;
+  padding: 15px;
 }
 .sidebar-link2{
-  font-family: "Verdana", sans-serif;
-  color:rgb(255, 255, 255);
-  font-weight:bold;
-  
+  color: white;
+  font-weight: bold;
   border-radius:15px;
-  padding-right: 40px;
-  padding-bottom:150%;
-  background-color:#E8B35E;
-  padding-left:50px;
-  margin-right: -3%;
+  background-color: #E8B35E;
+  align-items: center;
+  padding: 15px;
 }
 
 /*Edit pop up*/
