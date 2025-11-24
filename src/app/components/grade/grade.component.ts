@@ -40,6 +40,7 @@ export class GradeComponent implements OnInit {
   courseId: string = "";
   courseName: string = "";
   users: user[] = [];
+  studentGrade: number = 0.0;
 
   // Grade variables
   minScore: number = 0;
@@ -202,6 +203,13 @@ export class GradeComponent implements OnInit {
       }
 
       this.users = response;
+    });
+  }
+
+  // 
+  getCalculatedGradeForUserInCourse(userId: string): void {
+    this.courses.getAverageGradeForUser(this.courseId, userId).subscribe(response => {
+      this.studentGrade = response.grade;
     });
   }
 

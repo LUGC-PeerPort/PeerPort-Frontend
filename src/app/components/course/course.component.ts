@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CourseService } from '../../services/course.service';
+import { course, CourseService } from '../../services/course.service';
 import { DataService } from '../../services/data.service';
 
 
@@ -12,7 +12,7 @@ import { DataService } from '../../services/data.service';
 })
 export class CourseComponent implements OnInit {
 
-  COURSES: any;
+  course: course | undefined;
   courseId: string | undefined;
   name: string | undefined;
   courseCode: string | undefined;
@@ -26,7 +26,7 @@ export class CourseComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.CourseService.getCourseById(params['id']).subscribe(response => {
-        this.COURSES = response;
+        this.course = response;
       })
       this.dataService.changeMessage(params['id']);
     });

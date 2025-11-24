@@ -26,7 +26,7 @@
       <span class="dropped" *ngIf="s.droppedOn">(Dropped)</span>
       
       <button class="re-enroll" *ngIf="!student && s.droppedOn" (click)="addStudent(s.userId)">Re-enroll</button>
-      <button class="remove-button" *ngIf="!student" (click)="removeStudent(i)">Remove</button>
+      <button class="remove-button" *ngIf="!student && !s.droppedOn" (click)="removeStudent(i)">Remove</button>
       <button>Email(Coming soon...)</button>
     </li>
   </ul>
