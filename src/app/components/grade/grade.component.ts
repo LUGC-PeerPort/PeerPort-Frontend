@@ -35,7 +35,14 @@ export class GradeComponent implements OnInit {
 
   courseAverageGrade:any;
 
+  isGradePopupOpen = false;
+
   constructor(private route: ActivatedRoute, private CourseService: CourseService, private dataService: DataService, private authService: AuthService){}
+
+  openCloseGradePopup(){
+    this.isGradePopupOpen = !this.isGradePopupOpen;
+  }
+
 
 //GET
   getAllGradesForCourse(courseId:string):void{
@@ -51,14 +58,15 @@ export class GradeComponent implements OnInit {
   }
 
   getAverageGradeOfCourse(courseId:string):void{
-    this.CourseService.getAverageGradeForCourse(courseId).subscribe((response)=>{
+    this.CourseService.getAverageGradeForCourse(courseId).subscribe((response:any)=>{
+      console.log(response);
       this.courseAverageGrade = response.grade;
     });
   }
 
   getAverageGradeForUser(courseId:string, userId:string):void{
-    this.CourseService.getAverageGradeForUser(courseId,userId).subscribe(response=>{
-      this.userAverageGrade = response;
+    this.CourseService.getAverageGradeForUser(courseId,userId).subscribe((response:any)=>{
+      this.userAverageGrade = response.grade;
     });
   }
 
@@ -77,8 +85,16 @@ export class GradeComponent implements OnInit {
   }
 
   //CREATE
-  createGrade(courseId:string, userId:string, assignmentSubmissionId:string, grade:any):void{
+  createGrade(courseId:string, userId:string, assignmentSubmissionId:string, minScore:number,maxScore:number,achievedScore:number,weight:number):void{
+      const grade ={
+        minScore: minScore,
+        maxScore:maxScore,
+        achievedScore:achievedScore,
+        weight: weight
+      }
+
     this.CourseService.createGradeForAssignment(courseId, userId, assignmentSubmissionId, grade).subscribe(response=>{
+      this.GRADES.push(response);
     });
   }
 

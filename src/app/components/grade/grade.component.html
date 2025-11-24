@@ -14,13 +14,56 @@
 
       <div class="collapsible-content">
         <ul class="submissionsForAssignment">
-          <li *ngFor="let submission of SUBMISSIONS[assignment.assignmentId]">
-            {{submission.userName}}: {{submission.grade || 'Not graded'}}
+          <li *ngFor="let submission of SUBMISSIONS[assignment.assignmentId]; let index = j">
+            {{submission.userId}}
+            <button [id]="'grade-button-' + j" (click)="openCloseGradePopup()">Grade</button>
+            <button [id]="'edit-grade-button' + j" (click)="openEditPopup()">Edit Grade</button>
+            <button [id]="'delete-grade-button' + j" (click)="deleteGrade(gradeId)">Delete</button>
           </li>
         </ul>
       </div>
     </li>
   </ul>
+</section>
+
+
+<section class="gradePopup-background" *ngIf="isGradePopupOpen">
+    <div class="gradePopup-foreground">
+        <form (ngSubmit)="createGrade(COURSES.courseId, userId, minScoreInput, maxScoreInput, achievedScore.value, weightInput.value)">
+            <label for="minScore">Minimum Score</label>
+            <input id="minScore" type="number">
+            
+            <label for="maxScore">Maximum Score</label>
+            <input id="maxScore" type="number">
+
+            <label for="achievedScore">Achieved Score</label>
+            <input id="achievedScore" type="number">
+
+            <label for="weightInput">Weight</label>
+            <input id="weightInput" type="number">
+            <button type="submit">Submit</button>
+        </form>
+        <button (click)="openCloseGradePopup">Close</button>
+    </div>
+</section>
+
+<section class="editGrade-background">
+    <div class="editGrade-foreground">
+        <form (ngSubmit)="editGrade(gradeId.value, editMinScore.value, editMaxScore.value, editAchievedScore.value, editweightInput.value)">
+            <label for="editMinScore">Minimum Score</label>
+            <input id="editMinScore" type="number">
+            
+            <label for="editMaxScore">Maximum Score</label>
+            <input id="editMaxScore" type="number">
+
+            <label for="editAchievedScore">Achieved Score</label>
+            <input id="editAchievedScore" type="number">
+
+            <label for="editweightInput">Weight</label>
+            <input id="editweightInput" type="number">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </section>
 
 <section class="UserGrades">
