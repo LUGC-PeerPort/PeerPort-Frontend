@@ -12,9 +12,9 @@
           <div class="assignment-color">
             <label [for]="'toggle-box-' + i" class="toggle-label">{{assignment.name}}</label>
             
-            <div class="buttons">
-              <button *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" [id]="'delete-button' +i" (click)="deleteAssignment(assignment.assignmentId)">Delete</button>
-              <button *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" [id]="'edit-button' +i" (click)="openEditPopup(assignment)">Edit</button>
+            <div class="buttons" *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'">
+              <button  [id]="'delete-button' +i" (click)="deleteAssignment(assignment.assignmentId)">Delete</button>
+              <button  [id]="'edit-button' +i" (click)="openEditPopup(assignment)">Edit</button>
             </div>
           </div>
           

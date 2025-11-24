@@ -1,3 +1,6 @@
+
+
+
 /* Collapsible content for assignments */
 .collapsible-content {
   max-height: 0;
@@ -5,13 +8,14 @@
   border: 2px solid aqua; /* simpler border */
   border-radius: 5px;
   margin: 5px 0;
+  visibility: hidden;
   transition: max-height 0.3s ease-in-out;
   padding: 0 10px; /* optional padding inside collapsible */
 }
 
 /* Assignment header style */
 .assignment-color {
-  background-color: #ffa704;
+  background-color: #E8B35E;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   padding: 10px;
@@ -30,6 +34,7 @@
 .toggle-checkbox:checked ~ .collapsible-content {
     overflow: scroll;
     height: 500px;
+    background-color: white;
     padding: 10px; /* add padding when expanded */
 }
 
@@ -46,7 +51,6 @@
 
 /* Optional: submissions list style */
 .submissionsForAssignment {
-  list-style: none;
   padding-left: 0;
   margin: 0;
 }
@@ -54,4 +58,14 @@
 .submissionsForAssignment li {
   padding: 5px 0;
   border-bottom: 1px solid #ccc;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.CourseGrades{
+    background-color: #63D9C4;
+    height: 100%;
+
 }
