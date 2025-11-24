@@ -32,6 +32,24 @@ dueDate: Date | string;
 assignmentId: string;
 }
 
+
+
+export interface Student {
+  userId: string;
+  name: string;
+  email: string;
+  profilePictureUrl: string;
+  idNumber: string;
+  role: string;
+}
+
+export interface NewStudentPayload {
+  name: string;
+  email: string;
+  profilePictureUrl: string;
+  idNumber: string;
+  role: string;
+}
 interface error {
   message: string;
 };
@@ -149,4 +167,23 @@ export class CourseService {
   deleteGrade(gradeId:string){
     return this.http.delete(`${this.courseUrl}/grade/by-id/${gradeId}`,{withCredentials:true});
   }
+  
+
+getAllStudentsByCourseId(courseId: string) {
+  return this.http.get<Student[]>(`${this.courseUrl}courses/${courseId}/students`,{ withCredentials: true });
+}
+
+
+getStudentByCourseId(courseId: string, studentId: string) {
+  return this.http.get<Student>(`${this.courseUrl}courses/${courseId}/students/${studentId}`,{ withCredentials: true });
+}
+
+//CREATE
+addStudentToCourse(courseId: string, payload: NewStudentPayload) {
+  return this.http.post<Student>(`${this.courseUrl}courses/${courseId}/students`,payload,{ withCredentials: true });
+}
+
+//DELETE
+removeStudentFromCourse(courseId: string, studentId: string) {return this.http.delete<void>(`${this.courseUrl}courses/${courseId}/students/${studentId}`,{ withCredentials: true });
+}
 }
