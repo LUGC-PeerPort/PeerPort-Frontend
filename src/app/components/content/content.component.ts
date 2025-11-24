@@ -87,11 +87,113 @@ export class ContentComponent implements OnInit {
         return;
       }
 
-      // Process each content item
-      this.contentList = response.map((content): contentWithFiles => { 
-        return this.parseData(content);
-      });
+      // Process incoming content items into parsed objects
+      const incoming = response.map((content): contentWithFiles => this.parseData(content));
+
+      // Merge incoming into existing list (update fields, add new items, keep others)
+      this.contentList = this.mergeContentLists(this.contentList, incoming);
     });
+  }
+
+  // Merge two content lists: update existing items, add new ones, do not remove items
+  private mergeContentLists(existing: contentWithFiles[], incoming: contentWithFiles[]): contentWithFiles[] {
+    if (!existing || existing.length === 0) {
+      // nothing to merge with, return incoming as-is
+      return incoming.slice();
+    }
+
+    // Create a map for existing items by id for quick lookup
+    const existingMap = new Map<string, contentWithFiles>();
+    for (const it of existing) {
+      if (it.contentId) existingMap.set(it.contentId, it);
+    }
+
+    // For each incoming, if exists update fields, else add
+    for (const inc of incoming) {
+      if (!inc.contentId) {
+        // no id; skip merging, push as new
+        existing.push(inc);
+        continue;
+      }
+
+      const found = existingMap.get(inc.contentId);
+      if (found) {
+        this.updateContentFields(found, inc);
+      } else {
+        existing.push(inc);
+      }
+    }
+
+    return existing;
+  }
+
+  // Update scalar fields, merge files and subContent recursively
+  private updateContentFields(target: contentWithFiles, source: contentWithFiles): void {
+    // Update scalar fields if changed
+    target.name = source.name ?? target.name;
+    target.description = source.description ?? target.description;
+    target.viewable = source.viewable ?? target.viewable;
+    target.dateCreated = source.dateCreated ?? target.dateCreated;
+    target.dateUpdated = source.dateUpdated ?? target.dateUpdated;
+
+    // Merge files: update existing files by id/name, add new ones
+    target.files = this.mergeFiles(target.files || [], source.files || []);
+
+    // Merge subContent recursively
+    if (!target.subContent) target.subContent = [];
+    if (source.subContent && source.subContent.length > 0) {
+
+      // create map for target subcontent
+      const subMap = new Map<string, contentWithFiles>();
+      for (const s of target.subContent) if (s.contentId) subMap.set(s.contentId, s);
+      for (const incChild of source.subContent) {
+        if (!incChild.contentId) {
+          target.subContent.push(incChild);
+          continue;
+        }
+
+        const found = subMap.get(incChild.contentId);
+        if (found) {
+          this.updateContentFields(found, incChild);
+        } else {
+          target.subContent.push(incChild);
+        }
+      }
+    }
+  }
+
+  // Merge files arrays without duplicating entries.
+  private mergeFiles(existingFiles: fileDetails[], incomingFiles: fileDetails[]): fileDetails[] {
+    // Make sure that the lists have content
+    if (!existingFiles || existingFiles.length === 0) return incomingFiles.slice();
+    if (!incomingFiles || incomingFiles.length === 0) return existingFiles.slice();
+
+    const keyOf = (f: any) => f.fileId ?? f.id ?? f.fileName ?? f.name ?? '';
+
+    const existingMap = new Map<string, fileDetails>();
+    for (const f of existingFiles) existingMap.set(keyOf(f), f);
+
+    for (const inc of incomingFiles) {
+      const k = keyOf(inc);
+      if (!k) {
+        existingFiles.push(inc);
+        continue;
+      }
+
+      const found = existingMap.get(k);
+      if (found) {
+        // update fields on existing file
+        found.fileName = inc.fileName ?? found.fileName;
+        found.file = inc.file ?? found.file;
+
+        // update url if provided
+        if ((inc as any).url) found.url = (inc as any).url;
+      } else {
+        existingFiles.push(inc);
+      }
+    }
+
+    return existingFiles;
   }
 
   // Parse the content data to include file URLs
