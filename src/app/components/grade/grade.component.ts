@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CourseService, assignment, submission, grade, file } from '../../services/course.service';
+import { CourseService, assignment, submission, grade, file, user } from '../../services/course.service';
 import { DataService } from '../../services/data.service';
 import { AuthService } from '../../services/auth.service';
 import { NgFor,NgIf } from '@angular/common';
@@ -139,6 +139,7 @@ export class GradeComponent implements OnInit {
   averageGrade: number = 0;
   courseId: string = "";
   courseName: string = "";
+  users: user[] | [] = [];
 
   // Grade variables
   minScore: number = 0;
@@ -187,6 +188,9 @@ export class GradeComponent implements OnInit {
 
           // Get all assignments for the course
           this.getAllAssignments();
+
+          // Get all the users in the course
+          this.getAllUsersInCourse();
         } else {
           // Get all the grades for this course
           this.getAllGradesForUser();
@@ -292,6 +296,19 @@ export class GradeComponent implements OnInit {
     });
   }
 
+  // Get all users in the course
+  getAllUsersInCourse(): void {
+    this.courses.getAllStudentsByCourseId(this.courseId).subscribe(response => {
+      if (!Array.isArray(response)) {
+        window.alert("Error encountered: " + response);
+        return;
+      }
+
+      this.users = response;
+    });
+  }
+
+
   // Create the grade
   createGrade(): void {
     // Define the grade using the component's properties
@@ -373,6 +390,12 @@ export class GradeComponent implements OnInit {
   calculateGrade(grade: grade | null): number | null {
     if (!grade) return null;
     return (grade.achievedScore - grade.minScore) / (grade.maxScore - grade.minScore) * 100;
+  }
+
+  // Get the user name from userId
+  getUserName(userId: string): string {
+    const user = this.users.find(u => u.userId === userId);
+    return user ? user.name : "Unknown User";
   }
 
   // Get the type of a file from its byte array
