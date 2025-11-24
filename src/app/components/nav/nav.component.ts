@@ -34,7 +34,6 @@ export class NavComponent implements OnInit {
     // check auth service for global username so we can show / hide links
     this.authService.currentUser().subscribe((response) => {
       this.User = response as {userId: string, roleId: string};
-      console.log(this.User.roleId);
     });
 
     this.dataService.currentMessage.subscribe(message => {

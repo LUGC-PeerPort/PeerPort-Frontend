@@ -33,6 +33,15 @@
   padding-top: 15px;
   padding-bottom: 15px;
   justify-content: center;
+  box-shadow: transparent 3px 3px 0px 0px;
+}
+a.link:hover{
+  transition: 0.5s ease;
+  box-shadow: #081a4b 2px 2px 0px 0px !important;
+  background-color: white !important;
+  color: #081a4b !important;
+  cursor: pointer;
+  font-weight: bold !important;
 }
 img{
     width: 78px;

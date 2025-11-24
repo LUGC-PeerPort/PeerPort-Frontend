@@ -1,24 +1,31 @@
 <section>
-    <div>
-        <div>
-            <h1>{{COURSES.name}}</h1>
-            <div>
-                <button [routerLink]="['content']">
+    <div id="courseNav">
+        <h1>{{COURSES.name}}</h1>
+        <div id="courseContent">
+            <div [routerLink]="['content']">
+                <button>
                     Content
                 </button>
-                <button [routerLink]="['assignments']">
+            </div>
+            <div [routerLink]="['assignments']">
+                <button>
                     Assignments
                 </button>
+            </div>
+            <div>
                 <button>
                     Quizzes (Comming Soon)
                 </button>
-                <button [routerLink]="['grades']">
+            </div>
+            <div [routerLink]="['grades']">
+                <button>
                     Grades
                 </button>
             </div>
         </div>
-        <div>
-
-        </div>
+    </div>
+    <div class="sidebars">
+            <p class="sidebar-link1"> Weekly calendar (Comming Soon) </p>
+            <p class="sidebar-link2"> Notifications (Comming Soon) </p>
     </div>
 </section>

@@ -69,10 +69,7 @@ export class HomeComponent implements OnInit {
       endDate: this.endDate
     }
 
-    console.log(newCourse)
-
     const id = this.courseId as string
-    console.log(id)
 
     this.service.updateCourse(id, newCourse).subscribe(response => {
       if (this.User && this.User.userId) {
@@ -106,8 +103,6 @@ export class HomeComponent implements OnInit {
       endDate: this.endDate
     }
 
-    console.log(newCourse)
-
     this.service.createCourse(newCourse).subscribe(response => {
       if (this.User && this.User.userId) {
         this.getCoursesByUserId(this.User.userId);
@@ -119,7 +114,6 @@ export class HomeComponent implements OnInit {
   //save the course Id and send it to the Nav
   saveId(id: string){
     this.dataService.changeMessage(id);
-    console.log(id);
   }
 
   ngOnInit(): void {
