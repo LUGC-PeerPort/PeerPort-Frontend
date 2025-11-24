@@ -19,9 +19,10 @@
             <p class="sidebar-link2"> Notifications (Comming Soon) </p>
         </div>
     </section>
-    <section *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" id="courseForm">
-         <fieldset>
-            <label for="name">Name*: </label>
+    <section id="courseForm" class="popup-background">
+        <div class="popup-foreground"> 
+        <fieldset>
+            <label for="name">Name: </label>
             <input required [(ngModel)]="name">
         </fieldset>
         <fieldset>
@@ -50,5 +51,6 @@
         <button *ngIf="courseId" (click)="updateCourse()"> Update </button>
         <button *ngIf="courseId" (click)="resetForm()"> Clear Form </button>
         <button *ngIf="!courseId" (click)="createCourse()"> Create </button>
+    </div>
     </section>
 </section>

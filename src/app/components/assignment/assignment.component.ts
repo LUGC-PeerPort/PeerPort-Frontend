@@ -64,6 +64,7 @@ export class AssignmentComponent implements OnInit{
       this.ASSIGNMENTS.push(response);
       console.log("Assignment created:", response);
     })
+    this.isCreatePopupOpen = false;
   }
   //EDIT
   editAssignment(assignmentId:string, name:string, description:string, dueDate:string): void{
@@ -81,6 +82,7 @@ export class AssignmentComponent implements OnInit{
       }
       console.log("assignment edited")
     })
+    this.isEditPopupOpen = false;
   }
   
   openEditPopup(assignment:any){
