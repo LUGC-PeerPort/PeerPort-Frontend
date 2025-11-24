@@ -73,6 +73,7 @@ li button{
     background-image: url(../../../../public/courseBackground.png) !important;
     background-size: cover !important;
     background-blend-mode: soft-light !important;
+    transition: 0.5s ease;
 }
 li button:hover{
     color: #081a4b;
