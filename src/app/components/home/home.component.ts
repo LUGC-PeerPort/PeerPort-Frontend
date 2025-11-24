@@ -14,6 +14,8 @@ import { DataService } from '../../services/data.service';
 })
 export class HomeComponent implements OnInit {
 
+  isPopupOpen = false;
+
   COURSES: any;
   courseId: string | undefined;
   name: string | undefined;
@@ -28,6 +30,11 @@ export class HomeComponent implements OnInit {
   userRole: string | undefined;
 
   constructor(private service: CourseService, private authService: AuthService, private router: Router, private dataService: DataService) { }
+
+  //pop up
+  openClosePopup(){
+    this.isPopupOpen = !this.isPopupOpen;
+  }
 
   //Get
   getCoursesByUserId(userId: string): void{
