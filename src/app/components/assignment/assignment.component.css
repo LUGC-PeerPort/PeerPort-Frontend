@@ -74,7 +74,8 @@
 
 
 button{
-    color: #081a4b;
+    color: white;
+    background-color: #081a4b;
     box-shadow: #081a4b 2px 2px 0px 0px !important;
     cursor: pointer;
 }
