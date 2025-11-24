@@ -27,7 +27,7 @@
     <label for="description">Description:</label>
     <textarea id="description" [(ngModel)]="description" name="description"></textarea>
 
-    <label for="viewable">View:</label>
+    <label for="viewable">Viewable:</label>
     <select id="viewable" [(ngModel)]="viewable" name="viewable">
       <option value="true">True</option>
       <option value="false">False</option>
@@ -54,7 +54,7 @@
   <li class="content-panel" *ngIf="node.viewable || !student" (click)="toggleContent(node); $event.stopPropagation()">
     <h4>{{ node.name }}</h4>
     <div class="viewable">
-    <a *ngIf="!student">{{ node.viewable ? 'Viewable' : 'Not Viewable' }}</a>
+    <a *ngIf="!student">{{ node.viewable ? 'View' : 'Not Viewable' }}</a>
 </div>
     <div class="content-meta">
       <small *ngIf="node.dateCreated">Created: {{ node.dateCreated | date:'short' }}</small>
@@ -70,7 +70,7 @@
         <iframe *ngFor="let file of node.files" [src]="file.url" loading="lazy"></iframe>
       </div>
       <button *ngIf="!student" (click)="loadData(node); $event.stopPropagation()">Edit</button>
-      <button *ngIf="!student" (click)="createPressed(node.contentId)">{{ create && parentId === node.contentId ? "Close create" : "Add content" }}</button>
+      <button *ngIf="!student" (click)="createPressed(node.contentId)">{{ create && parentId === node.contentId ? "Close create" : "Add sub-content" }}</button>
 
       <!-- Inline create form for this node -->
       <div *ngIf="(create && parentId === node.contentId) || contentId === node.contentId" class="contentData">
