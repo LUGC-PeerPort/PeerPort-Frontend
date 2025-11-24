@@ -8,6 +8,25 @@
     padding: 15px;
     margin-bottom: 0;
 }
+#header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#header button{
+    margin-right: 15px;
+    border-radius: 15px;
+    height: fit-content;
+    padding: 10px;
+    align-self: center;
+    border-color: transparent;
+    background-color: #9D81EC;
+}
+#header button:hover{
+    cursor: pointer;
+    background-color: white !important;
+    box-shadow: #9D81EC 2px 2px 0 0 !important;
+}
 ul{
     justify-items: left;
     display: grid;
@@ -47,6 +66,7 @@ li button{
     height: 25px;
     text-align: center;
     padding-top: 5px;
+    text-transform: capitalize;
 }
 #courseButton:hover{
     background-color: #a8a3a3 !important;
@@ -104,7 +124,7 @@ li button:hover{
     border-radius: 15px;
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
 }
 #courseForm fieldset{
     border-color: transparent;
@@ -113,11 +133,40 @@ li button:hover{
     padding-right: 0;
 }
 #courseForm button{
-    border-radius: 5px;
-    border-color: black;
-    background-color: #9D81EC;
+    border-radius: 15px;
+    border-color: transparent;
+    background-color: #ffa704;
+    margin: 5px;
+    padding: 15px;
 }
 #courseForm button:hover{
     cursor: pointer;
-    border-color: transparent !important;
+    background-color: white !important;
+    box-shadow: #ffa704 2px 2px 0 0 !important;
+}
+
+/**Pop up**/
+.popup-background{
+  display: flex;
+  background-color: rgba(255,255,255,0.5);
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+.popup-foreground{
+  background: rgb(19, 243, 187);
+  padding: 2em;
+  width: 350px;
+  margin-top: 8em;
+  height: 50%;
+  border-color: #ffa704;
+  border-width: 10px;
+  border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+
 }

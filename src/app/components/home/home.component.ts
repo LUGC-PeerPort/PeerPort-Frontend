@@ -36,6 +36,13 @@ export class HomeComponent implements OnInit {
     this.isPopupOpen = !this.isPopupOpen;
   }
 
+  //get all course
+  getAllcourses(): void{
+    this.service.getCourses().subscribe(response => {
+      this.COURSES = response;
+    })
+  }
+
   //Get
   getCoursesByUserId(userId: string): void{
     this.service.getAllCoursesByUserId(userId).subscribe(response => {
@@ -63,6 +70,8 @@ export class HomeComponent implements OnInit {
     this.description = course.description,
     this.startDate = course.startDate,
     this.endDate = course.endDate
+
+    this.openClosePopup();
   }
 
   //Update
@@ -132,6 +141,7 @@ export class HomeComponent implements OnInit {
       } else {
         console.log("No User");
       }
+      // this.getAllcourses();
     });
   }
 

@@ -21,6 +21,7 @@ section{
   justify-content: center;
   width: 50%;
   height: fit-content;
+  text-transform: capitalize;
 }
 #courseContent{
   display: grid;
