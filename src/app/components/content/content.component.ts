@@ -298,7 +298,7 @@ export class ContentComponent implements OnInit {
   // Whenever create button is pressed
   createPressed(parentId: string): void {
     // If user clicked the same parent while create is open, toggle it closed.
-    const normalizedParent = parentId == "" ? undefined : parentId;
+    const normalizedParent = parentId === "" ? undefined : parentId;
     if (this.create && this.parentId === normalizedParent) {
       this.create = false;
       this.parentId = undefined;
