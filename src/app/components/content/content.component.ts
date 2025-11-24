@@ -262,7 +262,7 @@ export class ContentComponent implements OnInit {
     // Append each selected file as a separate 'files' entry so the backend receives a list
     if (files && files.length > 0) {
       for (let i = 0; i < files.length; i++) {
-      formData.append('files', files[i]);
+        formData.append('files', files[i]);
       }
     }
 
@@ -298,7 +298,7 @@ export class ContentComponent implements OnInit {
   // Whenever create button is pressed
   createPressed(parentId: string): void {
     // If user clicked the same parent while create is open, toggle it closed.
-    const normalizedParent = parentId == "" ? undefined : parentId;
+    const normalizedParent = parentId === "" ? undefined : parentId;
     if (this.create && this.parentId === normalizedParent) {
       this.create = false;
       this.parentId = undefined;
@@ -324,7 +324,7 @@ export class ContentComponent implements OnInit {
     // Append each selected file as a separate 'files' entry so the backend receives a list
     if (files && files.length > 0) {
       for (let i = 0; i < files.length; i++) {
-      formData.append('files', files[i]);
+        formData.append('files', files[i]);
       }
     }
 
@@ -355,7 +355,6 @@ export class ContentComponent implements OnInit {
       for (let file of data) {
         this.selectedFiles.push(file);
       }
-      console.log(this.selectedFiles);
     }
   }
 

@@ -12,26 +12,16 @@
   </div>
 
   <ul class="student-list">
-    <li *ngFor="let student of students; let i = index" class="student-item">
+    <li *ngFor="let s of students; let i = index" class="student-item">
 
-
-      <span class="student-name">
-        {{ student.name || 'Unnamed Student' }}
-      </span>
-
-
-      <span class="student-email">
-        {{ student.email }}
-      </span>
-
-  
-      <button class="view-button" (click)="viewStudent(student)">
-        View
-      </button>
-
-      <button class="remove-button" (click)="removeStudent(i)">
-        Remove
-      </button>
+      <span class="role">{{ s.role === "user" ? "[Student]" : s.role === "admin" ? "[Admin]" : "[Teacher]" }}</span>
+      <span class="student-name">{{ s.name }}</span>
+      <span class="student-email">{{ s.email }}</span>
+      <span class="dropped" *ngIf="s.droppedOn">(Dropped)</span>
+      
+      <button class="re-enroll" *ngIf="!student && s.droppedOn" (click)="addStudent(s.userId)">Re-enroll</button>
+      <button class="remove-button" *ngIf="!student" (click)="removeStudent(i)">Remove</button>
+      <button>Email(Coming soon...)</button>
     </li>
   </ul>
 </div>

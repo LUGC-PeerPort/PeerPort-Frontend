@@ -37,20 +37,24 @@ export class ClassListComponent implements OnInit {
       this.loadStudents();
 
       // Get all users for adding to course
-      this.loadUsers();
+      if (!this.student) {
+        this.loadUsers();
+      }
     });
   }
 
+  // Get all users
   loadUsers(): void {
     this.auth.getAllUsers().subscribe((users) => {
       if (!Array.isArray(users)) {
         console.error('Invalid response format for users:', users);
         return;
       }
-      this.users = users;
+      this.users = users.filter(user => !this.students.some(student => student.userId === user.userId));
     });
   }
 
+  // Get the students in the course
   loadStudents(): void {
     this.courseService.getAllStudentsByCourseId(this.courseId).subscribe((students) => {
       if (!Array.isArray(students)) {
@@ -61,21 +65,25 @@ export class ClassListComponent implements OnInit {
     });
   }
 
+  // Add a student to the course
   addStudent(userId: string): void {
     this.courseService.addStudentToCourse(this.courseId, userId).subscribe(() => {
       this.loadStudents();
+      if (!this.student) {
+        this.loadUsers();
+      }
     });
   }
 
-  viewStudent(user: user): void {
-    console.log('Viewing user:', user);
-  }
-
+  // Remove a student from the course
   removeStudent(index: number): void {
     const user = this.students[index];
 
     this.courseService.removeStudentFromCourse(this.courseId, user.userId).subscribe(() => {
-      this.students.splice(index, 1);
+      this.loadStudents();
+      if (!this.student) {
+        this.loadUsers();
+      }
     });
   }
 }

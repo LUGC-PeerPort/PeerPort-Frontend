@@ -60,7 +60,7 @@
       <p *ngIf="node.description">{{ node.description }}</p>
       <p>Attachments:</p>
       <div *ngIf="node.files.length > 0">
-        <iframe *ngFor="let file of node.files" [src]="file.url" loading="lazy" frameborder="0"></iframe>
+        <iframe *ngFor="let file of node.files" [src]="file.url" loading="lazy"></iframe>
       </div>
       <button *ngIf="!student" (click)="loadData(node); $event.stopPropagation()">View</button>
       <button *ngIf="!student" (click)="createPressed(node.contentId)">{{ create && parentId === node.contentId ? "Close create" : "Add content" }}</button>
