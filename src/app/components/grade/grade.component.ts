@@ -38,10 +38,14 @@ export class GradeComponent implements OnInit {
   isGradePopupOpen = false;
 
   constructor(private route: ActivatedRoute, private CourseService: CourseService, private dataService: DataService, private authService: AuthService){}
-
-  openCloseGradePopup(){
+  currentSubmissionId!: string; //change
+  openCloseGradePopup(submissionId?: string){
+    if(submissionId){//change 3 lines
+      this.currentSubmissionId = submissionId;
+    }
     this.isGradePopupOpen = !this.isGradePopupOpen;
   }
+  
 
 
 //GET
@@ -113,6 +117,20 @@ export class GradeComponent implements OnInit {
         this.GRADES[index] = { ...this.GRADES[index], ...response };
       }
     });
+  }
+  //edit popup - added this - change
+  isEditPopupOpen = false;
+  //selectedGradeId: string | null = null; //change
+  currentGradeId!: string; //change
+
+  openEditPopup(gradeId: string) {
+    //this.selectedGradeId = gradeId; //change
+    this.currentGradeId = gradeId; //change
+    this.isEditPopupOpen = true;
+  }
+  closeEditPopup() {
+    this.isEditPopupOpen = false;
+    //this.selectedGradeId = null;
   }
   //DELETE
   deleteGrade(gradeId:string):void{

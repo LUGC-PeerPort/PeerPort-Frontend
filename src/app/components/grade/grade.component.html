@@ -14,11 +14,11 @@
 
       <div class="collapsible-content">
         <ul class="submissionsForAssignment">
-          <li *ngFor="let submission of SUBMISSIONS[assignment.assignmentId]; let index = j">
+          <li *ngFor="let submission of SUBMISSIONS[assignment.assignmentId]; let j = index"> <!--change-->
             {{submission.userId}}
-            <button [id]="'grade-button-' + j" (click)="openCloseGradePopup()">Grade</button>
-            <button [id]="'edit-grade-button' + j" (click)="openEditPopup()">Edit Grade</button>
-            <button [id]="'delete-grade-button' + j" (click)="deleteGrade(gradeId)">Delete</button>
+            <button [id]="'grade-button-' + j" (click)="openCloseGradePopup(submission.submissionId)">Grade</button>
+            <button [id]="'edit-grade-button' + j" (click)="openEditPopup(submission.gradeId)">Edit Grade</button>
+            <button [id]="'delete-grade-button' + j" (click)="deleteGrade(submission.gradeId)">Delete</button>
           </li>
         </ul>
       </div>
@@ -29,40 +29,41 @@
 
 <section class="gradePopup-background" *ngIf="isGradePopupOpen">
     <div class="gradePopup-foreground">
-        <form (ngSubmit)="createGrade(COURSES.courseId, userId, minScoreInput, maxScoreInput, achievedScore.value, weightInput.value)">
+        <form (ngSubmit)="createGrade(COURSES.courseId, userId, currentSubmissionId, +minScoreInput.value, +maxScoreInput.value, +achievedScore.value, +weightInput.value)"> <!--change, added.value and currentsubmissionid-->
             <label for="minScore">Minimum Score</label>
-            <input id="minScore" type="number">
+            <input id="minScore" type="number" #minScoreInput><!--change added #-->
             
             <label for="maxScore">Maximum Score</label>
-            <input id="maxScore" type="number">
+            <input id="maxScore" type="number" #maxScoreInput><!--change added #-->
 
             <label for="achievedScore">Achieved Score</label>
-            <input id="achievedScore" type="number">
+            <input id="achievedScore" type="number" #achievedScore><!--change added #-->
 
             <label for="weightInput">Weight</label>
-            <input id="weightInput" type="number">
+            <input id="weightInput" type="number" #weightInput><!--change added #-->
             <button type="submit">Submit</button>
         </form>
-        <button (click)="openCloseGradePopup">Close</button>
+        <button (click)="openCloseGradePopup()">Close</button> <!--change here-->
     </div>
 </section>
 
 <section class="editGrade-background">
     <div class="editGrade-foreground">
-        <form (ngSubmit)="editGrade(gradeId.value, editMinScore.value, editMaxScore.value, editAchievedScore.value, editweightInput.value)">
+        <form (ngSubmit)="editGrade(currentGradeId, +editMinScore.value, +editMaxScore.value, +editAchievedScore.value, +editweightInput.value)"> <!--change, gradeId.value-->
             <label for="editMinScore">Minimum Score</label>
-            <input id="editMinScore" type="number">
+            <input id="editMinScore" type="number" #editMinScore><!--change added #-->
             
             <label for="editMaxScore">Maximum Score</label>
-            <input id="editMaxScore" type="number">
+            <input id="editMaxScore" type="number" #editMaxScore><!--change added #-->
 
             <label for="editAchievedScore">Achieved Score</label>
-            <input id="editAchievedScore" type="number">
+            <input id="editAchievedScore" type="number" #editAchievedScore><!--change added #-->
 
             <label for="editweightInput">Weight</label>
-            <input id="editweightInput" type="number">
+            <input id="editweightInput" type="number" #editweightInput><!--change added #-->
             <button type="submit">Submit</button>
         </form>
+        <button (click)="closeEditPopup()">Close</button>
     </div>
 </section>
 
