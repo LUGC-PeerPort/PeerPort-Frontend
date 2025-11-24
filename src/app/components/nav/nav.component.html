@@ -6,6 +6,7 @@
         <a class="link" *ngIf="!User?.userId" href="{{apiUrl}}login/google"> Login </a>
         <a class="link" routerLink="/home" (click)="resetId()"> Home </a>
         <a class="link" *ngIf="courseId" [routerLink]="['home/course/', courseId]"> Course </a>
+        <a class="link" *ngIf="courseId" [routerLink]="['home', 'course', courseId, 'content']"> Content </a>
         <a class="link" *ngIf="courseId" [routerLink]="['home', 'course', courseId, 'assignments']"> Assignments </a>
         <a class="link" *ngIf="courseId" [routerLink]="['home', 'course', courseId, 'grades']"> Grades </a>
         <a class="link" *ngIf="courseId" [routerLink]="['home', 'course', courseId, 'classlist']">Class List</a>

@@ -27,7 +27,7 @@
     <label for="description">Description:</label>
     <textarea id="description" [(ngModel)]="description" name="description"></textarea>
 
-    <label for="viewable">Viewable:</label>
+    <label for="viewable">View:</label>
     <select id="viewable" [(ngModel)]="viewable" name="viewable">
       <option value="true">True</option>
       <option value="false">False</option>
@@ -69,7 +69,7 @@
       <div *ngIf="node.files.length > 0">
         <iframe *ngFor="let file of node.files" [src]="file.url" loading="lazy"></iframe>
       </div>
-      <button *ngIf="!student" (click)="loadData(node); $event.stopPropagation()">View</button>
+      <button *ngIf="!student" (click)="loadData(node); $event.stopPropagation()">Edit</button>
       <button *ngIf="!student" (click)="createPressed(node.contentId)">{{ create && parentId === node.contentId ? "Close create" : "Add content" }}</button>
 
       <!-- Inline create form for this node -->
