@@ -5,6 +5,7 @@
 
 .whole-page{
   display: flex;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .collapsible-content {
 max-height: 0;
@@ -17,12 +18,20 @@ max-height: 0;
 }
 
 .assignment-color {
-    background-color: #ffa704;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    margin-right: 50%;
+  background-color: #E8B35E;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-right: 50%;
   border-right: 50%;
+
   /* padding-right: ; */
+}
+
+.assignment-list-background{
+  position: absolute;
+  background-color: #63D9C4;
+  width: 75%;
+  height: 100%;
 }
 
 .toggle-checkbox:checked ~ .collapsible-content{
@@ -33,74 +42,21 @@ max-height: 0;
   transition: 0.5s;
 }  
 
-.toggle-checkbox1 {
-  display: none; /* Hide the actual checkbox */
-}
 
-.collapsible-content1 {
-max-height: 0;
-  overflow: hidden;
-  border:10px solid;
-  margin-right: 50%;
-   border-right: 50%;
-  border-color: aqua;
-  transition: max-height 0.3s ease-in-out; /* Smooth transition */
-}
 
-.toggle-checkbox1:checked ~ .collapsible-content1 {
-  max-height: 500px; /* Adjust to a value large enough to contain content */
-  /* Or, for a more dynamic height, you might need JavaScript */
-}
 
-.toggle-checkbox2 {
-  display: none; /* Hide the actual checkbox */
-}
-
-.collapsible-content2 {
- max-height: 0;
-  overflow: hidden;
-  border:10px solid;
-  margin-right: 50%;
-   border-right: 50%;
-  border-color: aqua;
-  transition: max-height 0.3s ease-in-out; /* Smooth transition */
-}
-
-.toggle-checkbox2:checked ~ .collapsible-content2 {
-  max-height: 500px; /* Adjust to a value large enough to contain content */
-  /* Or, for a more dynamic height, you might need JavaScript */
-}
-
-.toggle-checkbox3 {
-  display: none; /* Hide the actual checkbox */
-}
-
-.collapsible-content3 {
-  max-height: 0;
-  overflow: hidden;
-  border:10px solid;
-   margin-right: 50%;
-   border-right: 50%;
-  border-color: aqua;
-  transition: max-height 0.3s ease-in-out; /* Smooth transition */
-}
-
-.toggle-checkbox3:checked ~ .collapsible-content3 {
-  max-height: 500px; /* Adjust to a value large enough to contain content */
-  /* Or, for a more dynamic height, you might need JavaScript */
-}
 
 
 
 
 /*Side bars*/
 .sidebars{
-    display:grid;
-    
-    justify-content:right;  
+  position:absolute; 
+  right: 0; 
+  justify-content:right;  
 }
 .sidebar-link1{
-    font-family: "Montserrat", sans-serif;
+    font-family: "Verdana", sans-serif;
     color:rgb(255, 255, 255);
     font-weight:bold;
     white-space: nowrap; 
@@ -115,17 +71,17 @@ margin-right: -3%;
 
 }
 .sidebar-link2{
-    font-family: "Montserrat", sans-serif;
-    color:rgb(255, 255, 255);
-    font-weight:bold;
-    border:8px solid;
-border-color:rgb(247, 191, 8);
-border-radius:15px;
-padding-right: 40px;
-padding-bottom:150%;
-background-color: rgb(247, 191, 8);
-padding-left:50px;
-margin-right: -3%;
+  font-family: "Verdana", sans-serif;
+  color:rgb(255, 255, 255);
+  font-weight:bold;
+  border:8px solid;
+  border-color:rgb(247, 191, 8);
+  border-radius:15px;
+  padding-right: 40px;
+  padding-bottom:150%;
+  background-color: rgb(247, 191, 8);
+  padding-left:50px;
+  margin-right: -3%;
 }
 
 /*Edit pop up*/

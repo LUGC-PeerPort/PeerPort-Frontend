@@ -28,8 +28,9 @@
 
 /* Expand collapsible when checkbox is checked */
 .toggle-checkbox:checked ~ .collapsible-content {
-  max-height: 500px; /* adjust to fit content */
-  padding: 10px; /* add padding when expanded */
+    overflow: scroll;
+    height: 500px;
+    padding: 10px; /* add padding when expanded */
 }
 
 /* Arrow rotation when expanded */
