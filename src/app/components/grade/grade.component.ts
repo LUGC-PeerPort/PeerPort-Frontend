@@ -319,8 +319,19 @@ export class GradeComponent implements OnInit {
       weight:         Number(this.weight)
     };
 
+    // Get the submission
+    let userId: string = "";
+    this.assignments.forEach(assignment => {
+      assignment.submissions.forEach(submission => {
+        if (submission.assignmentSubmissionId === this.submissionId) {
+          // Get the userId
+          userId = submission.userId;
+        }
+      });
+    });
+
     // Create the grade using the CourseService
-    this.courses.createGradeForAssignment(this.courseId, this.user!.userId, this.submissionId, grade).subscribe(response => {
+    this.courses.createGradeForAssignment(this.courseId, userId, this.submissionId, grade).subscribe(response => {
       // Handle the response
       console.log("Grade created:", response);
     });
