@@ -29,7 +29,7 @@
     <div class="assignment-list-background">
       <div class="title">
         <h2>Assignments</h2>
-        <button (click)="openCloseCreatePopup()">Create Assignment</button>
+        <button *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" (click)="openCloseCreatePopup()">Create Assignment</button>
       </div>
       <ul>
         <li *ngFor="let assignment of ASSIGNMENTS; let i = index">
@@ -38,8 +38,8 @@
             <label [for]="'toggle-box-' + i" class="toggle-label">{{assignment.name}}</label>
             <img src="arrow-down-solid-full.svg" class="arrow-toggle" width="10px" height="20px">
          
-            <button [id]="'delete-button' +i" (click)="deleteAssignment(assignment.assignmentId)">Delete</button>
-            <button [id]="'edit-button' +i" (click)="openEditPopup(assignment)">Edit</button>
+            <button *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" [id]="'delete-button' +i" (click)="deleteAssignment(assignment.assignmentId)">Delete</button>
+            <button *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" [id]="'edit-button' +i" (click)="openEditPopup(assignment)">Edit</button>
           </div>
           
           <div class="collapsible-content">
