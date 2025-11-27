@@ -37,13 +37,6 @@ http://localhost:4200
 
 ---
 
-## 🧪 Running Tests (if included)
-
-```bash
-npm run test
-```
-
----
 
 ## 📁 Project Structure(rudimentary, will rework later)
 
