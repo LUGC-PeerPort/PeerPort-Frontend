@@ -1,59 +1,92 @@
-# PeerPortFrontend
+# PeerPort Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+This repository contains the frontend code for **PeerPort**, a platform designed to connect students, taking inspiration from other LLM's such as google classroom or D2L, we strive to create the best mix of websites for both teachers and students, providing a perfect blend
 
-## Development server
+## 🚀 Technologies Used
 
-To start a local development server, run:
+* **React** 
+* **TypeScript**
+* **Angular**
+* **React Router** for navigation
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 📦 Installation & Setup
 
-## Code scaffolding
+Follow the steps below to run the project locally.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 1. Install dependencies
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Make sure you have **Node.js** installed. Then run:
 
 ```bash
-ng generate --help
+npm install
 ```
 
-## Building
-
-To build the project run:
+### 2. Start the development server
 
 ```bash
-ng build
+npm run dev
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+This will launch the app on:
 
-## Running unit tests
+```
+http://localhost:4200
+```
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+---
+
+## 🧪 Running Tests (if included)
 
 ```bash
-ng test
+npm run test
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## 📁 Project Structure(rudimentary)
 
-```bash
-ng e2e
+```
+PeerPort-Frontend/
+│── public/           # Static assets
+│── src/
+│   ├── components/   # Reusable UI components
+│   ├── pages/        # Page views (Dashboard, Login, etc.)
+│   ├── redux/        # Redux slices & store
+│   ├── hooks/        # Custom React hooks
+│   ├── utils/        # Helper functions
+│   ├── App.tsx       # Main app component
+│   └── main.tsx      # Entry point
+│
+└── package.json
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## 🔧 API Configuration
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The frontend communicates with the backend through API endpoints.
+
+
+
+The link to backend/api-docs for the server
+
+```ts
+export const API_BASE_URL = "http://localhost:3000";
+```
+
+---
+
+## collaboration
+
+1. Fork the repository
+2. Create a new branch
+3. Commit your changes
+4. Open a pull request
+5. merge content
+---
+
+
+
+
