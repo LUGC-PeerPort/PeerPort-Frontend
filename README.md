@@ -2,7 +2,7 @@
 
 This repository contains the frontend code for **PeerPort**, a platform designed to connect students, taking inspiration from other LLM's such as google classroom or D2L, we strive to create the best mix of websites for both teachers and students, providing a perfect blend
 
-## 🚀 Technologies Used
+## Technologies/programs used
 
 * **React** 
 * **TypeScript**
@@ -11,7 +11,7 @@ This repository contains the frontend code for **PeerPort**, a platform designed
 
 ---
 
-## 📦 Installation & Setup
+## download and setup
 
 Follow the steps below to run the project locally.
 
@@ -23,7 +23,7 @@ Make sure you have **Node.js** installed. Then run:
 npm install
 ```
 
-### 2. Start the development server
+### 2. Start frontend server
 
 ```bash
 npm run dev
@@ -45,7 +45,7 @@ npm run test
 
 ---
 
-## 📁 Project Structure(rudimentary)
+## 📁 Project Structure(rudimentary, will rework later)
 
 ```
 PeerPort-Frontend/
