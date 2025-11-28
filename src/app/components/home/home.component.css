@@ -28,9 +28,10 @@
     box-shadow: #9D81EC 2px 2px 0 0 !important;
 }
 ul{
-    justify-items: left;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    padding-left: 0;
 }
 li{
     list-style: none;
@@ -40,7 +41,7 @@ li{
     margin: 15px;
 }
 li button{
-    width: 20em;
+    width: 100%;
     height: 15em;
     border-radius: 5px;
     border-color: transparent;
