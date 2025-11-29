@@ -45,12 +45,12 @@ PeerPort-Frontend/
 │── public/           # Static assets
 │── src/
 │   ├── components/   # Reusable UI components
-│   ├── pages/        # Page views (Dashboard, Login, etc.)
-│   ├── redux/        # Redux slices & store
-│   ├── hooks/        # Custom React hooks
-│   ├── utils/        # Helper functions
-│   ├── App.tsx       # Main app component
-│   └── main.tsx      # Entry point
+│   ├── services/        # Page views (Dashboard, Login, etc.)
+│   ├── environment/        # controls environment variables
+│   ├── 
+│   ├── 
+│   ├── 
+│   └── 
 │
 └── package.json
 ```
@@ -66,7 +66,7 @@ The frontend communicates with the backend through API endpoints.
 The link to backend/api-docs for the server
 
 ```ts
-export const API_BASE_URL = "http://localhost:3000";
+courseApi: "http://localhost:3000/";
 ```
 
 ---
