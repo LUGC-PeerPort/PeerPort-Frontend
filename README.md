@@ -38,21 +38,27 @@ http://localhost:4200
 ---
 
 
-## Project Structure(rudimentary, will rework later)
+## Project Structure
 
 ```
 PeerPort-Frontend/
-│── public/           # Static assets
+│── .angular
+│── public/          
 │── src/
-│   ├── components/   # Reusable UI components
-│   ├── services/        # Page views (Dashboard, Login, etc.)
+│   ├── components/   # components of each page that detail each page and its functionality 
+│   ├── services/        #  used for adding CRUD and for linking to API  
 │   ├── environment/        # controls environment variables
 │   ├── 
 │   ├── 
 │   ├── 
 │   └── 
 │
-└── package.json
+├── angular.json
+├── package-lock.json
+├── package.json
+├── ts.config.app.json
+├── tsconfig.json
+└── tsconfig.spec.json
 ```
 
 ---
@@ -71,7 +77,7 @@ courseApi: "http://localhost:3000/";
 
 ---
 
-## collaboration
+## actions
 
 1. Fork the repository
 2. Create a new branch
