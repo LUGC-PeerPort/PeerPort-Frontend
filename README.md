@@ -4,7 +4,7 @@ This repository contains the frontend code for **PeerPort**, a platform designed
 
 ## Technologies/programs used
 
-**Vercel**
+* **Vercel**
 * **TypeScript**
 * **Angular**
 
