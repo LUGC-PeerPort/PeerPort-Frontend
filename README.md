@@ -57,7 +57,7 @@ PeerPort-Frontend/
 
 ---
 
-## 🔧 API Configuration
+## API Configuration
 
 The frontend communicates with the backend through API endpoints.
 
