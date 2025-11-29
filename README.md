@@ -1,13 +1,13 @@
 # PeerPort Frontend
 
-This repository contains the frontend code for **PeerPort**, a platform designed to connect students, taking inspiration from other LLM's such as google classroom or D2L, we strive to create the best mix of websites for both teachers and students, providing a perfect blend
+This repository contains the frontend code for **PeerPort**, a platform designed to connect students, taking inspiration from other LLM's such as google classroom or D2L, we strive to create the best mix of websites for both teachers and students, providing a perfect blend of both experiences
 
 ## Technologies/programs used
 
-* **React** 
+**Vercel**
 * **TypeScript**
 * **Angular**
-* **React Router** for navigation
+
 
 ---
 
@@ -26,7 +26,7 @@ npm install
 ### 2. Start frontend server
 
 ```bash
-npm run dev
+ng serve or ng serve --open
 ```
 
 This will launch the app on:
@@ -38,7 +38,7 @@ http://localhost:4200
 ---
 
 
-## 📁 Project Structure(rudimentary, will rework later)
+## Project Structure(rudimentary, will rework later)
 
 ```
 PeerPort-Frontend/
