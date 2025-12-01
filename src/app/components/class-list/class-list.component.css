@@ -9,6 +9,7 @@ ul{
     margin-top: 2em;
     justify-content: center;
     border-radius: 15px;
+    padding:2em
 }
 .content-section h2{
     display: flex;

@@ -1,13 +1,13 @@
 # PeerPort Frontend
 
-This repository contains the frontend code for **PeerPort**, a platform designed to connect students, taking inspiration from other LLM's such as google classroom or D2L, we strive to create the best mix of websites for both teachers and students, providing a perfect blend
+This repository contains the frontend code for **PeerPort**, a platform designed to connect students, taking inspiration from other LLM's such as google classroom or D2L, we strive to create the best mix of websites for both teachers and students, providing a perfect blend of both experiences
 
 ## Technologies/programs used
 
-* **React** 
+* **Vercel**
 * **TypeScript**
 * **Angular**
-* **React Router** for navigation
+
 
 ---
 
@@ -26,7 +26,7 @@ npm install
 ### 2. Start frontend server
 
 ```bash
-npm run dev
+ng serve or ng serve --open
 ```
 
 This will launch the app on:
@@ -38,26 +38,35 @@ http://localhost:4200
 ---
 
 
-## 📁 Project Structure(rudimentary, will rework later)
+## Project Structure
 
 ```
 PeerPort-Frontend/
-│── public/           # Static assets
+│── .angular
+│── .vscode
+│── .node_modules
+│── public/          
 │── src/
-│   ├── components/   # Reusable UI components
-│   ├── pages/        # Page views (Dashboard, Login, etc.)
-│   ├── redux/        # Redux slices & store
-│   ├── hooks/        # Custom React hooks
-│   ├── utils/        # Helper functions
-│   ├── App.tsx       # Main app component
-│   └── main.tsx      # Entry point
-│
-└── package.json
+│   ├── components/   # components of each page that detail each page and its functionality 
+│   ├── services/        #  used for adding CRUD and for linking to API  
+│   ├── environment/        # controls environment variables
+│   ├── index.html
+│   ├── main.ts
+│   ├── styles
+│   └── 
+├──.editorconfig
+├──.gitignore
+├── angular.json
+├── package-lock.json
+├── package.json
+├── ts.config.app.json
+├── tsconfig.json
+└── tsconfig.spec.json
 ```
 
 ---
 
-## 🔧 API Configuration
+## API Configuration
 
 The frontend communicates with the backend through API endpoints.
 
@@ -66,12 +75,12 @@ The frontend communicates with the backend through API endpoints.
 The link to backend/api-docs for the server
 
 ```ts
-export const API_BASE_URL = "http://localhost:3000";
+courseApi: "http://localhost:3000/";
 ```
 
 ---
 
-## collaboration
+## actions
 
 1. Fork the repository
 2. Create a new branch
