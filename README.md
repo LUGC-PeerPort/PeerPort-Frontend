@@ -1,10 +1,9 @@
 # PeerPort Frontend
 
-This repository contains the frontend code for **PeerPort**, a platform designed to connect students, taking inspiration from other LLM's such as google classroom or D2L, we strive to create the best mix of websites for both teachers and students, providing a perfect blend of both experiences
+This repository contains the frontend code for **PeerPort**, a platform designed to connect students, taking inspiration from other LMS such as Google Classroom or D2L. We strive to create the best mix of websites for both teachers and students, providing a perfect blend of both experiences
 
 ## Technologies/programs used
 
-* **Vercel**
 * **TypeScript**
 * **Angular**
 
@@ -23,7 +22,12 @@ Make sure you have **Node.js** installed. Then run:
 npm install
 ```
 
-### 2. Start frontend server
+### 2. Start Backend
+
+Before starting Frontend, make sure that the Backend is up and running.
+To run the Backend, check out the [Backend ReadMe](https://github.com/LUGC-PeerPort/PeerPort-Backend)!
+
+### 3. Start frontend server
 
 ```bash
 ng serve or ng serve --open
@@ -52,7 +56,7 @@ PeerPort-Frontend/
 │   ├── environment/        # controls environment variables
 │   ├── index.html
 │   ├── main.ts
-│   ├── styles
+│   ├── styles.css
 │   └── 
 ├──.editorconfig
 ├──.gitignore
@@ -64,29 +68,6 @@ PeerPort-Frontend/
 └── tsconfig.spec.json
 ```
 
----
-
-## API Configuration
-
-The frontend communicates with the backend through API endpoints.
-
-
-
-The link to backend/api-docs for the server
-
-```ts
-courseApi: "http://localhost:3000/";
-```
-
----
-
-## actions
-
-1. Fork the repository
-2. Create a new branch
-3. Commit your changes
-4. Open a pull request
-5. merge content
 ---
 
 
