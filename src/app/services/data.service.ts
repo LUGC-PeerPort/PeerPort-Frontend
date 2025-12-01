@@ -12,10 +12,12 @@ export class DataService {
     this.messageSource.next(message);
   }
 
-  private assignmentIdSource = new BehaviorSubject<string>('');
-  currentAssignment = this.assignmentIdSource.asObservable();
+  //this wasn't used, we figured out a different way to do it
+  
+  // private assignmentIdSource = new BehaviorSubject<string>('');
+  // currentAssignment = this.assignmentIdSource.asObservable();
 
-  changeAssignmentId(message: string){
-    this.assignmentIdSource.next(message);
-  }
+  // changeAssignmentId(message: string){
+  //   this.assignmentIdSource.next(message);
+  // }
 }
