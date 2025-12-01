@@ -43,16 +43,19 @@ http://localhost:4200
 ```
 PeerPort-Frontend/
 │── .angular
+│── .vscode
+│── .node_modules
 │── public/          
 │── src/
 │   ├── components/   # components of each page that detail each page and its functionality 
 │   ├── services/        #  used for adding CRUD and for linking to API  
 │   ├── environment/        # controls environment variables
-│   ├── 
-│   ├── 
-│   ├── 
+│   ├── index.html
+│   ├── main.ts
+│   ├── styles
 │   └── 
-│
+├──.editorconfig
+├──.gitignore
 ├── angular.json
 ├── package-lock.json
 ├── package.json
