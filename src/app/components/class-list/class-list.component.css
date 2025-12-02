@@ -1,0 +1,14 @@
+.classlist-obj{
+   border-color:black;
+    border:10px;
+
+   border-radius:25px; 
+   font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+
+}
+.classlist-obj li{
+border-color:black;
+    border:10px;
+}

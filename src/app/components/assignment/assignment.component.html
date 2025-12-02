@@ -12,9 +12,9 @@
           <div class="assignment-color">
             <label [for]="'toggle-box-' + i" class="toggle-label">{{assignment.name}}</label>
             
-            <div class="buttons">
-              <button *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" [id]="'delete-button' +i" (click)="deleteAssignment(assignment.assignmentId)">Delete</button>
-              <button *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'" [id]="'edit-button' +i" (click)="openEditPopup(assignment)">Edit</button>
+            <div class="buttons" *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'">
+              <button  [id]="'delete-button' +i" (click)="deleteAssignment(assignment.assignmentId)">Delete</button>
+              <button  [id]="'edit-button' +i" (click)="openEditPopup(assignment)">Edit</button>
             </div>
           </div>
           
@@ -42,8 +42,7 @@
   <section class="create-background" *ngIf="isCreatePopupOpen">
     <div class="create-foreground">
     <form (ngSubmit)="createAssignment(nameInput.value, descInput.value, dateInput.value)">
-      <fieldset>
-        <legend>Create A New Assignment</legend>
+      
 
         <label for="name">Name</label>
         <input type="text" id="name" #nameInput required />
@@ -56,7 +55,7 @@
 
     
         <button type="submit">Create Assignment</button>
-      </fieldset>
+      
     </form>
     <button (click)="openCloseCreatePopup()">Close</button>
     </div>

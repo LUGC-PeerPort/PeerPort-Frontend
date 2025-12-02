@@ -49,7 +49,6 @@
 </ng-template>
 
 <!-- Template for rendering content recursively (doesn't load on the page here) -->
->
 
 <ng-template #renderContent let-node>
   <li class="content-panel" *ngIf="node.viewable || !student" (click)="toggleContent(node); $event.stopPropagation()">
@@ -86,4 +85,5 @@
       </ul>
     </div>
   </li>
+    
 </ng-template>
