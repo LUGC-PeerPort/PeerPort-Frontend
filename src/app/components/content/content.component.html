@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Saira:ital,wght@0,100..900;1,100..900&family=Stack+Sans+Headline:wght@200..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
   <div class="content-layout">
-    <button *ngIf="!student" (click)="createPressed('')">{{ create && parentId===undefined ? "Close create" : "Create content" }}</button>
+    <button class="create-contbtn" *ngIf="!student" (click)="createPressed('')">{{ create && parentId===undefined ? "Close create" : "Create content" }}</button>
     <!-- Top-level create form (when creating a top-level content) -->
     <div *ngIf="create && parentId === undefined" class="contentData">
       <ng-container *ngTemplateOutlet="contentCreateEditTemplate"></ng-container>
