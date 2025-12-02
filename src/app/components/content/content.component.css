@@ -126,8 +126,9 @@ ul{
 color:rgb(0, 0, 0);
 }
 .contentData{
-    background-color:rgb(57, 0, 0);
+    background-color:#63D9C4;
     border:0px solid;
+    border-radius:10px;
     border-color:rgb(106, 106, 106);
     margin-left:2.7%;
     padding-top:10px;
