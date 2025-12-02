@@ -95,7 +95,12 @@ button:hover{
   transform:rotate(90deg);
   transition: 0.5s;
 }  
-
+.Viewable{
+  background-color: green;
+}
+.Not-Viewable{
+  background-color: red;
+}
 /*Edit pop up*/
 
 .popup-background{

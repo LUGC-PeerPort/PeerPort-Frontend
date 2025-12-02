@@ -14,6 +14,13 @@
 
 }
 
+.Viewable{
+    color:green;
+}
+.Not-Viewable{
+    color:red;
+}
+
 input[type="file"]{
     display:none;
 }
@@ -25,7 +32,9 @@ input[type="file"]{
     border-radius: 15px;
     margin: 0.5em;  
 }
-
+.content-panel h4{
+    cursor:pointer;
+}
 .content-panel button{
 border:1px solid rgba(0, 0, 0, 0) !important;
 border-radius:3px !important;
@@ -45,19 +54,20 @@ width:120px;
 }
 
 .viewable a{
-    border:1px solid black;
+    color:#2e84e7;
+    /* border:1px solid black;
     padding:2px;
     color: white;
     background-color: #9D81EC;
     box-shadow: #081a4b 2px 2px 0px 0px !important;
     border-radius: 25px !important;
     margin-bottom:20px !important;
-    cursor:pointer;
+    cursor:pointer; */
 }
 small{
     margin-top:20% !important;
 }
-.viewable a:hover{
+/* .viewable a:hover{
 
 border-radius:10px;
 transform:scale(1.5);
@@ -68,7 +78,7 @@ color: #081a4b;
     cursor: pointer;
     border-radius: 15px;
     border-color:1px solid black !important;
-}
+} */
 .viewable a:active{
     color:#081a4b;
 }

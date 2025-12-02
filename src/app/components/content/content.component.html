@@ -37,8 +37,8 @@
     </select>
       
     <label for="fileInput"  >Upload File:</label>
-    <button for fileInput class="fileInputbtn">Choose files
-<input type="file" id="fileInput" #fileInput multiple (change)="onFilesSelected(fileInput.files)" />
+    <button class="fileInputbtn">Choose files
+      <input type="file" id="fileInput" #fileInput multiple (change)="onFilesSelected(fileInput.files)" />
     </button>
     
 
@@ -59,12 +59,11 @@
 <ng-template #renderContent let-node>
   <li class="content-panel" *ngIf="node.viewable || !student" (click)="toggleContent(node); $event.stopPropagation()">
     <h4>{{ node.name }}</h4>
-    <div class="viewable">
-    <a *ngIf="!student">{{ node.viewable ? 'View' : 'Not Viewable' }}</a>
-</div>
+   
     <div class="content-meta">
       <small *ngIf="node.dateCreated">Created: {{ node.dateCreated | date:'short' }}</small>
       <small *ngIf="node.dateUpdated"> • Updated: {{ node.dateUpdated | date:'short' }}</small>
+      <small class="{{node.viewable ? 'Viewable': 'Not-Viewable'}}" *ngIf="!student"> • {{ node.viewable ? 'Viewable' : 'Not Viewable' }}</small>
     </div>
 
       <div *ngIf="node.expanded" class="content-content" (click)="$event.stopPropagation()">
