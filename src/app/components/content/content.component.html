@@ -36,13 +36,17 @@
       <option value="false">False</option>
     </select>
       
-    <label for="fileInput"  >Upload File:</label>
-    <button class="fileInputbtn">Choose files
-      <input type="file" id="fileInput" #fileInput multiple (change)="onFilesSelected(fileInput.files)" />
-    </button>
+    <label for="fileInput" class="InputWrapper" ><span>Upload File:</span>
+      <!-- <button class="fileInputbtn">Choose files -->
+        <input type="file" id="fileInput" class="hidden" #fileInput multiple (change)="onFilesSelected(fileInput.files)" />
+        <div class="fileInputbtn">
+          Choose Files
+        </div>
+      <!-- </button> -->
+    </label>
     
 
-    <ul *ngIf="selectedFiles.length">
+    <ul *ngIf="selectedFiles.length" class="fileList">
       <li *ngFor="let f of selectedFiles; let i = index">
         {{ f.name }} — {{ Math.round(f.size / (1024 * 1024) * 100) / 100 }} MB
         <button type="button" (click)="removeSelectedFile(i)">Remove</button>
