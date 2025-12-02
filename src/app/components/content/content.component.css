@@ -17,6 +17,12 @@
     box-shadow: #081a4b 3px 3px 0px 0px !important;
     cursor: pointer;
 }
+.content-panel h4:hover{
+    color: white !important;
+}
+.content-panel h4:active{
+    color: #63D9C4 !important;
+}
 
 .Viewable{
     color:green;

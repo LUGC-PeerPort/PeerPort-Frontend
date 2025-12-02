@@ -40,7 +40,7 @@
 }
 
 .assignment-color label:active{
-  color: teal;
+  color: #63D9C4;
 }
 
 .assignment-list-background{
@@ -75,6 +75,9 @@ button{
     cursor: pointer;
     border-radius: 15px;
     margin: 0.5em;
+    height:30px;
+    width: fit-content;
+    border: none;
 }
 
 button:hover{
@@ -180,6 +183,8 @@ input[type="file"]{
   cursor: pointer;
   border-radius: 15px;
   margin: 0.5em;
+  height:30px;
+  width: fit-content;
 }
 .hidden {
   position: absolute !important;
