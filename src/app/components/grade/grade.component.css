@@ -108,17 +108,17 @@ ul{
   flex-direction: column;
 }
 button{
-    color: #081a4b;
+    color: white;
+    background-color: #9D81EC;
     box-shadow: #081a4b 2px 2px 0px 0px !important;
     cursor: pointer;
+    border-radius: 15px;
+    border-color: transparent;
 }
 
 button:hover{
     color: #081a4b;
-    box-shadow: #081a4b 2px 2px 0px 0px !important;
-    border-color: transparent;
     background-color: white !important;
-    cursor: pointer;
 }
 .assignment-color label:hover{
   color: white;
