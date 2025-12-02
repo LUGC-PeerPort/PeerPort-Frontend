@@ -163,10 +163,10 @@ ul{
 }
 
 .content-section {
-
+    padding-top:20px;
     background-color: #63D9C4 ;
     margin-top:1%;
-    padding-bottom:2%;
+    padding-bottom:20px;
     border-radius: 25px;
     border:10px;
 }
