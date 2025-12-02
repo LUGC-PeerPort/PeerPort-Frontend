@@ -52,7 +52,7 @@ color: #081a4b;
     border-radius: 15px;
 }
 .viewable a:active{
-    color:red;
+    color:#081a4b;
 }
 .content-layout button{
     margin:10px;
