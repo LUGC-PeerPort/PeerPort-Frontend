@@ -13,6 +13,14 @@
     border-top-right-radius: 20px; */
 
 }
+.fileInput {
+    color: white;
+    background-color: #9D81EC;
+    box-shadow: #081a4b 2px 2px 0px 0px !important;
+    cursor: pointer;
+    border-radius: 15px;
+    margin: 0.5em;  
+}
 .content-panel button{
 border:1px solid rgba(0, 0, 0, 0);
 border-radius:3px !important;
@@ -138,6 +146,7 @@ color:rgb(0, 0, 0);
     margin-left:2.7%;
     padding-top:10px;
     margin-right:5%;
+    padding-left:2%;
 }
 
 /* app-content button{
