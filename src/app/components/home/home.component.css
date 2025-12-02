@@ -14,6 +14,7 @@
     justify-content: space-between;
 }
 #header button{
+    color: white;
     margin-right: 15px;
     border-radius: 15px;
     height: fit-content;
@@ -23,6 +24,7 @@
     background-color: #9D81EC;
 }
 #header button:hover{
+    color: black !important;
     cursor: pointer;
     background-color: white !important;
     box-shadow: #9D81EC 2px 2px 0 0 !important;

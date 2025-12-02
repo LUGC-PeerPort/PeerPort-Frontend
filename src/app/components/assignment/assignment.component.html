@@ -10,7 +10,7 @@
         <li *ngFor="let assignment of ASSIGNMENTS; let i = index" class="assignment">
           <input type="checkbox" [id]="'toggle-box-' + i" class="toggle-checkbox">
           <div class="assignment-color">
-            <label [for]="'toggle-box-' + i" class="toggle-label">{{assignment.name}}</label>
+            <label [for]="'toggle-box-' + i" class="toggle-label" id="assignment-name">{{assignment.name}}</label>
             
             <div class="buttons" *ngIf="User?.roleId != 'ff123156-7773-47f5-b5df-0ef54f864f8d'">
               <button  [id]="'delete-button' +i" (click)="deleteAssignment(assignment.assignmentId)">Delete</button>
@@ -23,8 +23,15 @@
             <span class="dueDate">Due Date: {{assignment.dueDate}}</span>
 
             <form (ngSubmit)="submitAssignment(assignment.assignmentId, fileSubmission)">
-              <label [for]="'chooseFile-' + i">Choose a file for upload:</label>
-              <input type="file" [id]="'chooseFile-' + i" accept=".pdf,.doc,.txt" #fileSubmission>
+              <!-- <label [for]="'chooseFile-' + i">Choose a file for upload:</label>
+              <button for="fileInput" class="fileUploadText">Choose Files
+                <input type="file" id="fileInput" [id]="'chooseFile-' + i" accept=".pdf,.doc,.txt" #fileSubmission>
+              </button> -->
+              <label for="fileInput" class="InputWrapper" [for]="'chooseFile-' + i"><span>Upload File:</span>
+                <input type="file" id="fileInput" class="hidden" [id]="'chooseFile-' + i" accept=".pdf,.doc,.txt" #fileSubmission />
+                <div class="fileInputbtn">Choose Files</div>
+              </label>
+
               <button type="submit">Submit</button>
             </form>
           </div>

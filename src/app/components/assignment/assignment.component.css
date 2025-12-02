@@ -1,6 +1,5 @@
 .toggle-checkbox {
    display: none;/* Hide the actual checkbox */
-   
 }
 
 .collapsible-content {
@@ -101,7 +100,7 @@ button:hover{
 .popup-background{
   display: flex;
   background-color: rgba(255,255,255,0.5);
- justify-content: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -160,4 +159,56 @@ ul{
 }
 .assignment {
   margin-bottom: 10px;
+}
+
+#assignment-name{
+  padding-top: 2vh;
+}
+
+input[type="file"]{
+  display:none;
+}
+.fileInputbtn{
+  color: white;
+  background-color: #9D81EC;
+  box-shadow: #081a4b 2px 2px 0px 0px !important;
+  cursor: pointer;
+  border-radius: 15px;
+  margin: 0.5em;
+}
+.hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Wrapper so clicking the visible element triggers the input */
+.InputWrapper {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.InputWrapper .fileInputbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 1px;
+  padding-top: 1px;
+  font-family: Helvetica;
+  font-size: medium;
+}
+
+.fileInputbtn:hover{
+  color: black;
+  background-color: white;
+  box-shadow: #9D81EC;
 }
