@@ -24,9 +24,11 @@ width:120px;
     background-color: white !important;
     cursor: pointer;
 }
-.subcontent-list{
+.subcontent-list {
     width:78%;
-  
+}
+.subcontent-list li{
+    color:white;
 }
 
 .viewable a{
@@ -35,9 +37,12 @@ width:120px;
     color: white;
     background-color: #9D81EC;
     box-shadow: #081a4b 2px 2px 0px 0px !important;
-    cursor: pointer;
     border-radius: 25px !important;
     margin-bottom:20px !important;
+    cursor:pointer;
+}
+small{
+    margin-top:20% !important;
 }
 .viewable a:hover{
 
@@ -104,11 +109,10 @@ ul{
 }
 .content-panel li{
     background-color:rgb(255, 255, 255);
-    border:1px solid color(srgb red green blue);
-    border-top-left-radius: 25px;
-    border-top-right-radius:25px;
+    border-radius:25px; 
     margin-top:40px !important;
     padding-top:40px;
+    margin-right:5%;
     color:black;
 }
 .content-panel p{
