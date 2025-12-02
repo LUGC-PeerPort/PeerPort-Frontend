@@ -13,7 +13,11 @@
     border-top-right-radius: 20px; */
 
 }
-.fileInput {
+
+input[type="file"]{
+    display:none;
+}
+.fileInputbtn{
     color: white;
     background-color: #9D81EC;
     box-shadow: #081a4b 2px 2px 0px 0px !important;
@@ -21,8 +25,9 @@
     border-radius: 15px;
     margin: 0.5em;  
 }
+
 .content-panel button{
-border:1px solid rgba(0, 0, 0, 0);
+border:1px solid rgba(0, 0, 0, 0) !important;
 border-radius:3px !important;
 height:30px;
 width:120px;    
@@ -86,9 +91,6 @@ color: #081a4b;
     border-radius: 15px;
 }
 
-.description p{
-   
-}
 .content-layout {
     
   font-optical-sizing: auto;
