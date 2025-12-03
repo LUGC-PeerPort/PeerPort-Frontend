@@ -10,7 +10,7 @@ This repository contains the frontend code for **PeerPort**, a platform designed
 
 ---
 
-## download and setup
+## Download and Setup
 
 Follow the steps below to run the project locally.
 
